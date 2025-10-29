@@ -1,19 +1,113 @@
 ---
 import Navigation from "../components/Navigation.astro";
 import "../styles/global.css";
+
 const { title } = Astro.props;
 ---
 
+<!doctype html>
 <html lang="en">
     <head>
         <meta charset="UTF-8" />
-        <title>{title}</title>
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <meta
+            name="description"
+            content="Ulrika Garisone - Digital Designer & Developer"
+        />
+        <title>{title} | Ulrika Garisone</title>
+
+        <!-- Preconnect for performance -->
+        <link rel="preconnect" href="https://fonts.googleapis.com" />
     </head>
     <body>
         <Navigation />
+
         <main>
             <slot />
         </main>
+
+        <footer>
+            <div class="container">
+                <div class="footer-content">
+                    <p>
+                        &copy; {new Date().getFullYear()} My Digital Space — Ulrika
+                        Garisone
+                    </p>
+                    <div class="footer-links">
+                        <a
+                            href="mailto:ulrika.garisone@gmail.com"
+                            target="_blank"
+                            rel="noopener">Email</a
+                        >
+                        <a
+                            href="https://github.com/ulrikagarisone"
+                            target="_blank"
+                            rel="noopener">GitHub</a
+                        >
+                        <a
+                            href="https://linkedin.com/in/ulrika.garisone"
+                            target="_blank"
+                            rel="noopener">LinkedIn</a
+                        >
+                    </div>
+                </div>
+            </div>
+        </footer>
     </body>
 </html>
+
+<style>
+    main {
+        min-height: calc(100vh - 200px);
+    }
+
+    footer {
+        border-top: 1px solid rgba(255, 255, 255, 0.1);
+        padding: 3rem 0;
+        margin-top: 6rem;
+    }
+
+    .footer-content {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        flex-wrap: wrap;
+        gap: 1.5rem;
+    }
+
+    .footer-content p {
+        margin: 0;
+        opacity: 0.6;
+        font-size: 0.9375rem;
+    }
+
+    .footer-links {
+        display: flex;
+        gap: 2rem;
+    }
+
+    .footer-links a {
+        color: var(--light);
+        font-weight: 600;
+        font-size: 0.9375rem;
+        opacity: 0.8;
+        transition: all 0.3s ease;
+    }
+
+    .footer-links a:hover {
+        opacity: 1;
+        color: var(--primary);
+        transform: translateY(-2px);
+    }
+
+    @media (max-width: 768px) {
+        .footer-content {
+            flex-direction: column;
+            text-align: center;
+        }
+
+        .footer-links {
+            gap: 1.5rem;
+        }
+    }
+</style>
