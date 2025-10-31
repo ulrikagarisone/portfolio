@@ -1,4 +1,5 @@
 
+
 * {
     margin: 0;
     padding: 0;
@@ -6,19 +7,13 @@
 }
 
 :root {
-    /* Colors */
-    --primary: #D4A574;
-    --secondary: #4A7BA7;
-    --accent: #5F7464;
-    --dark: #0A0A0A;
-    --light: #FFFFFF;
-
-    /* Spacing */
-    --spacing-xs: 0.5rem;
-    --spacing-sm: 1rem;
-    --spacing-md: 2rem;
-    --spacing-lg: 3rem;
-    --spacing-xl: 4rem;
+    --navy: #0D313A;
+    --teal: #0E8992;
+    --peach: #E9A27C;
+    --blush: #E7BBA6;
+    --sage: #8CB6BC;
+    --cream: #FFFCF7;
+    --black: #1A1A1A;
 }
 
 html {
@@ -27,61 +22,154 @@ html {
 }
 
 body {
-    font-family: 'Helvetica Neue', Arial, sans-serif;
+    font-family: -apple-system, BlinkMacSystemFont, 'SF Pro Display', 'Helvetica Neue', sans-serif;
     font-size: 1rem;
-    line-height: 1.6;
-    color: var(--light);
-    background: var(--dark);
+    line-height: 1.4;
+    color: var(--black);
+    background: var(--cream);
     margin: 0;
-    padding: 0;
+    -webkit-font-smoothing: antialiased;
 }
 
-/* Typography */
-h1 {
-    font-size: 2rem;
+h1,
+h2,
+h3 {
     font-weight: 900;
-    line-height: 1.1;
-    margin-bottom: 1rem;
+    line-height: 0.85;
+    letter-spacing: -0.04em;
+    text-transform: uppercase;
+}
+
+h1 {
+    font-size: 3.5rem;
+    margin: 0;
 }
 
 h2 {
-    font-size: 1.75rem;
-    font-weight: 700;
-    margin-bottom: 0.75rem;
+    font-size: 2.5rem;
+    margin: 0;
 }
 
 h3 {
-    font-size: 1.25rem;
+    font-size: 1.5rem;
+    margin: 0;
     font-weight: 700;
-    margin-bottom: 0.5rem;
 }
 
 p {
-    margin-bottom: 1rem;
-    line-height: 1.7;
+    font-size: 1rem;
+    line-height: 1.6;
+    font-weight: 400;
 }
 
 a {
     color: inherit;
     text-decoration: none;
-    transition: all 0.3s ease;
+    transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
 }
 
-/* Selection */
 ::selection {
-    background: var(--primary);
-    color: var(--dark);
+    background: var(--teal);
+    color: var(--cream);
 }
 
-/* Layout*/
+/* Layout */
 .container {
     width: 100%;
     max-width: 100%;
     margin: 0 auto;
-    padding: 0 1rem;
+    padding: 0 1.5rem;
 }
 
-.section {
-    padding: 2rem 0;
+.full-bleed {
+    width: 100vw;
+    position: relative;
+    left: 50%;
+    right: 50%;
+    margin-left: -50vw;
+    margin-right: -50vw;
 }
 
+/* Stacking */
+.overlap {
+    margin-top: -5rem;
+    position: relative;
+    z-index: 10;
+}
+
+/* Color blocks */
+.bg-navy {
+    background: var(--navy);
+    color: var(--cream);
+}
+
+.bg-teal {
+    background: var(--teal);
+    color: var(--cream);
+}
+
+.bg-peach {
+    background: var(--peach);
+    color: var(--navy);
+}
+
+.bg-sage {
+    background: var(--sage);
+    color: var(--navy);
+}
+
+.bg-cream {
+    background: var(--cream);
+    color: var(--black);
+}
+
+/* Text colors */
+.text-navy {
+    color: var(--navy);
+}
+
+.text-teal {
+    color: var(--teal);
+}
+
+.text-peach {
+    color: var(--peach);
+}
+
+/* Image styles */
+.img-wrapper {
+    position: relative;
+    overflow: hidden;
+    background: var(--sage);
+}
+
+.img-wrapper img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+}
+
+.aspect-square {
+    aspect-ratio: 1/1;
+}
+
+.aspect-portrait {
+    aspect-ratio: 3/4;
+}
+
+.aspect-landscape {
+    aspect-ratio: 16/10;
+}
+
+.aspect-wide {
+    aspect-ratio: 21/9;
+}
+
+
+.number {
+    font-size: 6rem;
+    font-weight: 900;
+    line-height: 1;
+    opacity: 0.08;
+}

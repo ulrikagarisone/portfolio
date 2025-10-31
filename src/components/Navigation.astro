@@ -1,7 +1,13 @@
+---
+// Cool gradient navigation
+---
+
 <nav>
     <div class="container">
         <div class="nav-content">
-            <a href="/" class="logo">UG</a>
+            <a href="/" class="logo">
+                <span class="logo-u">U</span><span class="logo-g">G</span>
+            </a>
 
             <ul class="nav-links">
                 <li><a href="/">Home</a></li>
@@ -18,8 +24,8 @@
         position: sticky;
         top: 0;
         z-index: 100;
-        background: rgba(10, 10, 10, 0.9);
-        backdrop-filter: blur(10px);
+        background: rgba(15, 23, 41, 0.8);
+        backdrop-filter: blur(20px);
         border-bottom: 1px solid rgba(255, 255, 255, 0.1);
         padding: 1rem 0;
     }
@@ -28,32 +34,48 @@
         display: flex;
         justify-content: space-between;
         align-items: center;
-        gap: 1rem;
     }
 
     .logo {
-        font-size: 1.25rem;
+        font-size: 1.5rem;
         font-weight: 900;
-        color: var(--primary);
-        transition: transform 0.3s ease;
+        display: flex;
+        gap: 0.1rem;
     }
 
-    .logo:hover {
-        transform: scale(1.05);
+    .logo-u {
+        color: var(--primary);
+        transition: all 0.3s ease;
+    }
+
+    .logo-g {
+        color: var(--secondary);
+        transition: all 0.3s ease;
+    }
+
+    .logo:hover .logo-u {
+        color: var(--accent);
+        transform: translateY(-2px);
+    }
+
+    .logo:hover .logo-g {
+        color: var(--purple);
+        transform: translateY(2px);
     }
 
     .nav-links {
         list-style: none;
         display: flex;
-        gap: 1rem;
+        gap: 1.5rem;
         font-size: 0.875rem;
     }
 
     .nav-links a {
-        color: var(--light);
+        color: var(--white);
         font-weight: 600;
         position: relative;
         padding: 0.5rem 0;
+        opacity: 0.8;
     }
 
     .nav-links a::after {
@@ -63,11 +85,16 @@
         left: 0;
         width: 0;
         height: 2px;
-        background: var(--primary);
+        background: linear-gradient(90deg, var(--primary), var(--secondary));
         transition: width 0.3s ease;
+    }
+
+    .nav-links a:hover {
+        opacity: 1;
     }
 
     .nav-links a:hover::after {
         width: 100%;
     }
+
 </style>
