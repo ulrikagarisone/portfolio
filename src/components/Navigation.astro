@@ -70,3 +70,143 @@ function isActive(href: string, exact: boolean): boolean {
         }
     </ul>
 </nav>
+
+<style>
+    .hidden {
+        display: none;
+    }
+
+    .nav a:any-link {
+        color: var(--navy);
+        text-decoration: none;
+    }
+
+    .nav {
+        margin: 1rem auto 2rem auto;
+        max-width: 1200px;
+        padding: 0 1.25rem;
+        display: grid;
+    }
+
+    .nav--fixed {
+        position: fixed;
+        width: calc(100% - 2rem);
+        top: 0;
+        padding-top: 1rem;
+        background-color: var(--cream);
+        z-index: 100;
+    }
+
+    .nav__title {
+        grid-row: 1;
+        grid-column: 1;
+        margin: 0;
+        font-size: 1.5rem;
+    }
+
+    .nav__button {
+        grid-row: 1;
+        grid-column: 2;
+        align-self: center;
+        justify-self: end;
+        border: none;
+        margin: 0;
+        padding: 0;
+        font-size: 1rem;
+        line-height: 1;
+        background: transparent;
+        appearance: none;
+        color: var(--navy);
+        cursor: pointer;
+    }
+
+    .nav__button svg {
+        width: 1.5rem;
+        height: 1.5rem;
+    }
+
+    .nav__list {
+        grid-row: 2;
+        grid-column: 1 / span 2;
+        list-style: none;
+        margin: 0;
+        padding: 0;
+    }
+
+    .nav__item {
+        border-top: solid 1px var(--navy);
+    }
+
+    .nav__item:last-of-type {
+        border-bottom: solid 1px var(--navy);
+    }
+
+    .nav__link {
+        display: block;
+        text-align: center;
+        padding: 0.75rem;
+        transition: all 0.3s ease;
+    }
+
+    .nav__link:hover,
+    .nav__link.active {
+        background-color: var(--teal);
+        color: var(--cream);
+    }
+</style>
+
+<script>
+    const initNavigation = () => {
+        const navButton = document.querySelector(".nav__button");
+        const navList = document.querySelector(".nav__list");
+        const iconLink = document.querySelector("#iconlink");
+        const nav = document.querySelector(".nav");
+        const listItems = navList?.querySelectorAll("li a");
+
+        if (!navButton || !navList || !iconLink || !nav || !listItems) {
+            return;
+        }
+
+        navButton.classList.remove("hidden");
+        navList.classList.add("hidden");
+
+        const openNavigation = () => {
+            navButton.setAttribute("aria-expanded", "true");
+            iconLink.setAttribute("xlink:href", "#close");
+            navList.classList.remove("hidden");
+            nav.classList.add("nav--fixed");
+        };
+
+        const closeNavigation = () => {
+            navButton.setAttribute("aria-expanded", "false");
+            iconLink.setAttribute("xlink:href", "#navicon");
+            navList.classList.add("hidden");
+            nav.classList.remove("nav--fixed");
+        };
+
+        const toggleNavigation = () => {
+            const open = navButton.getAttribute("aria-expanded");
+            if (open === "false") {
+                openNavigation();
+            } else {
+                closeNavigation();
+            }
+        };
+
+        const handleBlur = () => {
+            closeNavigation();
+        };
+
+        navButton.addEventListener("click", toggleNavigation);
+        listItems[listItems.length - 1].addEventListener("blur", handleBlur);
+
+        window.addEventListener("keyup", (e) => {
+            if (e.key === "Escape") {
+                (navButton as HTMLButtonElement).focus();
+                closeNavigation();
+            }
+        });
+    };
+
+    initNavigation();
+</script>
