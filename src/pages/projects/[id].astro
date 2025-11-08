@@ -1,0 +1,58 @@
+---
+import { getCollection } from "astro:content";
+import BaseLayout from "../../layouts/BaseLayout.astro";
+
+export async function getStaticPaths() {
+    const projects = await getCollection("projects");
+    return projects.map((project) => ({
+        params: { id: project.id },
+        props: { project },
+    }));
+}
+
+const { project } = Astro.props;
+const { Content } = await project.render();
+---
+
+<BaseLayout title={project.data.title}>
+    <div class="container">
+        <article class="project-detail">
+            <header class="project-header">
+                <a href="/projects" class="back-link">← Back to Projects</a>
+
+                <h1>{project.data.title}</h1>
+
+                <div class="project-meta">
+                    <time datetime={project.data.pubDate.toISOString()}>
+                        {
+                            project.data.pubDate.toLocaleDateString("en-US", {
+                                year: "numeric",
+                                month: "long",
+                                day: "numeric",
+                            })
+                        }
+                    </time>
+                    <span
+                        class="status-badge status-badge--{project.data.status}"
+                    >
+                        {project.data.status}
+                    </span>
+                </div>
+
+                {
+                    project.data.tags && project.data.tags.length > 0 && (
+                        <div class="project-tags">
+                            {project.data.tags.map((tag) => (
+                                <span class="tag">{tag}</span>
+                            ))}
+                        </div>
+                    )
+                }
+            </header>
+
+            <div class="project-content">
+                <Content />
+            </div>
+        </article>
+    </div>
+</BaseLayout>
