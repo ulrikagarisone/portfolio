@@ -1,7 +1,7 @@
 ---
 title: "Integration 2 – Key Whisperers"
 description: "An interactive website transforming everyday keys into storytellers through playful micro-interactions, storytelling, and creative alternative uses."
-date: 2025-05-25
+pubDate: 2025-05-25
 tags: ["UX Design", "Interaction Design", "Wireframing", "Storytelling", "Figma", "Front-End Development"]
 status: "completed"
 cover: "./assets/windchime.gif"

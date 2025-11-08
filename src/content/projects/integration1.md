@@ -1,7 +1,7 @@
 ---
 title: "Integration 1 – Off The Grid Tips & Tricks"
 description: "An engaging and practical website helping a targeted audience embrace off-grid living, featuring user-focused research, playful visual design, and thoughtful prototyping."
-date: 2025-01-15
+pubDate: 2025-01-15
 tags: ["UX Design", "User Research", "Wireframing", "Prototyping", "Figma"]
 status: "completed"
 cover: "./assets/overview-preview.gif"

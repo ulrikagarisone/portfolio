@@ -1,7 +1,7 @@
 ---
 title: "Star Symphony – Rhythm-Based Clicker Game"
 description: "A cosmic rhythm clicker game where players conduct stars, earn cosmic energy, and form constellations while mastering timing and UX feedback."
-date: 2025-01-15
+pubDate: 2025-01-15
 tags: ["Creative Coding", "JavaScript", "Game Design", "UX", "Animation"]
 status: "completed"
 cover: "./assets/overview-preview.gif"

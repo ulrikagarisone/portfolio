@@ -1,7 +1,7 @@
 ---
 title: "Edison Myth Fact-Check – Scrollytelling Web Project"
 description: "An interactive scrollytelling investigation debunking the myth that Edison invented the lightbulb alone — blending history, UX storytelling, and investigative design."
-date: 2024-10-10
+pubDate: 2024-10-10
 tags: ["Storytelling", "Web Design", "Scrollytelling", "Figma", "Illustration"]
 status: "completed"
 cover: "./assets/edison-cover.png"

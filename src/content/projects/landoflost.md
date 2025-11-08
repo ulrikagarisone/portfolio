@@ -1,7 +1,7 @@
 ---
 title: "Land of Lost & Found"
 description: "A narrative-driven, whimsical website bringing forgotten things to life through playful illustrations, interactive storytelling, and a fantastical visual landscape."
-date: 2024-10-01
+pubDate: 2024-10-01
 tags: ["Web Design", "Illustration", "UX Design", "Storytelling", "Figma", "Digital Collage"]
 status: "completed"
 cover: "./assets/land-of-lost-found-cover.png"

@@ -1,7 +1,7 @@
 ---
 title: "Gym Website Redesign for Adults 50+"
 description: "A user-centered redesign of a gym website tailored to the needs, motivations, and digital habits of adults aged 50+, focusing on accessibility, trust, and community engagement."
-date: 2025-04-15
+pubDate: 2025-04-15
 tags: ["UX Design", "Wireframing", "User Research", "Accessibility", "Figma"]
 status: "completed"
 cover: "./assets/gym-50plus-cover.png"

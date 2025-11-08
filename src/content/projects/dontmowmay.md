@@ -1,7 +1,7 @@
 ---
 title: "Don't Mow May – Digital Campaign Concept"
 description: "A digital awareness campaign concept encouraging Flemish residents to mow less in May to support biodiversity, built through UX research, ideation, and storytelling."
-date: 2024-05-25
+pubDate: 2024-05-25
 tags: ["UX Design", "Campaign Design", "Sustainability", "Concepting", "Storyboarding"]
 status: "completed"
 cover: "./assets/dont-mow-may-cover.png"
