@@ -1,100 +1,72 @@
 ---
-// Cool gradient navigation
+const currentPath = Astro.url.pathname;
+
+const links = [
+    { href: "/", label: "Home", exact: true },
+    { href: "/about", label: "About", exact: true },
+    { href: "/projects", label: "Projects", exact: false },
+    { href: "/experiments", label: "Experiments", exact: false },
+];
+
+function isActive(href: string, exact: boolean): boolean {
+    if (exact) {
+        return currentPath === href;
+    } else {
+        return currentPath.startsWith(href);
+    }
+}
 ---
 
-<nav>
-    <div class="container">
-        <div class="nav-content">
-            <a href="/" class="logo">
-                <span class="logo-u">U</span><span class="logo-g">G</span>
-            </a>
+<svg style="display:none">
+    <symbol id="navicon" viewBox="0 0 24 24" fill="currentColor">
+        <path
+            d="M21 11h-18c-0.6 0-1 0.4-1 1s0.4 1 1 1h18c0.6 0 1-0.4 1-1s-0.4-1-1-1z"
+        ></path>
+        <path
+            d="M3 7h18c0.6 0 1-0.4 1-1s-0.4-1-1-1h-18c-0.6 0-1 0.4-1 1s0.4 1 1 1z"
+        ></path>
+        <path
+            d="M21 17h-18c-0.6 0-1 0.4-1 1s0.4 1 1 1h18c0.6 0 1-0.4 1-1s-0.4-1-1-1z"
+        ></path>
+    </symbol>
+    <symbol id="close" viewBox="0 0 24 24" fill="currentColor">
+        <path
+            d="M19.1,17.7L6.3,4.9c-.4-.4-1-.4-1.4,0s-.4,1,0,1.4l12.7,12.7c.4.4,1,.4,1.4,0s.4-1,0-1.4Z"
+        ></path>
+        <path
+            d="M6.3,19.1l12.7-12.7c.4-.4.4-1,0-1.4s-1-.4-1.4,0l-12.7,12.7c-.4.4-.4,1,0,1.4s1,.4,1.4,0Z"
+        ></path>
+    </symbol>
+</svg>
 
-            <ul class="nav-links">
-                <li><a href="/">Home</a></li>
-                <li><a href="/projects">Work</a></li>
-                <li><a href="/design-translator">Insights</a></li>
-                <li><a href="/about">About</a></li>
-            </ul>
-        </div>
-    </div>
+<nav class="nav">
+    <h1 class="nav__title">
+        <a href="/">UG</a>
+    </h1>
+    <button
+        class="nav__button hidden"
+        aria-label="Navigation menu"
+        aria-expanded="false"
+        aria-controls="nav__list">
+        <svg role="img" aria-labelledby="svg-title" focusable="false">
+            <title id="svg-title">Menu</title>
+            <use id="iconlink" xlink:href="#navicon"></use>
+        </svg>
+    </button>
+    <ul class="nav__list" id="nav__list">
+        {
+            links.map((link) => (
+                <li class="nav__item">
+                    <a
+                        class:list={[
+                            "nav__link",
+                            { active: isActive(link.href, link.exact) },
+                        ]}
+                        href={link.href}>
+                        {link.label}
+                    </a>
+                </li>
+            ))
+        }
+    </ul>
 </nav>
-
-<style>
-    nav {
-        position: sticky;
-        top: 0;
-        z-index: 100;
-        background: rgba(15, 23, 41, 0.8);
-        backdrop-filter: blur(20px);
-        border-bottom: 1px solid rgba(255, 255, 255, 0.1);
-        padding: 1rem 0;
-    }
-
-    .nav-content {
-        display: flex;
-        justify-content: space-between;
-        align-items: center;
-    }
-
-    .logo {
-        font-size: 1.5rem;
-        font-weight: 900;
-        display: flex;
-        gap: 0.1rem;
-    }
-
-    .logo-u {
-        color: var(--primary);
-        transition: all 0.3s ease;
-    }
-
-    .logo-g {
-        color: var(--secondary);
-        transition: all 0.3s ease;
-    }
-
-    .logo:hover .logo-u {
-        color: var(--accent);
-        transform: translateY(-2px);
-    }
-
-    .logo:hover .logo-g {
-        color: var(--purple);
-        transform: translateY(2px);
-    }
-
-    .nav-links {
-        list-style: none;
-        display: flex;
-        gap: 1.5rem;
-        font-size: 0.875rem;
-    }
-
-    .nav-links a {
-        color: var(--white);
-        font-weight: 600;
-        position: relative;
-        padding: 0.5rem 0;
-        opacity: 0.8;
-    }
-
-    .nav-links a::after {
-        content: "";
-        position: absolute;
-        bottom: 0;
-        left: 0;
-        width: 0;
-        height: 2px;
-        background: linear-gradient(90deg, var(--primary), var(--secondary));
-        transition: width 0.3s ease;
-    }
-
-    .nav-links a:hover {
-        opacity: 1;
-    }
-
-    .nav-links a:hover::after {
-        width: 100%;
-    }
-
-</style>
