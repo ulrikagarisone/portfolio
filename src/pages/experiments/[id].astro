@@ -1,0 +1,191 @@
+---
+import { getCollection } from "astro:content";
+import BaseLayout from "../../layouts/BaseLayout.astro";
+
+export async function getStaticPaths() {
+    const experiments = await getCollection("experiments");
+    return experiments.map((experiment) => ({
+        params: { id: experiment.id },
+        props: { experiment },
+    }));
+}
+
+const { experiment } = Astro.props;
+const { Content } = await experiment.render();
+---
+
+<BaseLayout title={experiment.data.title}>
+    <div class="container">
+        <article class="experiment-detail">
+            <header class="experiment-header">
+                <a href="/experiments" class="back-link"
+                    >← Back to Experiments</a
+                >
+
+                <h1>{experiment.data.title}</h1>
+
+                <div class="experiment-meta">
+                    <time datetime={experiment.data.pubDate.toISOString()}>
+                        {
+                            experiment.data.pubDate.toLocaleDateString(
+                                "en-US",
+                                {
+                                    year: "numeric",
+                                    month: "long",
+                                    day: "numeric",
+                                },
+                            )
+                        }
+                    </time>
+                    <span
+                        class="status-badge status-badge--{experiment.data.status}"
+                    >
+                        {experiment.data.status}
+                    </span>
+                </div>
+
+                {
+                    experiment.data.tags && experiment.data.tags.length > 0 && (
+                        <div class="experiment-tags">
+                            {experiment.data.tags.map((tag) => (
+                                <span class="tag">{tag}</span>
+                            ))}
+                        </div>
+                    )
+                }
+            </header>
+
+            <div class="experiment-content">
+                <Content />
+            </div>
+        </article>
+    </div>
+</BaseLayout>
+
+<style>
+    .experiment-detail {
+        max-width: 800px;
+        margin: 0 auto;
+    }
+
+    .experiment-header {
+        margin-bottom: 3rem;
+    }
+
+    .back-link {
+        display: inline-block;
+        color: var(--teal);
+        font-weight: 600;
+        margin-bottom: 1.5rem;
+        transition: transform 0.3s ease;
+    }
+
+    .back-link:hover {
+        transform: translateX(-4px);
+    }
+
+    .experiment-header h1 {
+        margin-bottom: 1rem;
+        color: var(--navy);
+    }
+
+    .experiment-meta {
+        display: flex;
+        gap: 1rem;
+        align-items: center;
+        margin-bottom: 1rem;
+        font-size: 0.9375rem;
+    }
+
+    .experiment-meta time {
+        color: rgba(0, 0, 0, 0.6);
+    }
+
+    .status-badge {
+        padding: 0.25rem 0.75rem;
+        border-radius: 4px;
+        font-size: 0.75rem;
+        font-weight: 600;
+        text-transform: uppercase;
+    }
+
+    .status-badge--completed {
+        background: var(--sage);
+        color: var(--navy);
+    }
+
+    .status-badge--in-progress {
+        background: var(--peach);
+        color: var(--navy);
+    }
+
+    .status-badge--archived {
+        background: rgba(0, 0, 0, 0.1);
+        color: rgba(0, 0, 0, 0.6);
+    }
+
+    .experiment-tags {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 0.5rem;
+    }
+
+    .experiment-content {
+        line-height: 1.8;
+    }
+
+    .experiment-content :global(h2) {
+        color: var(--navy);
+        margin-top: 2.5rem;
+        margin-bottom: 1rem;
+        font-size: 1.75rem;
+    }
+
+    .experiment-content :global(h3) {
+        color: var(--navy);
+        margin-top: 2rem;
+        margin-bottom: 0.75rem;
+        font-size: 1.375rem;
+    }
+
+    .experiment-content :global(img) {
+        width: 100%;
+        height: auto;
+        border-radius: 8px;
+        margin: 2rem 0;
+    }
+
+    .experiment-content :global(p) {
+        margin-bottom: 1.25rem;
+        color: rgba(0, 0, 0, 0.85);
+    }
+
+    .experiment-content :global(ul),
+    .experiment-content :global(ol) {
+        margin-bottom: 1.5rem;
+        padding-left: 2rem;
+    }
+
+    .experiment-content :global(li) {
+        margin-bottom: 0.5rem;
+        color: rgba(0, 0, 0, 0.85);
+    }
+
+    .experiment-content :global(a) {
+        color: var(--teal);
+        font-weight: 600;
+        text-decoration: underline;
+        text-decoration-color: rgba(14, 137, 146, 0.3);
+        transition: all 0.3s ease;
+    }
+
+    .experiment-content :global(a:hover) {
+        text-decoration-color: var(--teal);
+    }
+
+    .experiment-content :global(table) {
+        width: 100%;
+        border-collapse: collapse;
+        margin: 2rem 0;
+    }
+</style>
