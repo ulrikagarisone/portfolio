@@ -4,7 +4,7 @@ description: "An engaging and practical website helping a targeted audience embr
 pubDate: 2025-01-15
 tags: ["UX Design", "User Research", "Wireframing", "Prototyping", "Figma"]
 status: "completed"
-cover: "./assets/overview-preview.gif"
+cover: ""
 ---
 
 # Integration 1 – Off The Grid Tips & Tricks
@@ -12,7 +12,6 @@ cover: "./assets/overview-preview.gif"
 ## Overview
 **Off The Grid Tips & Tricks** is an engaging and practical website designed to help a targeted audience embrace off-grid living. Unlike generic survival guides, this project is rooted in original research, user-focused brainstorming, playful visual design, and thoughtful prototyping. Every step—from initial analysis to final design—is documented.
 
-![Hero / Tips Overview](assets/overview-preview.gif)
 
 **Key Goals:**
 - Deliver a resource that feels approachable, creative, and motivating.  
@@ -89,10 +88,3 @@ cover: "./assets/overview-preview.gif"
 - **Figma Design File:** [Link to Figma – Visual Style, Moodboards, UI Design]  
 
 **Screenshots / GIFs** *(replace placeholders with actual assets)*  
-
-![Target Audience & Persona](assets/persona.png)  
-![User Flow & Mindmap](assets/userflow.png)  
-![HMW Ideation](assets/hmw.png)  
-![Wireframes & Layout](assets/wireframes.png)  
-![Moodboard & Visual Style](assets/moodboard.png)  
-![Tip Interaction Example](assets/tip-interaction.gif)

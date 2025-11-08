@@ -4,7 +4,7 @@ description: "A UX research project analyzing and improving the blood donation e
 pubDate: 2025-02-05
 tags: ["UX Research", "User Journey", "AIDA Funnel", "Field Observation", "Miro", "Figjam"]
 status: "completed"
-cover: "./assets/red-cross-flanders-cover.png"
+cover: ""
 ---
 
 # Red Cross Flanders – User Experience Analysis

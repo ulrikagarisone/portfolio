@@ -3,8 +3,8 @@ title: "THRIVE — Unwind IPA"
 description: "A university-developed beverage project emphasizing radical transparency, with a digital experience designed to inspire trust, calm, and curiosity through visual clarity and interactive storytelling."
 pubDate: 2025-09-26
 tags: ["UX Design", "Visual Design", "Interaction Design", "Prototyping", "Figma", "Brand Experience"]
-status: "in progress"
-cover: "./assets/thrive-unwind-ipa-cover.png"
+status: "in-progress"
+cover: ""
 ---
 
 

@@ -3,7 +3,7 @@ title: "Craftzing UX Research Collaboration"
 description: "XD3 final assignment — understanding screen-time challenges for immigrant families with young children and designing culturally-aware solutions."
 pubDate: 2025-09-20
 tags: ["UX Research", "Service Design", "Craftzing", "User Studies"]
-status: "in progress"
+status: "in-progress"
 ---
 
 # Craftzing UX Research Collaboration

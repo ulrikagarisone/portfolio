@@ -1,10 +1,11 @@
 ---
 title: "Opposites — Chaos / Order / Dark / Light (p5.js)"
 description: "A creative coding project in p5.js interpreting abstract concepts — Chaos, Order, Dark, and Light — through motion, shapes, and visual rhythm."
+pubDate: 2024-11-01
 date: 2024-11-01
 tags: ["Creative Coding", "p5.js", "Interactive Art", "Animation", "Generative Design"]
 status: "completed"
-cover: "./assets/opposites-cover.png"
+cover: ""
 ---
 
 # Opposites — Chaos / Order / Dark / Light (p5.js)

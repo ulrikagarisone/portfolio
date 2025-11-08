@@ -4,7 +4,7 @@ description: "An interactive website transforming everyday keys into storyteller
 pubDate: 2025-05-25
 tags: ["UX Design", "Interaction Design", "Wireframing", "Storytelling", "Figma", "Front-End Development"]
 status: "completed"
-cover: "./assets/windchime.gif"
+cover: ""
 ---
 
 # Integration 2 – Key Whisperers
@@ -18,7 +18,6 @@ cover: "./assets/windchime.gif"
 
 Through storytelling, visual metaphors, and micro-interactions, the site encourages visitors to see ordinary keys as **personal artifacts** carrying the imprint of life’s moments.
 
-![Hero / Windchime Interaction](assets/windchime.gif)
 
 **Live demo:** [View Key Whisperers](https://ulrikagarisone.be/integration2/)
 
@@ -48,21 +47,15 @@ This project followed the Integration 2 briefing, which asked for:
 - **Design:** Warm, nostalgic color palette; playful typography and illustrative visual language.  
 - **Technical Highlights:** Drag-and-drop interactions, hover animations, progressive storytelling, interactive form with multi-input types, dynamic database-loaded testimonials.
 
-![Wireframes & User Flow](assets/wireframes.png)
 
 ---
 
 ## Features
 - **Windchimes Interaction:** Drag keys to build a musical memory chime.  
-![Windchime Interaction](assets/windchime.gif)
 - **Garden Gossip:** Hover or place keys in a virtual garden to trigger playful feedback.  
-![Garden Gossip Interaction](assets/garden-gossip.gif)
 - **Ritual Planting:** Plant keys to trigger symbolic animations and encourage reflection.  
-![Planting Ritual Interaction](assets/planting-keys.gif)
 - **Sign-Up Form:** Collect user input with progressive enhancement and validation.  
-![Sign-Up Form](assets/form.png)
 - **Reviews / Testimonials:** Loaded from a database and dynamically displayed.  
-![Testimonials](assets/testimonials.png)
 
 ---
 
@@ -108,9 +101,3 @@ This project followed the Integration 2 briefing, which asked for:
 
 ## Visuals / GIFs
 *(Replace these placeholders with your actual images or GIFs)*  
-
-![Windchime Interaction](assets/windchime.gif)  
-![Garden Gossip Interaction](assets/garden-gossip.gif)  
-![Planting Ritual Interaction](assets/planting-keys.gif)  
-![Wireframes & Flow](assets/wireframes.png)  
-![Moodboard & Visual Style](assets/moodboard.png)

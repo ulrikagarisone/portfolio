@@ -1,10 +1,11 @@
 ---
 title: "Generative Masks – Creative Coding (p5.js)"
 description: "A first creative coding project in p5.js generating unique mask characters with controlled randomness, combining code, art, and personality."
-date: 2024-10-01
+date: 2024-10-10
+pubDate: 2024-10-01
 tags: ["Creative Coding", "p5.js", "Generative Art", "Interactive Design", "JavaScript"]
 status: "completed"
-cover: "./assets/generative-masks-cover.png"
+cover: ""
 ---
 
 # Generative Masks – Creative Coding (p5.js)
