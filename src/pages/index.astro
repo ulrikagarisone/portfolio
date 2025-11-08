@@ -1,14 +1,104 @@
 ---
+import { getCollection } from "astro:content";
 import BaseLayout from "../layouts/BaseLayout.astro";
+
+const allProjects = await getCollection("projects");
+const featuredProjects = allProjects
+	.sort((a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf())
+	.slice(0, 3);
+
+const allExperiments = await getCollection("experiments");
+const recentExperiments = allExperiments
+	.sort((a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf())
+	.slice(0, 3);
 ---
 
 <BaseLayout title="Home">
-	<section>
-		<h1>Hi, I’m Ulrika Garisone </h1>
-		<p>
-			I’m a digital designer and developer based in Belgium. I love
-			crafting playful and human-centered interactive experiences.
-		</p>
-		<p>Explore my projects and notes to see my latest creative work!</p>
-	</section>
+	<div class="container">
+		<section class="hero">
+			<h1>Ulrika Garisone</h1>
+			<p class="hero__intro">
+				I design interfaces that move, respond, and feel alive.
+			</p>
+			<p class="hero__description">
+				UX researcher and creative developer based in Belgium, blending
+				behavior observation with motion-driven interaction design.
+			</p>
+			<div class="hero__buttons">
+				<a href="/projects" class="btn btn--primary">View Projects</a>
+				<a href="/about" class="btn">About Me</a>
+			</div>
+		</section>
+
+		<section class="section">
+			<div class="section-header">
+				<h2>Selected Work</h2>
+				<a href="/projects" class="link--underline">View all →</a>
+			</div>
+
+			<div class="cards-grid">
+				{
+					featuredProjects.map((project) => (
+						<article class="card">
+							<img
+								src={project.data.cover}
+								alt={project.data.title}
+							/>
+							<div class="card-content">
+								<h3>
+									<a href={`/projects/${project.id}`}>
+										{project.data.title}
+									</a>
+								</h3>
+								<p>{project.data.description}</p>
+								<div class="tags">
+									{project.data.tags
+										.slice(0, 3)
+										.map((tag) => (
+											<span class="tag">{tag}</span>
+										))}
+								</div>
+							</div>
+						</article>
+					))
+				}
+			</div>
+		</section>
+
+		<!-- Experiments -->
+		<section class="section">
+			<div class="section-header">
+				<h2>Recent Experiments</h2>
+				<a href="/experiments" class="link--underline">View all →</a>
+			</div>
+
+			<div class="cards-grid">
+				{
+					recentExperiments.map((experiment) => (
+						<article class="card">
+							<img
+								src={experiment.data.cover}
+								alt={experiment.data.title}
+							/>
+							<div class="card-content">
+								<h3>
+									<a href={`/experiments/${experiment.id}`}>
+										{experiment.data.title}
+									</a>
+								</h3>
+								<p>{experiment.data.description}</p>
+								<div class="tags">
+									{experiment.data.tags
+										.slice(0, 3)
+										.map((tag) => (
+											<span class="tag">{tag}</span>
+										))}
+								</div>
+							</div>
+						</article>
+					))
+				}
+			</div>
+		</section>
+	</div>
 </BaseLayout>
