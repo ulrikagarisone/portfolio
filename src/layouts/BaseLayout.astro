@@ -1,0 +1,32 @@
+---
+import Navigation from "../components/Navigation.astro";
+import Footer from "../components/Footer.astro";
+import "../styles/global.css";
+
+const { title } = Astro.props;
+---
+
+<!doctype html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <meta
+            name="description"
+            content="Ulrika Garisone - Digital Designer & Developer"
+        />
+        <title>{title} | Ulrika Garisone</title>
+
+        <!-- Preconnect for performance -->
+        <link rel="preconnect" href="https://fonts.googleapis.com" />
+    </head>
+    <body>
+        <Navigation />
+
+        <main>
+            <slot />
+        </main>
+
+        <Footer />
+    </body>
+</html>
