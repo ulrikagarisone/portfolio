@@ -81,13 +81,17 @@ import BaseLayout from "../layouts/BaseLayout.astro";
         <section class="contact section">
             <h2>Work With Me</h2>
 
-             <p class="lead-cta">
-                I am actively seeking <strong>internship opportunities</strong> in front-end design, UX,
-                and creative technology for next year. If you have a project
-                or team that values <strong>visual quality, user experience, and engaging motion</strong>,
-                I'd love to hear from you!
+            <p class="lead-cta">
+                I am actively seeking <strong>internship opportunities</strong> in
+                front-end design, UX, and creative technology for next year. If you
+                have a project or team that values <strong
+                    >visual quality, user experience, and engaging motion</strong
+                >, I'd love to hear from you!
             </p>
-             <p>For general inquiries or to just say hello, my inbox is always open.</p>
+            <p>
+                For general inquiries or to just say hello, my inbox is always
+                open.
+            </p>
 
             <div class="contact-links">
                 <a href="mailto:ulrika.garisone@gmail.com" class="contact-link">
@@ -97,14 +101,16 @@ import BaseLayout from "../layouts/BaseLayout.astro";
                     href="https://github.com/ulrikagarisone"
                     target="_blank"
                     rel="noopener"
-                    class="contact-link">
+                    class="contact-link"
+                >
                     GitHub
                 </a>
                 <a
                     href="https://linkedin.com/in/ulrikagarisone"
                     target="_blank"
                     rel="noopener"
-                    class="contact-link">
+                    class="contact-link"
+                >
                     LinkedIn
                 </a>
             </div>
@@ -113,41 +119,48 @@ import BaseLayout from "../layouts/BaseLayout.astro";
 </BaseLayout>
 
 <style>
-
     .about-hero {
         text-align: center;
+        margin-bottom: 3rem;
     }
 
     .about-hero h1 {
+        color: var(--navy);
         margin-bottom: 1rem;
     }
 
     .lead {
         font-size: 1.25rem;
         line-height: 1.6;
-        color: var(--primary);
-        margin-bottom: 0;
+        color: var(--teal);
+    }
+    /* About */
+    .about-story {
+        margin-bottom: 4rem;
     }
 
     .about-story p {
         font-size: 1.0625rem;
         line-height: 1.8;
+        color: rgba(0, 0, 0, 0.85);
         margin-bottom: 1.5rem;
     }
 
     .about-story strong {
-        color: var(--primary);
+        color: var(--teal);
         font-weight: 700;
     }
 
     /* Skills */
     .skills {
-        background: rgba(255, 255, 255, 0.02);
-        padding: 2rem 1rem;
-        border-radius: 16px;
+        background: var(--white);
+        border: 1px solid rgba(0, 0, 0, 0.08);
+        padding: 2rem 1.5rem;
+        margin-bottom: 4rem;
     }
 
-    .skills h2 {z
+    .skills h2 {
+        color: var(--navy);
         text-align: center;
         margin-bottom: 2rem;
     }
@@ -157,35 +170,63 @@ import BaseLayout from "../layouts/BaseLayout.astro";
         gap: 2rem;
     }
 
+    .skill-category {
+        padding-bottom: 1.5rem;
+    }
+
+    .skill-category:last-child {
+        padding-bottom: 0;
+    }
+
     .skill-category h3 {
-        color: var(--primary);
+        color: var(--teal);
+        font-size: 1.125rem;
         margin-bottom: 1rem;
     }
 
     .skill-category ul {
         list-style: none;
+        padding: 0;
+        margin: 0;
     }
 
     .skill-category li {
         padding: 0.5rem 0;
-        border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+        color: rgba(0, 0, 0, 0.8);
+        border-bottom: 1px solid rgba(0, 0, 0, 0.08);
     }
 
     .skill-category li:last-child {
         border-bottom: none;
     }
 
+    /* Contact */
     .contact {
+        background: var(--white);
+        border: 1px solid rgba(0, 0, 0, 0.08);
+        padding: 2rem 1.5rem;
         text-align: center;
     }
 
     .contact h2 {
-        margin-bottom: 0.75rem;
+        color: var(--navy);
+        margin-bottom: 1.5rem;
+    }
+
+    .lead-cta {
+        font-size: 1.125rem;
+        line-height: 1.8;
+        color: rgba(0, 0, 0, 0.85);
+        margin-bottom: 1.5rem;
+    }
+
+    .lead-cta strong {
+        color: var(--teal);
+        font-weight: 700;
     }
 
     .contact p {
-        font-size: 1.125rem;
-        opacity: 0.85;
+        color: rgba(0, 0, 0, 0.7);
         margin-bottom: 2rem;
     }
 
@@ -198,8 +239,8 @@ import BaseLayout from "../layouts/BaseLayout.astro";
 
     .contact-link {
         padding: 1rem 2rem;
-        background: var(--primary);
-        color: var(--dark);
+        background: var(--teal);
+        color: var(--cream);
         border-radius: 8px;
         font-weight: 700;
         transition: all 0.3s ease;
@@ -210,6 +251,6 @@ import BaseLayout from "../layouts/BaseLayout.astro";
 
     .contact-link:hover {
         transform: translateY(-2px);
+        background: var(--navy);
     }
-
 </style>
