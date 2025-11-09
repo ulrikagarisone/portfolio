@@ -1,7 +1,6 @@
 ---
 title: "Train Ticket Machines — International Interface Inconsistency"
 description: "Travelers face confusion when buying tickets abroad due to unfamiliar machine logic and different interaction patterns"
-date: 2024-10-10
 pubDate: 2024-10-17
 tags: ["Travel", "Public Transit", "Interface Design", "International UX"]
 status: "completed"
@@ -12,7 +11,7 @@ category: "observation"
 
 ## Context
 **Location:** Lille train station (France), evening  
-**Situation:** Belgian traveler unable to quickly purchase ticket due to unfamiliar interface flow and unclear options.
+**Situation:** International traveler unable to quickly purchase ticket due to unfamiliar interface flow and unclear options.
 
 ## The UX Problem
 Critical differences in purchase logic between countries are not visually explained, leading to:
@@ -23,10 +22,9 @@ Critical differences in purchase logic between countries are not visually explai
 
 **Observed scenario:**
 - User approaches French ticket machine
-- Expects Belgian interface logic (destination → class → payment)
-- French system uses (class → destination → date → payment)
+- Expects usual interface
 - Different button layouts
-- Different terminology ("Billet" vs "Ticket")
+- Different terminology 
 - Different payment flow
 - No visual "how this works" guide
 - Queue building behind = pressure
@@ -64,20 +62,6 @@ Scan QR for quick guide in your language"
 - Shows step-by-step with icons
 - Compares to nearby countries: "Different from Belgium/NL/UK"
 - Available in 10+ languages
-
-## UX Principles Applied
-- **Consistency** — Familiar patterns reduce cognitive load
-- **Learnability** — First-time use should be intuitive
-- **Error prevention** — Guide before confusion happens
-- **Accessibility** — Language shouldn't block essential services
-- **Universal design** — Works for locals AND visitors
-
-## Related Patterns
-- Progressive onboarding
-- Contextual help systems
-- Icon-driven interfaces
-- Multi-language design
-- Graceful degradation
 
 ---
 

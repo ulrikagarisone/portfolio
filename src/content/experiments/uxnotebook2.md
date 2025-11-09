@@ -2,7 +2,6 @@
 title: "Washroom Faucet — Unpredictable Water Pressure"
 description: "Strong water jets in public washrooms splash users and cause embarrassment"
 pubDate: 2024-10-10
-date: 2024-10-10
 tags: ["Public Spaces", "Hygiene", "Error Prevention", "Accessibility"]
 status: "completed"
 category: "observation"

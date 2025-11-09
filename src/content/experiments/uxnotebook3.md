@@ -1,7 +1,6 @@
 ---
 title: "Airport Water Bottles — Size, Price, and Waste Crisis"
 description: "Travelers must choose between tiny expensive or giant unwieldy plastic bottles, contributing to waste and frustration"
-date: 2024-10-10
 pubDate: 2024-10-26
 tags: ["Sustainability", "Airport Retail", "Consumer Experience", "Environmental Design"]
 status: "completed"
@@ -63,15 +62,6 @@ Both options increase waste, inconvenience, and negative brand perception.
 - Install water fountains post-security (free refills)
 - Clear signage: "Bring empty bottle, fill for free"
 
-### Better Solution (This Quarter)
-**Tiered sizing system:**
-```
-Small (250ml) — €1.50 — "Quick sip"
-Medium (500ml) — €2.00 — "Short flight" ⭐ Most popular
-Large (750ml) — €2.50 — "Long journey"
-Extra (1.5L) — €3.00 — "Family size"
-```
-
 **Sustainability messaging:**
 - Discount for bringing your own bottle
 - Donate €0.50 per refill to ocean cleanup
@@ -79,13 +69,13 @@ Extra (1.5L) — €3.00 — "Family size"
 
 ### Best Solution (Long Term)
 **Circular water system:**
-```
+
 1. Airport provides deposit-return program
 2. Buy durable bottle for €5 (€3 deposit)
 3. Return at any airport in network
 4. Get deposit back OR exchange for fresh one
 5. Airport handles cleaning/redistribution
-```
+
 
 **Free refill stations:**
 - Post-security water fountains (EU requirement)
@@ -94,12 +84,12 @@ Extra (1.5L) — €3.00 — "Family size"
 - Digital counter: "You just saved bottle #47,392!"
 
 **App integration:**
-```
+
 Airport app shows:
 - Nearest water fountain
 - "Refilled 3 times today" badge
 - Savings tracker: "Saved €9 and 3 bottles this trip"
-```
+
 
 ## UX Principles Applied
 - **User empathy** — Solve actual needs, not maximize profit alone
@@ -108,12 +98,6 @@ Airport app shows:
 - **Social responsibility** — Lead positive change
 - **Value perception** — Fair pricing builds trust
 
-## Related Patterns
-- Circular economy design
-- Behavioral nudging
-- Service design systems
-- Environmental psychology
-- Sustainable UX
 
 ## Real-World Examples
 **Good implementations:**
@@ -124,14 +108,6 @@ Airport app shows:
 **Bad implementations:**
 - Most budget airports: Water monopoly, no fountains
 - Retail-first mentality over service
-
-## Business Case
-**Why this helps airports:**
-- Positive PR and sustainability credentials
-- Meets EU environmental regulations
-- Improves traveler satisfaction scores
-- Long-term cost savings (less plastic waste management)
-- Competitive advantage ("greenest airport")
 
 ---
 

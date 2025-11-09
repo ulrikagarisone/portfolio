@@ -1,7 +1,6 @@
 ---
 title: "Airport Gate Seating — Nowhere to Place Bags"
 description: "Travelers forced to place clean luggage on dirty floor, causing discomfort and stress"
-date: 2024-10-10
 pubDate: 2024-10-31
 tags: ["Airport Design", "Seating", "Travel Experience", "Environmental Fit"]
 status: "completed"
@@ -67,25 +66,10 @@ No good option exists. Design assumes bags don't exist or don't matter.
 - Floor mats or "bag zones" with easy-clean surfaces
 - Temporary signage encouraging use of designated areas
 
-### Better Solution (This Quarter)
-**Integrated seating design:**
-```
-Each seat group includes:
-- Built-in bag hooks (side/back of seats)
-- Small shelf under armrest
-- Retractable strap to secure bag
-- Non-slip surface to prevent rolling
-```
-
-**Dedicated luggage areas:**
-- Small platforms between seat rows
-- Elevated racks (like train luggage racks)
-- Clear sight lines for security
-- Easy access for quick boarding
 
 ### Best Solution (Gate Redesign)
 **Multi-function seating zones:**
-```
+
 Zone A: Bag-friendly seating
 - Wide armrests with bag hooks
 - Under-seat storage rails
@@ -98,7 +82,7 @@ Zone B: Standard seating
 Zone C: Premium/accessible
 - Extra space, tables, better bag storage
 - Priority boarding nearby
-```
+
 
 **Smart luggage management:**
 - Self-service bag lockers (free, 60-min)
@@ -117,12 +101,6 @@ Zone C: Premium/accessible
 - **Dignity** — Respect user belongings
 - **Inclusive design** — Works for all types of travelers
 
-## Related Patterns
-- Context-aware design
-- Multi-modal interfaces (physical + digital)
-- Universal accessibility
-- Service design systems
-- Anticipatory design
 
 ## Real-World Examples
 **Good implementations:**
@@ -143,10 +121,6 @@ Zone C: Premium/accessible
 - 5% find creative solutions (chair blocking, etc.)
 - 100% would prefer a better option
 
-**What they wish existed:**
-- Hooks (mentioned by 70%)
-- Small shelves (mentioned by 45%)
-- "Just somewhere clean" (mentioned by 90%)
 
 ---
 

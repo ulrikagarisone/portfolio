@@ -1,7 +1,6 @@
 ---
 title: "Generative Masks – Creative Coding (p5.js)"
 description: "A first creative coding project in p5.js generating unique mask characters with controlled randomness, combining code, art, and personality."
-date: 2024-10-10
 pubDate: 2024-10-01
 tags: ["Creative Coding", "p5.js", "Generative Art", "Interactive Design", "JavaScript"]
 status: "completed"
@@ -29,14 +28,6 @@ This project was about **learning by doing**—motion studies, sketching, intera
 
 ---
 
-## Visual & Code Highlights
-- Modular drawing functions: e.g., `drawHead()`, `drawEyes()`, `drawAccessory()`  
-- Random inputs mapped to mood: colour switches, accessory count, symmetry/­asymmetry  
-- Shape complexity beyond simple emoticons: polygons, lines, arcs, layered textures  
-- Style consistency: though many outputs, they all belong to the same mask family  
-
----
-
 ## Outcome & Learnings
 The end result is a mini-engine of mask generation. Every run feels fresh; every mask has a clue of story behind it.  
 For me, this project taught:  
@@ -47,22 +38,6 @@ For me, this project taught:
 - How to move from concept → sketch → code → output  
 
 Although simple in scope, this first coding work set the foundation for future creative coding experiments and interactive design explorations.
-
----
-
-## Tools & Techniques
-- Language / library: JavaScript + p5.js  
-- Development: p5.js Web Editor  
-- Canvas: 270×480px (portrait)  
-- Techniques: `random()`, conditionals, modular drawing, palette variation, shape layering  
-
----
-
-## Next Steps
-- Expand the palette library and shape modules  
-- Add user-input variations (click to change mood)  
-- Animate mask transitions between states  
-- Package the sketch into a portfolio-ready interactive demo  
 
 ---
 

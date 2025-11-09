@@ -1,7 +1,6 @@
 ---
 title: "Grocery Store — No Mobile Reception Strands Shoppers"
 description: "Loss of cell signal inside store prevents users from accessing shopping lists, maps, and payment apps"
-date: 2024-10-10
 pubDate: 2024-10-23
 tags: ["Retail", "Connectivity", "Wayfinding", "Digital-Physical"]
 status: "completed"
@@ -68,11 +67,8 @@ Losing signal = losing essential shopping tools.
 - Staff tablets to help customers locate items
 - QR codes on shelves → product info (cached)
 
-### Best Solution
-**Seamless connectivity + offline-first apps:**
 ## Best Solution
 **Seamless connectivity + offline-first apps:**
-App design:
 - Offline mode: Cache last shopping list
 - Pre-download store maps on entry
 - Sync when connection returns
@@ -83,13 +79,6 @@ App design:
 - **Graceful degradation** — Core features work offline
 - **User control** — Don't trap users in dead zones
 - **Continuity** — Seamless digital-physical transitions
-
-## Related Patterns
-- Offline-first design
-- Progressive enhancement
-- Phygital experiences
-- Fault tolerance
-- Backup systems
 
 ---
 

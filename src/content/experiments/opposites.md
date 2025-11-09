@@ -2,7 +2,6 @@
 title: "Opposites — Chaos / Order / Dark / Light (p5.js)"
 description: "A creative coding project in p5.js interpreting abstract concepts — Chaos, Order, Dark, and Light — through motion, shapes, and visual rhythm."
 pubDate: 2024-11-01
-date: 2024-11-01
 tags: ["Creative Coding", "p5.js", "Interactive Art", "Animation", "Generative Design"]
 status: "completed"
 cover: ""
@@ -68,24 +67,6 @@ I approached this assignment as **four internal worlds**:
 
 ---
 
-## Structure & Submission Notes
-- Template used as instructed  
-- Navigation handled by key events (C, V, B, N)
-- All assets & paths relative
-- Folder + ZIP name format: `lastname_firstname`
-
----
-
-## Concept PDF
-A two-page sketched concept document was created as part of this work, including:
-
-- Style directions
-- Scene sketches
-- Motion notes
-- Visual rules for each oppositional theme
-
----
-
 ## Learning Outcome
 This project deepened my understanding of:
 
@@ -97,4 +78,3 @@ This project deepened my understanding of:
 
 This exercise expanded the way I think about UI motion, product atmosphere, and how simple shapes can carry meaning when paired with behavior.
 
----

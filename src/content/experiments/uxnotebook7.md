@@ -1,7 +1,6 @@
 ---
 title: "Bike Parking — Racks Don't Fit Modern Wheel Sizes"
 description: "Standard bike racks exclude modern bikes with wider tires, forcing risky alternative parking"
-date: 2024-10-10
 pubDate: 2024-10-18
 tags: ["Urban Design", "Bicycles", "Public Infrastructure", "Accessibility"]
 status: "completed"
@@ -24,7 +23,7 @@ Infrastructure designed for old bike standards (narrow 23-28mm tires) excludes m
 Users forced to lock bikes insecurely elsewhere.
 
 **Observed scenario:**
-- Girl arrives with modern bike (35mm tires)
+- Girl arrives with modern bike
 - Tries to slide wheel into rack slot
 - Wheel too wide → doesn't fit
 - Tries forcing it → risks damaging wheel
@@ -70,20 +69,6 @@ Modern Bike Rack Features:
 - Vertical locking rails (any wheel size)
 - Frame hooks (no wheel insertion needed)
 - Multiple locking points
-
-## UX Principles Applied
-- **Flexibility** — Adapt to changing user needs
-- **Inclusivity** — Serve diverse users/equipment
-- **Future-proofing** — Anticipate evolution
-- **Context fit** — Match real-world use
-
-## Related Patterns
-- Modular design systems
-- Adaptive infrastructure
-- Universal design
-- Progressive enhancement
-- Inclusive design
-
 ---
 
 **Key Takeaway:** Infrastructure must evolve with technology. Design for tomorrow, not yesterday. Flexible systems outlast fixed ones.

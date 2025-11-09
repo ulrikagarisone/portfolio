@@ -2,7 +2,6 @@
 title: "Coffee Machine Interface — Campus Usability Failure"
 description: "Students fail to get coffee because the machine doesn't guide them clearly or give intuitive feedback"
 pubDate: 2024-10-07
-date: 2024-10-10
 tags: ["Usability", "Campus Life", "Error Prevention", "Feedback"]
 status: "completed"
 category: "observation"
