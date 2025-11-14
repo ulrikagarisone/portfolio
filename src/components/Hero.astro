@@ -227,6 +227,66 @@ import ArrowSVG from "../assets/arrow.svg?raw";
         opacity: 0;
         z-index: 1;
     }
+    /* Desktop */
+    @media (min-width: 1024px) {
+        .hero__container {
+            flex-direction: row;
+            align-items: center;
+            justify-content: center;
+            gap: 3rem;
+        }
+
+        .hero__logo-section {
+            flex: 0 0 auto;
+            max-width: 700px;
+        }
+
+        .hero__text-section {
+            flex: 0 0 auto;
+            max-width: 550px;
+        }
+
+        .hero__title {
+            text-align: left;
+            font-size: clamp(2.5rem, 5vw, 7rem);
+        }
+
+        .name-line {
+            justify-content: flex-start;
+        }
+
+        .name-line--last {
+            margin-left: 2.5rem;
+            margin-top: -1.5rem;
+        }
+
+        .hero__description p {
+            text-align: left;
+            margin-left: 3rem;
+        }
+    }
+
+    /* large desktop */
+    @media (min-width: 1400px) {
+        .hero__container {
+            gap: 4rem;
+        }
+
+        .hero__logo-section {
+            max-width: 750px;
+        }
+    }
+
+    /* Accesability */
+    @media (prefers-reduced-motion: reduce) {
+        *,
+        *::before,
+        *::after {
+            animation-duration: 0.01ms !important;
+            animation-iteration-count: 1 !important;
+            transition-duration: 0.01ms !important;
+        }
+    }
 </style>
 
 <script>
