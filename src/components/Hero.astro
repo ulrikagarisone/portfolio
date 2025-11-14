@@ -1,0 +1,56 @@
+---
+// src/components/Hero.astro
+import LogoSVG from "../assets/logoug.svg?raw";
+import ArrowSVG from "../assets/arrow.svg?raw";
+---
+
+<section class="hero">
+    <!-- Subtle grid background -->
+    <div class="hero__grid" aria-hidden="true"></div>
+
+    <div class="hero__container">
+        <div class="hero__logo-section">
+            <div class="hero__logo" id="animatedLogo" set:html={LogoSVG} />
+        </div>
+
+        <div class="hero__text-section">
+            <!-- Name -->
+            <div class="hero__name">
+                <h1 class="hero__title">
+                    <div class="name-line name-line--first">
+                        <span class="name-letter">U</span>
+                        <span class="name-letter">L</span>
+                        <span class="name-letter">R</span>
+                        <span class="name-letter">I</span>
+                        <span class="name-letter">K</span>
+                        <span class="name-letter">A</span>
+                    </div>
+                    <div class="name-line name-line--last">
+                        <span class="name-letter">G</span>
+                        <span class="name-letter">A</span>
+                        <span class="name-letter">R</span>
+                        <span class="name-letter">I</span>
+                        <span class="name-letter">S</span>
+                        <span class="name-letter">O</span>
+                        <span class="name-letter">N</span>
+                        <span class="name-letter">E</span>
+                    </div>
+                </h1>
+            </div>
+
+            <!-- Description -->
+            <div class="hero__description">
+                <p>
+                    UX researcher and creative developer based in Belgium,
+                    blending behavior observation with motion-driven interaction
+                    design.
+                </p>
+            </div>
+        </div>
+    </div>
+
+    <div class="hero__arrow" id="scrollArrow" set:html={ArrowSVG} />
+
+    <!-- Blue section peek -->
+    <div class="hero__next-section"></div>
+</section>
