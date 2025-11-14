@@ -54,3 +54,347 @@ import ArrowSVG from "../assets/arrow.svg?raw";
     <!-- Blue section peek -->
     <div class="hero__next-section"></div>
 </section>
+<style>
+    .hero {
+        min-height: 90vh;
+        background: #e46354;
+        color: #093354;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        padding: 2rem 1.5rem;
+        position: relative;
+        overflow: hidden;
+    }
+
+    /* Grid bakground */
+    .hero__grid {
+        position: absolute;
+        inset: 0;
+        background-image: linear-gradient(
+                rgba(9, 51, 84, 0.03) 1px,
+                transparent 1px
+            ),
+            linear-gradient(90deg, rgba(9, 51, 84, 0.03) 1px, transparent 1px);
+        background-size: 50px 50px;
+        opacity: 0;
+    }
+
+    .hero__container {
+        position: relative;
+        z-index: 2;
+        width: 100%;
+        max-width: 1600px;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        gap: 2rem;
+    }
+
+    /* Logo */
+    .hero__logo-section {
+        width: 100%;
+        max-width: 450px;
+        opacity: 0;
+    }
+
+    .hero__logo {
+        width: 100%;
+        height: auto;
+        cursor: pointer;
+    }
+
+    .hero__logo :global(svg) {
+        width: 100%;
+        height: auto;
+        display: block;
+    }
+
+    /* Keep paths as filled for full solid drawing */
+    .hero__logo :global(.cls-1) {
+        fill: #093354;
+        opacity: 0;
+    }
+
+    /* Text section */
+    .hero__text-section {
+        width: 100%;
+        max-width: 650px;
+        display: flex;
+        flex-direction: column;
+        gap: 1.5rem;
+    }
+
+    /* overlaping */
+    .hero__name {
+        width: 100%;
+    }
+
+    .hero__title {
+        font-size: clamp(2rem, 6vw, 3.5rem);
+        font-weight: 900;
+        line-height: 0.9;
+        text-transform: uppercase;
+        letter-spacing: -0.03em;
+        text-align: center;
+        margin: 0;
+    }
+
+    .name-line {
+        display: flex;
+        justify-content: center;
+        gap: clamp(0.2rem, 0.8vw, 0.4rem);
+        margin-bottom: 0.25rem;
+    }
+
+    .name-line--last {
+        margin-left: clamp(1rem, 3vw, 2rem);
+    }
+
+    .name-letter {
+        display: inline-block;
+        cursor: pointer;
+        opacity: 0;
+        transform: translateY(30px);
+        transition: transform 0.3s cubic-bezier(0.34, 1.56, 0.64, 1);
+    }
+
+    /* First name */
+    .name-line--first .name-letter {
+        color: #fff6f5;
+        font-family: "Archivo Black", sans-serif;
+    }
+
+    /* Last name */
+    .name-line--last .name-letter {
+        color: #093354;
+        -webkit-text-stroke: 1px #e46354;
+    }
+
+    .name-letter:hover {
+        transform: translateY(-12px) rotate(-3deg);
+    }
+
+    /* Body text */
+    .hero__description {
+        width: 100%;
+        opacity: 0;
+        transform: translateY(20px);
+    }
+
+    .hero__description p {
+        font-size: clamp(0.95rem, 1.8vw, 1.05rem);
+        line-height: 1.5;
+        color: #fff6f5;
+        font-weight: 400;
+        text-align: center;
+        max-width: 550px;
+        margin: 0 auto;
+    }
+
+    /* Dancing arrow */
+    .hero__arrow {
+        position: absolute;
+        bottom: 12vh;
+        left: 50%;
+        transform: translateX(-50%);
+        width: 50px;
+        height: 50px;
+        opacity: 0;
+        cursor: pointer;
+        z-index: 10;
+        transition: transform 0.3s ease;
+    }
+
+    .hero__arrow:hover {
+        transform: translateX(-50%) scale(1.1);
+    }
+
+    .hero__arrow :global(svg) {
+        width: 100%;
+        height: 100%;
+        filter: drop-shadow(0 4px 12px rgba(9, 51, 84, 0.3));
+    }
+
+    /* Nest section peak */
+    .hero__next-section {
+        position: absolute;
+        bottom: 0;
+        left: 0;
+        right: 0;
+        height: 8vh;
+        background: #093354;
+        opacity: 0;
+        z-index: 1;
+    }
+</style>
+
+<script>
+    import { gsap } from "gsap";
+    import { DrawSVGPlugin } from "gsap/DrawSVGPlugin";
+    import { ScrollToPlugin } from "gsap/ScrollToPlugin";
+
+    gsap.registerPlugin(DrawSVGPlugin, ScrollToPlugin);
+
+    const animateHero = () => {
+        const logo = document.querySelector("#animatedLogo");
+        const svg = logo?.querySelector("svg");
+
+        if (!svg) {
+            console.error("SVG not found");
+            return;
+        }
+
+        // Get all pathsand
+        const paths = svg.querySelectorAll(".cls-1");
+
+        console.log("Found", paths.length, "SVG paths to animate");
+
+        const tl = gsap.timeline();
+
+        // 1. Fade in grid
+        tl.to(".hero__grid", {
+            opacity: 1,
+            duration: 1,
+            ease: "power2.out",
+        })
+
+            // 2. Logo section appears
+            .to(
+                ".hero__logo-section",
+                {
+                    opacity: 1,
+                    duration: 0.8,
+                    ease: "power3.out",
+                },
+                "-=0.5",
+            )
+
+            // 3. Fade in paths with clip-path effect (simulates drawing)
+            .fromTo(
+                paths,
+                {
+                    opacity: 0,
+                    clipPath: "inset(0 100% 0 0)",
+                },
+                {
+                    opacity: 1,
+                    clipPath: "inset(0 0% 0 0)",
+                    duration: 3,
+                    ease: "none", // Linear - constant speed
+                    stagger: 0.2,
+                },
+            )
+
+            // 6. Name appears
+            .to(
+                ".name-letter",
+                {
+                    opacity: 1,
+                    y: 0,
+                    duration: 0.6,
+                    stagger: 0.03,
+                    ease: "back.out(1.7)",
+                },
+                "-=0.3",
+            )
+
+            // 7. Description
+            .to(
+                ".hero__description",
+                {
+                    opacity: 1,
+                    y: 0,
+                    duration: 0.8,
+                    ease: "power2.out",
+                },
+                "-=0.4",
+            )
+
+            // 8. Arrow
+            .to(
+                ".hero__arrow",
+                {
+                    opacity: 1,
+                    duration: 0.6,
+                    ease: "power2.out",
+                },
+                "-=0.3",
+            )
+
+            // 9. Blue section
+            .to(
+                ".hero__next-section",
+                {
+                    opacity: 1,
+                    duration: 0.8,
+                    ease: "power3.out",
+                },
+                "-=0.4",
+            );
+
+        // Arrow bounce animation
+        gsap.to(".hero__arrow", {
+            y: -8,
+            duration: 1.5,
+            repeat: -1,
+            yoyo: true,
+            ease: "power1.inOut",
+            delay: 2,
+        });
+
+        // Logo click to replay with clip-path
+        if (logo) {
+            logo.addEventListener("click", () => {
+                gsap.timeline()
+                    // Hide with clip-path
+                    .to(paths, {
+                        clipPath: "inset(0 100% 0 0)",
+                        duration: 1,
+                        ease: "power2.in",
+                        stagger: {
+                            each: 0.1,
+                            from: "end",
+                        },
+                    })
+                    // Reveal with clip-path
+                    .to(paths, {
+                        clipPath: "inset(0 0% 0 0)",
+                        duration: 2.5,
+                        ease: "none",
+                        stagger: 0.15,
+                    });
+            });
+        }
+    };
+
+    // Arrow scroll
+    const initArrowClick = () => {
+        const arrow = document.querySelector("#scrollArrow");
+        if (arrow) {
+            arrow.addEventListener("click", () => {
+                const target =
+                    document.querySelector(".featured-work") ||
+                    document.querySelector(".archive-section");
+                if (target) {
+                    gsap.to(window, {
+                        scrollTo: { y: target, offsetY: 0 },
+                        duration: 1,
+                        ease: "power3.inOut",
+                    });
+                }
+            });
+        }
+    };
+
+    // Initialize
+    if (document.readyState === "loading") {
+        document.addEventListener("DOMContentLoaded", () => {
+            animateHero();
+            initArrowClick();
+        });
+    } else {
+        animateHero();
+        initArrowClick();
+    }
+</script>
