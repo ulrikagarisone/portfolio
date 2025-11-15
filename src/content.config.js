@@ -1,8 +1,9 @@
 import { defineCollection, z } from 'astro:content';
+import { glob } from 'astro/loaders';
 
 // Projects - Main portfolio work
 const projects = defineCollection({
-    type: 'content',
+    loader: glob({ pattern: '**/*.md', base: './src/content/projects' }),
     schema: z.object({
         title: z.string(),
         description: z.string(),
@@ -15,7 +16,7 @@ const projects = defineCollection({
 
 // Creative coding + research notes
 const experiments = defineCollection({
-    type: 'content',
+    loader: glob({ pattern: '**/*.md', base: './src/content/experiments' }),
     schema: z.object({
         title: z.string(),
         description: z.string(),
