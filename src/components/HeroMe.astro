@@ -28,4 +28,130 @@
         </div>
     </div>
 </section>
+<style>
+    .hero-me {
+        height: 400vh;
+        background: #e46354;
+        position: relative;
+    }
+
+    .hero-me__container {
+        position: sticky;
+        top: 0;
+        height: 100vh;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        padding: 2rem 1.5rem;
+        overflow: hidden;
+    }
+
+    /* Large text */
+    .hero-me__text-back {
+        position: absolute;
+        top: 18%; /* Much higher on mobile so it's visible above modal */
+        left: 50%;
+        transform: translate(-50%, -50%);
+        z-index: 1;
+        opacity: 0;
+        width: 100%;
+    }
+
+    .hero-me__title-large {
+        margin: 0;
+        line-height: 0.85;
+        text-align: center;
+    }
+
+    .title-word {
+        display: block;
+        font-size: clamp(4rem, 15vw, 12rem);
+        font-weight: 900;
+        text-transform: uppercase;
+        letter-spacing: -0.03em;
+        color: #093354;
+    }
+
+    /* Image overlap */
+    .hero-me__image {
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        z-index: 2;
+        width: 280px;
+        height: 350px;
+        opacity: 0;
+        border: 5px solid #093354;
+        box-shadow: 0 25px 70px rgba(9, 51, 84, 0.4);
+    }
+
+    .hero-me__image img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        display: block;
+    }
+
+    /* Small text in front */
+    .hero-me__text-front {
+        position: absolute;
+        bottom: 15%; /* Higher up on mobile so it's more visible */
+        left: 50%;
+        transform: translateX(-50%);
+        z-index: 3;
+        text-align: center;
+        width: 90%;
+        max-width: 700px;
+        opacity: 0;
+    }
+
+    .hero-me__intro {
+        font-size: clamp(1.5rem, 4vw, 2rem);
+        font-weight: 700;
+        color: #fff6f5;
+        margin: 0 0 0.5rem 0;
+        text-transform: uppercase;
+        letter-spacing: 0.05em;
+        text-shadow: 2px 2px 8px rgba(9, 51, 84, 0.5);
+    }
+
+    .hero-me__subtitle {
+        font-size: clamp(1rem, 2.5vw, 1.25rem);
+        line-height: 1.6;
+        color: #fff6f5;
+        font-weight: 500;
+        margin: 0;
+        text-shadow: 2px 2px 8px rgba(9, 51, 84, 0.5);
+    }
+
+    /* Desktop */
+    @media (min-width: 1024px) {
+        .hero-me__text-back {
+            top: 42%; /* Back to center area */
+        }
+
+        .title-word {
+            font-size: clamp(8rem, 14vw, 16rem);
+        }
+
+        .hero-me__image {
+            width: 400px;
+            height: 500px;
+        }
+
+        .hero-me__text-front {
+            bottom: 8%; /* More space = less overlap on desktop */
+        }
+
+        .hero-me__intro {
+            font-size: 3rem;
+        }
+
+        .hero-me__subtitle {
+            font-size: 1.75rem;
+            max-width: 800px;
+        }
+    }
+</style>
 
