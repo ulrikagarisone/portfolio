@@ -3,8 +3,8 @@
         <div class="footer-top">
             <div class="footer-nav">
                 <a href="/about">ABOUT ME</a>
-                <a href="/projects">SERVICES</a>
-                <a href="/experiments">WORKS</a>
+                <a href="/projects">WORKS</a>
+                <a href="/experiments">EXPERIMENTS</a>
             </div>
             <div class="footer-social">
                 <a
@@ -68,3 +68,155 @@
         </div>
     </div>
 </footer>
+
+<style>
+    footer {
+        background: #093354;
+        border-top: 2px solid #e46354;
+        padding: 2.5rem 1.25rem 1.5rem;
+        margin-top: auto;
+        font-family: "Archivo", sans-serif;
+        position: relative;
+        overflow: hidden;
+    }
+
+    .container {
+        max-width: 1400px;
+        margin: 0 auto;
+        position: relative;
+        z-index: 2;
+    }
+
+    .footer-top {
+        display: flex;
+        justify-content: space-between;
+        gap: 2rem;
+        margin-bottom: 6rem;
+        padding-bottom: 2rem;
+        border-bottom: 1px solid rgba(228, 99, 84, 0.3);
+    }
+
+    .footer-nav {
+        display: flex;
+        flex-direction: column;
+        gap: 0.75rem;
+    }
+
+    .footer-nav a {
+        color: #fdfdfd;
+        font-size: 0.875rem;
+        font-weight: 500;
+        text-transform: uppercase;
+        letter-spacing: 0.05em;
+        transition: color 0.3s ease;
+    }
+
+    .footer-nav a:hover {
+        color: #e46354;
+    }
+
+    .footer-social {
+        display: flex;
+        flex-direction: column;
+        gap: 0.75rem;
+        align-items: flex-start;
+    }
+
+    .footer-social a {
+        color: #e46354;
+        font-size: 0.875rem;
+        font-weight: 600;
+        text-decoration: underline;
+        text-transform: uppercase;
+        letter-spacing: 0.05em;
+        transition: color 0.3s ease;
+        display: inline-flex;
+        align-items: center;
+        gap: 0.25rem;
+    }
+
+    .footer-social a:hover {
+        color: #fdfdfd;
+    }
+
+    .arrow {
+        display: inline-block;
+        transition: transform 0.3s ease;
+    }
+
+    .footer-social a:hover .arrow {
+        transform: translate(3px, -3px);
+    }
+
+    .footer-main {
+        margin-bottom: 3rem;
+        position: relative;
+        height: 2rem;
+    }
+
+    .footer-name {
+        font-size: 3rem;
+        font-family: "Archivo Black", sans-serif;
+        font-weight: 900;
+        letter-spacing: -0.02em;
+        line-height: 1;
+        margin: 0;
+        text-transform: uppercase;
+        color: rgba(228, 99, 84, 0.2);
+        position: absolute;
+        bottom: -1.2rem;
+        left: 50%;
+        transform: translateX(-50%);
+        white-space: nowrap;
+        pointer-events: none;
+        text-align: center;
+    }
+
+    .footer-bottom {
+        display: flex;
+        flex-direction: column;
+        gap: 2rem;
+        padding-top: 2rem;
+        border-top: 1px solid rgba(228, 99, 84, 0.3);
+    }
+
+    .footer-links {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: center;
+        gap: 1rem;
+        order: 1;
+    }
+
+    .footer-links a {
+        color: #e46354;
+        font-size: 0.75rem;
+        font-weight: 600;
+        text-transform: uppercase;
+        letter-spacing: 0.05em;
+        transition: color 0.3s ease;
+    }
+
+    .footer-links a:hover {
+        color: #fdfdfd;
+    }
+
+    .footer-credits {
+        order: 2;
+        text-align: center;
+    }
+
+    .footer-credits p {
+        margin: 0;
+        font-size: 0.75rem;
+        color: #fdfdfd;
+        text-transform: uppercase;
+        letter-spacing: 0.05em;
+        line-height: 1.8;
+    }
+
+    .footer-credits p:first-child {
+        margin-bottom: 1rem;
+        font-weight: 600;
+    }
+</style>
