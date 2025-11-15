@@ -66,7 +66,7 @@ const { projects } = Astro.props;
 
     .page-header h1 {
         font-size: clamp(3rem, 8vw, 5rem);
-        color: #ffffff;
+        color: #fff6f5;
         margin: 0 0 1.5rem 0;
         font-weight: 900;
         letter-spacing: -0.02em;
@@ -161,7 +161,7 @@ const { projects } = Astro.props;
     .project-title {
         font-size: clamp(1.25rem, 2vw, 1.75rem);
         font-weight: 900;
-        color: #ffffff;
+        color: rgb(9, 51, 84);
         margin: 0 0 1rem 0;
         letter-spacing: -0.02em;
         text-transform: uppercase;
@@ -169,13 +169,27 @@ const { projects } = Astro.props;
 
     .project-preview {
         font-size: clamp(0.9375rem, 1.2vw, 1.0625rem);
-        color: rgba(255, 255, 255, 0.9);
+        color: rgba(9, 51, 84, 0.9);
         line-height: 1.6;
         margin: 0;
         display: -webkit-box;
         -webkit-line-clamp: 3;
         -webkit-box-orient: vertical;
         overflow: hidden;
+    }
+    /* Smaller screen so it resizes to 2 columns */
+    @media (min-width: 640px) {
+        .projects-page {
+            padding: 6rem 0 0 0;
+        }
+
+        .page-header {
+            padding: 0 1rem;
+        }
+
+        .projects-grid {
+            grid-template-columns: repeat(2, 1fr);
+        }
     }
 
     @media (min-width: 1024px) {
