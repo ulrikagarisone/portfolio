@@ -289,7 +289,6 @@
 
             /* Desktop */
             @media (min-width: 1024px) {
-
                 .contact-message {
                     margin-bottom: 4rem;
                 }
@@ -322,4 +321,59 @@
                 }
             }
         </style>
-    
+        <script>
+            const init = () => {
+                const bgText = document.querySelector(
+                    '[data-bg="text"]',
+                ) as HTMLElement;
+                const section = document.querySelector(
+                    ".contact-section",
+                ) as HTMLElement;
+
+                if (!bgText || !section) return;
+
+                // Parallax effect on scroll
+                let ticking = false;
+
+                const handleScroll = () => {
+                    const rect = section.getBoundingClientRect();
+                    const scrollProgress = 1 - rect.top / window.innerHeight;
+
+                    if (scrollProgress > 0 && scrollProgress < 1) {
+                        const rotation = scrollProgress * 10;
+                        const scale = 1 + scrollProgress * 0.1;
+                        bgText.style.transform = `translate(-50%, -50%) rotate(${rotation}deg) scale(${scale})`;
+                    }
+                };
+
+                window.addEventListener("scroll", () => {
+                    if (!ticking) {
+                        window.requestAnimationFrame(() => {
+                            handleScroll();
+                            ticking = false;
+                        });
+                        ticking = true;
+                    }
+                });
+
+                // Mouse follow effect for background text
+                section.addEventListener("mousemove", (e) => {
+                    const rect = section.getBoundingClientRect();
+                    const ev = e as MouseEvent;
+                    const x =
+                        ((ev.clientX - rect.left) / rect.width - 0.5) * 20;
+                    const y =
+                        ((ev.clientY - rect.top) / rect.height - 0.5) * 20;
+
+                    bgText.style.transform = `translate(calc(-50% + ${x}px), calc(-50% + ${y}px))`;
+                });
+
+                section.addEventListener("mouseleave", () => {
+                    bgText.style.transform = "translate(-50%, -50%)";
+                });
+            };
+
+            init();
+        </script>
+    </div>
+</section>
