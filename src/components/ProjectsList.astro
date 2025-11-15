@@ -177,4 +177,10 @@ const { projects } = Astro.props;
         -webkit-box-orient: vertical;
         overflow: hidden;
     }
+
+    @media (min-width: 1024px) {
+        .projects-grid {
+            grid-template-columns: repeat(4, 1fr);
+        }
+    }
 </style>
