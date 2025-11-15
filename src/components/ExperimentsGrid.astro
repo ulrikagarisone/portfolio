@@ -1,0 +1,78 @@
+---
+// src/components/ExperimentsGrid.astro
+interface Props {
+    experiments: any[];
+}
+
+const { experiments } = Astro.props;
+const featuredExperiments = experiments.slice(0, 4);
+---
+
+<section class="experiments-section">
+    <div class="container">
+        <div class="section-header">
+            <div class="header-text">
+                <span class="label">Quick Observations</span>
+                <h2>What Catches My Eye</h2>
+                <p class="subtitle">
+                    UX moments, design patterns and creative code experiments
+                    that catch my attention and make me curious.
+                </p>
+            </div>
+        </div>
+
+        <!-- Big background text that moves -->
+        <div class="background-text" aria-hidden="true">EXPERIMENTS</div>
+
+        <div class="experiments-grid">
+            {
+                featuredExperiments.map((exp, index) => (
+                    <a
+                        href={`/experiments/${exp.slug}`}
+                        class="experiment-square"
+                        data-index={index}
+                    >
+                        <div class="square-image">
+                            {(() => {
+                                if (exp.data.image) {
+                                    return (
+                                        <img
+                                            src={exp.data.image}
+                                            alt={exp.data.title}
+                                            loading="lazy"
+                                        />
+                                    );
+                                } else {
+                                    return (
+                                        <div class="placeholder">
+                                            <span>?</span>
+                                        </div>
+                                    );
+                                }
+                            })()}
+                        </div>
+                        <div class="square-overlay">
+                            <span class="category">
+                                {exp.data.category || "Observation"}
+                            </span>
+                            <h3 class="square-title">{exp.data.title}</h3>
+                        </div>
+                    </a>
+                ))
+            }
+        </div>
+
+        <div class="section-footer">
+            <a href="/experiments" class="view-all">
+                View All Experiments
+                <svg width="20" height="20" viewBox="0 0 20 20">
+                    <path
+                        d="M5 10h10M11 6l4 4-4 4"
+                        stroke="currentColor"
+                        stroke-width="2"
+                        fill="none"></path>
+                </svg>
+            </a>
+        </div>
+    </div>
+</section>
