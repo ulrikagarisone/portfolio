@@ -219,4 +219,52 @@
         margin-bottom: 1rem;
         font-weight: 600;
     }
+
+    /* Desktop */
+    @media (min-width: 1024px) {
+        footer {
+            padding: 3rem 2rem 2rem;
+        }
+
+        .footer-top {
+            flex-direction: row;
+            justify-content: space-between;
+            margin-bottom: 8rem;
+        }
+
+        .footer-main {
+            height: 4rem;
+        }
+
+        .footer-name {
+            font-size: 8rem;
+            bottom: -3rem;
+        }
+
+        .footer-nav,
+        .footer-social {
+            flex-direction: row;
+            gap: 2rem;
+        }
+
+        .footer-links a,
+        .footer-credits p {
+            font-size: 0.875rem;
+        }
+        .footer-bottom {
+            flex-direction: row;
+            justify-content: space-between;
+            align-items: flex-end;
+        }
+
+        .footer-credits {
+            order: 1;
+            text-align: left;
+        }
+
+        .footer-links {
+            order: 2;
+            justify-content: flex-end;
+        }
+    }
 </style>
