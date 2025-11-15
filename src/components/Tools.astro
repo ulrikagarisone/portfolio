@@ -428,3 +428,28 @@
     }
 </style>
 
+<script>
+    const init = () => {
+        const items = document.querySelectorAll(".service-item");
+
+        items.forEach((item) => {
+            const main = item.querySelector(".service-main");
+
+            if (main) {
+                main.addEventListener("click", () => {
+                    // Close other items
+                    items.forEach((other) => {
+                        if (other !== item) {
+                            other.classList.remove("active");
+                        }
+                    });
+
+                    // Toggle current item
+                    item.classList.toggle("active");
+                });
+            }
+        });
+    };
+
+    init();
+</script>
