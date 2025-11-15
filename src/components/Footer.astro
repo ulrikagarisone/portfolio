@@ -1,71 +1,70 @@
 <footer>
     <div class="container">
-        <div class="footer-content">
-            <p>
-                &copy; {new Date().getFullYear()} Ulrika Garisone
-            </p>
-            <div class="footer-links">
+        <div class="footer-top">
+            <div class="footer-nav">
+                <a href="/about">ABOUT ME</a>
+                <a href="/projects">SERVICES</a>
+                <a href="/experiments">WORKS</a>
+            </div>
+            <div class="footer-social">
+                <a
+                    href="https://instagram.com/ulrikagarisone"
+                    target="_blank"
+                    rel="noopener"
+                >
+                    INSTAGRAM <span class="arrow">↗</span>
+                </a>
+                <a
+                    href="https://t.me/ulrikagarisone"
+                    target="_blank"
+                    rel="noopener"
+                >
+                    TELEGRAM <span class="arrow">↗</span>
+                </a>
                 <a
                     href="mailto:ulrika.garisone@gmail.com"
                     target="_blank"
                     rel="noopener"
                 >
-                    Email
+                    EMAIL <span class="arrow">↗</span>
                 </a>
+            </div>
+        </div>
+
+        <div class="footer-main">
+            <h2 class="footer-name">ULRIKA GARISONE</h2>
+        </div>
+
+        <div class="footer-bottom">
+            <div class="footer-links">
                 <a
                     href="https://github.com/ulrikagarisone"
                     target="_blank"
                     rel="noopener"
                 >
-                    GitHub
+                    [ GITHUB ]
+                </a>
+                <a
+                    href="https://behance.net/ulrikagarisone"
+                    target="_blank"
+                    rel="noopener"
+                >
+                    [ BEHANCE ]
                 </a>
                 <a
                     href="https://linkedin.com/in/ulrikagarisone"
                     target="_blank"
                     rel="noopener"
                 >
-                    LinkedIn
+                    [ LINKEDIN ]
                 </a>
+            </div>
+            <div class="footer-credits">
+                <p>UX RESEARCHER — CREATIVE DEVELOPER</p>
+                <p>
+                    {new Date().getFullYear()} ULRIKA GARISONE
+                </p>
             </div>
         </div>
     </div>
 </footer>
-
-<style>
-    footer {
-        border-top: 1px solid rgba(0, 0, 0, 0.1);
-        padding: 3rem 0;
-        margin-top: 6rem;
-    }
-
-    .footer-content {
-        display: flex;
-        justify-content: space-between;
-        align-items: center;
-        flex-wrap: wrap;
-        gap: 1.5rem;
-    }
-
-    .footer-content p {
-        margin: 0;
-        color: rgba(0, 0, 0, 0.6);
-        font-size: 0.9375rem;
-    }
-
-    .footer-links {
-        display: flex;
-        gap: 2rem;
-    }
-
-    .footer-links a {
-        color: var(--navy);
-        font-weight: 600;
-        font-size: 0.9375rem;
-        transition: all 0.3s ease;
-    }
-
-    .footer-links a:hover {
-        color: var(--teal);
-        transform: translateY(-2px);
-    }
-</style>
