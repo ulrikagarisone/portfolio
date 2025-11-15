@@ -1,0 +1,50 @@
+---
+import type { CollectionEntry } from "astro:content";
+
+interface Props {
+    projects: CollectionEntry<"projects">[];
+}
+
+const { projects } = Astro.props;
+---
+
+<div class="projects-page">
+    <header class="page-header">
+        <h1>PROJECTS</h1>
+        <p class="subtitle">
+            A collection of my design and development work — from UX research to
+            interactive experiences.
+        </p>
+    </header>
+
+    <div class="projects-grid">
+        {
+            projects.map((project) => {
+                let imageContent;
+                if (project.data.cover) {
+                    imageContent = (
+                        <img
+                            src={project.data.cover}
+                            alt={project.data.title}
+                        />
+                    );
+                } else {
+                    imageContent = <div class="placeholder-image" />;
+                }
+
+                return (
+                    <a href={`/projects/${project.id}`} class="project-card">
+                        <div class="card-image">{imageContent}</div>
+                        <div class="card-overlay">
+                            <h3 class="project-title">{project.data.title}</h3>
+                            <p class="project-preview">
+                                {project.data.description}
+                            </p>
+                        </div>
+                    </a>
+                );
+            })
+        }
+    </div>
+</div>
+
