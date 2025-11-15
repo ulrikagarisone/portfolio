@@ -5,7 +5,7 @@
 <section class="hero-me">
     <div class="hero-me__container">
         <!-- Large Text Behind -->
-        <div class="hero-me__text-back" id="heroTextBack">
+        <div class="hero-me__text-back" data-hero="text-back">
             <h1 class="hero-me__title-large">
                 <span class="title-word">ULRIKA</span>
                 <span class="title-word">GARISONE</span>
@@ -13,12 +13,12 @@
         </div>
 
         <!-- Image Overlapping Text -->
-        <div class="hero-me__image" id="heroImage">
+        <div class="hero-me__image" data-hero="image">
             <img src="/images/try.jpeg" alt="Ulrika Garisone" />
         </div>
 
         <!-- Small Text Below -->
-        <div class="hero-me__text-front" id="heroTextFront">
+        <div class="hero-me__text-front" data-hero="text-front">
             <p class="hero-me__intro">Hi, I'm</p>
             <p class="hero-me__subtitle">
                 A Latvian-born UX researcher and creative developer based in
@@ -28,6 +28,7 @@
         </div>
     </div>
 </section>
+
 <style>
     .hero-me {
         height: 400vh;
@@ -125,7 +126,35 @@
         text-shadow: 2px 2px 8px rgba(9, 51, 84, 0.5);
     }
 
-    /* Desktop */
+    /* ===== TABLET - 768px+ ===== */
+    @media (min-width: 768px) {
+        .hero-me__text-back {
+            top: 40%; /* Better positioning for tablet */
+        }
+
+        .title-word {
+            font-size: clamp(6rem, 12vw, 14rem);
+        }
+
+        .hero-me__image {
+            width: 350px;
+            height: 450px;
+        }
+
+        .hero-me__text-front {
+            bottom: 6%; /* Less overlap on tablet */
+        }
+
+        .hero-me__intro {
+            font-size: 2.5rem;
+        }
+
+        .hero-me__subtitle {
+            font-size: 1.5rem;
+        }
+    }
+
+    /* ===== DESKTOP - 1024px+ ===== */
     @media (min-width: 1024px) {
         .hero-me__text-back {
             top: 42%; /* Back to center area */
@@ -153,5 +182,162 @@
             max-width: 800px;
         }
     }
+
+    /* ===== LARGE DESKTOP - 1400px+ ===== */
+    @media (min-width: 1400px) {
+        .hero-me__text-back {
+            top: 45%;
+        }
+
+        .title-word {
+            font-size: 18rem;
+        }
+
+        .hero-me__image {
+            width: 450px;
+            height: 550px;
+        }
+
+        .hero-me__text-front {
+            bottom: 10%; /* Even more space on large screens */
+        }
+
+        .hero-me__subtitle {
+            font-size: 2rem;
+        }
+    }
 </style>
 
+<script>
+    const init = () => {
+        const section = document.querySelector(".hero-me") as HTMLElement;
+        const textBack = document.querySelector(
+            '[data-hero="text-back"]',
+        ) as HTMLElement;
+        const image = document.querySelector(
+            '[data-hero="image"]',
+        ) as HTMLElement;
+        const textFront = document.querySelector(
+            '[data-hero="text-front"]',
+        ) as HTMLElement;
+
+        if (!section || !textBack || !image || !textFront) {
+            console.error("Hero elements not found");
+            return;
+        }
+
+        const handleScroll = () => {
+            const rect = section.getBoundingClientRect();
+            const sectionHeight = section.offsetHeight;
+            const viewportHeight = window.innerHeight;
+
+            // Calculate progress (0 to 1)
+            const scrolled = -rect.top;
+            const totalScrollDistance = sectionHeight - viewportHeight;
+            let progress = scrolled / totalScrollDistance;
+            if (progress < 0) {
+                progress = 0;
+            }
+            if (progress > 1) {
+                progress = 1;
+            }
+
+            // Get current top position based on screen size
+            const isMobile = window.innerWidth < 768;
+            const isTablet =
+                window.innerWidth >= 768 && window.innerWidth < 1024;
+            let baseTop;
+            if (isMobile) {
+                baseTop = "18%";
+            } else if (isTablet) {
+                baseTop = "40%";
+            } else {
+                baseTop = "42%";
+            }
+
+            // Phase 1: Big text fades in (0% - 15%)
+            if (progress <= 0.15) {
+                const p = progress / 0.15;
+                textBack.style.opacity = p.toString();
+                textBack.style.top = baseTop;
+                textBack.style.transform = `translate(-50%, -50%)`;
+            }
+            // Phase 2: Big text visible (15% - 30%)
+            else if (progress <= 0.3) {
+                textBack.style.opacity = "1";
+                textBack.style.top = baseTop;
+                textBack.style.transform = `translate(-50%, -50%)`;
+            }
+            // Phase 3: Image appears (30% - 45%)
+            else if (progress <= 0.45) {
+                textBack.style.opacity = "1";
+                textBack.style.top = baseTop;
+                const imageProgress = (progress - 0.3) / 0.15;
+                image.style.opacity = imageProgress.toString();
+                const scale = 0.9 + imageProgress * 0.1;
+                image.style.transform = `translate(-50%, -50%) scale(${scale})`;
+            }
+            // Phase 4: Image + text visible (45% - 60%)
+            else if (progress <= 0.6) {
+                textBack.style.opacity = "1";
+                textBack.style.top = baseTop;
+                image.style.opacity = "1";
+                image.style.transform = `translate(-50%, -50%) scale(1)`;
+            }
+            // Phase 5: Bottom text appears (60% - 70%)
+            else if (progress <= 0.7) {
+                textBack.style.opacity = "1";
+                textBack.style.top = baseTop;
+                image.style.opacity = "1";
+                image.style.transform = `translate(-50%, -50%) scale(1)`;
+                const textProgress = (progress - 0.6) / 0.1;
+                textFront.style.opacity = textProgress.toString();
+                const textY = 20 - textProgress * 20;
+                textFront.style.transform = `translateX(-50%) translateY(${textY}px)`;
+            }
+            // Phase 6: Everything visible (70% - 85%) - READING TIME
+            else if (progress <= 0.85) {
+                textBack.style.opacity = "1";
+                textBack.style.top = baseTop;
+                image.style.opacity = "1";
+                image.style.transform = `translate(-50%, -50%) scale(1)`;
+                textFront.style.opacity = "1";
+                textFront.style.transform = `translateX(-50%) translateY(0)`;
+            }
+            // Phase 7: Fade out (85% - 100%)
+            else {
+                const fadeProgress = (progress - 0.85) / 0.15;
+                const opacity = 1 - fadeProgress;
+                const moveY = -30 * fadeProgress;
+
+                textBack.style.opacity = opacity.toString();
+                textBack.style.transform = `translate(-50%, calc(-50% + ${moveY}px))`;
+
+                image.style.opacity = opacity.toString();
+                image.style.transform = `translate(-50%, calc(-50% + ${moveY}px)) scale(1)`;
+
+                textFront.style.opacity = opacity.toString();
+                textFront.style.transform = `translateX(-50%) translateY(${moveY}px)`;
+            }
+        };
+
+        // Initialize
+        handleScroll();
+
+        // Throttle scroll for performance
+        let ticking = false;
+        window.addEventListener("scroll", () => {
+            if (!ticking) {
+                window.requestAnimationFrame(() => {
+                    handleScroll();
+                    ticking = false;
+                });
+                ticking = true;
+            }
+        });
+
+        window.addEventListener("resize", handleScroll);
+    };
+
+    init();
+</script>
