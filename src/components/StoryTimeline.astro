@@ -178,7 +178,6 @@
         display: none;
     }
 
-
     /* Desktop */
     @media (min-width: 1024px) {
         .story-panel {
@@ -281,3 +280,115 @@
     }
 </style>
 
+<script>
+    import gsap from "gsap";
+    import ScrollTrigger from "gsap/ScrollTrigger";
+
+    gsap.registerPlugin(ScrollTrigger);
+
+    const init = () => {
+        const panels = gsap.utils.toArray(".story-panel") as HTMLElement[];
+        const cursor = document.querySelector(
+            '[data-cursor="portrait"]',
+        ) as HTMLElement;
+        const section = document.querySelector(".about-story") as HTMLElement;
+
+        if (!section) return;
+
+        const isDesktop = window.innerWidth >= 1024;
+
+        if (isDesktop) {
+            // Desktop animate panels on scroll
+            panels.forEach((panel) => {
+                gsap.to(panel, {
+                    opacity: 1,
+                    y: 0,
+                    duration: 1,
+                    ease: "power3.out",
+                    scrollTrigger: {
+                        trigger: panel,
+                        start: "top 75%",
+                        once: true,
+                    },
+                });
+            });
+
+            // Portrait cursour
+            if (cursor) {
+                let mouseX = 0;
+                let mouseY = 0;
+                const maxDistanceX = window.innerWidth / 4;
+                const maxDistanceY = window.innerHeight / 4;
+
+                // Show cursor when entering section
+                ScrollTrigger.create({
+                    trigger: section,
+                    start: "top center",
+                    end: "bottom center",
+                    onEnter: () => {
+                        gsap.to(cursor, { opacity: 1, duration: 0.5 });
+                    },
+                    onLeave: () => {
+                        gsap.to(cursor, { opacity: 0, duration: 0.5 });
+                    },
+                    onEnterBack: () => {
+                        gsap.to(cursor, { opacity: 1, duration: 0.5 });
+                    },
+                    onLeaveBack: () => {
+                        gsap.to(cursor, { opacity: 0, duration: 0.5 });
+                    },
+                });
+
+                // Follow mouse with constrained movement
+                document.addEventListener("mousemove", (e) => {
+                    const centerX = window.innerWidth / 2;
+                    const centerY = window.innerHeight / 2;
+
+                    let deltaX = e.clientX - centerX;
+                    let deltaY = e.clientY - centerY;
+
+                    if (deltaX < -maxDistanceX) {
+                        deltaX = -maxDistanceX;
+                    }
+                    if (deltaX > maxDistanceX) {
+                        deltaX = maxDistanceX;
+                    }
+                    if (deltaY < -maxDistanceY) {
+                        deltaY = -maxDistanceY;
+                    }
+                    if (deltaY > maxDistanceY) {
+                        deltaY = maxDistanceY;
+                    }
+
+                    mouseX = deltaX;
+                    mouseY = deltaY;
+                });
+
+                // Smooth animation loop
+                let currentX = 0;
+                let currentY = 0;
+
+                function animateCursor() {
+                    const dx = mouseX - currentX;
+                    const dy = mouseY - currentY;
+
+                    currentX = currentX + dx * 0.1;
+                    currentY = currentY + dy * 0.1;
+
+                    cursor.style.transform = `translate(calc(-50% + ${currentX}px), calc(-50% + ${currentY}px))`;
+
+                    requestAnimationFrame(animateCursor);
+                }
+                animateCursor();
+            }
+        } else {
+            // All panels visible
+            panels.forEach((panel) => {
+                panel.style.opacity = "1";
+                panel.style.transform = "translateY(0)";
+            });
+        }
+    };
+
+    init();
+</script>
