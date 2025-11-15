@@ -227,7 +227,6 @@ const { projects } = Astro.props;
         transform: scale(1) rotate(0deg);
     }
 
-
     /* Desktop - Enable teaser */
     @media (min-width: 1024px) {
         .archive-teaser {
@@ -235,3 +234,55 @@ const { projects } = Astro.props;
         }
     }
 </style>
+<script>
+    const init = () => {
+        console.log("Initializing teasers...");
+
+        const archiveItems = document.querySelectorAll(".archive-item");
+        console.log("Found items:", archiveItems.length);
+
+        archiveItems.forEach((item, i) => {
+            const link = item.querySelector(".archive-link");
+            const teaser = item.querySelector(".archive-teaser") as HTMLElement;
+
+
+            if (!link || !teaser) {
+                console.log(` Item ${i}: Missing link or teaser`);
+                return;
+            }
+
+            console.log(`Item ${i}: Setting up hover`);
+
+            // Mouse enter
+            link.addEventListener("mouseenter", () => {
+                console.log("Mouse entered!");
+                item.classList.add("is-hovered");
+                teaser.style.opacity = "1";
+                teaser.style.transform = "scale(1) rotate(0deg)";
+            });
+
+            // Mouse leave
+            link.addEventListener("mouseleave", () => {
+                console.log("Mouse left!");
+                item.classList.remove("is-hovered");
+                teaser.style.opacity = "0";
+                teaser.style.transform = "scale(0.9) rotate(-2deg)";
+            });
+
+            // Mouse move - follow cursor
+            link.addEventListener("mousemove", (e) => {
+                const mouseEvent = e as MouseEvent;
+                const x = mouseEvent.clientX;
+                const y = mouseEvent.clientY;
+
+                // Position the teaser near the cursor
+                teaser.style.left = `${x + 30}px`;
+                teaser.style.top = `${y - 150}px`;
+            });
+        });
+
+        console.log(`Initialized ${archiveItems.length} teasers`);
+    };
+
+    init();
+</script>
