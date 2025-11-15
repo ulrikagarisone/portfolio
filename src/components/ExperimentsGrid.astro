@@ -356,3 +356,37 @@ const featuredExperiments = experiments.slice(0, 4);
         }
     }
 </style>
+<script>
+    // Scroll-triggered animation
+    const init = () => {
+        const backgroundText = document.querySelector(".background-text");
+        const squares = document.querySelectorAll(".experiment-square");
+
+        const observerOptions = {
+            threshold: 0.15,
+            rootMargin: "0px 0px -100px 0px",
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach((entry) => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add("is-visible");
+                } else {
+                    entry.target.classList.remove("is-visible");
+                }
+            });
+        }, observerOptions);
+
+        // Observe background text
+        if (backgroundText) observer.observe(backgroundText);
+
+        // Set stagger delay and observe squares
+        squares.forEach((square, index) => {
+            const el = square as HTMLElement;
+            el.style.setProperty("--index", String(index));
+            observer.observe(square);
+        });
+    };
+
+    init();
+</script>
