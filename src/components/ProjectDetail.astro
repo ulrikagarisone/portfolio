@@ -24,11 +24,7 @@ const otherProjects = allProjects
         <div class="container">
             <a href="/projects" class="back-link">
                 <svg width="20" height="20" viewBox="0 0 24 24" fill="none">
-                    <path
-                        d="M19 12H5M12 19l-7-7 7-7"
-                        stroke="currentColor"
-                        stroke-width="2.5"
-                        stroke-linecap="round"></path>
+                    <path d="M19 12H5M12 19l-7-7 7-7" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"/>
                 </svg>
                 <span>Back to Projects</span>
             </a>
@@ -36,22 +32,16 @@ const otherProjects = allProjects
             <h1 class="project-title">{title}</h1>
             <p class="project-description">{description}</p>
 
-            {
-                tags && tags.length > 0 && (
-                    <div class="tags-list">
-                        {tags.map((tag) => (
-                            <span class="tag">{tag}</span>
-                        ))}
-                    </div>
-                )
-            }
+            {tags && tags.length > 0 && (
+                <div class="tags-list">
+                    {tags.map((tag) => <span class="tag">{tag}</span>)}
+                </div>
+            )}
 
             <div class="meta-info">
                 <div class="meta-item">
                     <span class="meta-label">YEAR</span>
-                    <span class="meta-value"
-                        >{new Date(pubDate).getFullYear()}</span
-                    >
+                    <span class="meta-value">{new Date(pubDate).getFullYear()}</span>
                 </div>
                 <div class="meta-item">
                     <span class="meta-label">STATUS</span>
@@ -66,17 +56,15 @@ const otherProjects = allProjects
     </section>
 
     <!-- Cover Image Section -->
-    {
-        project.data.cover && (
-            <section class="cover-section">
-                <div class="container">
-                    <div class="project-image">
-                        <img src={project.data.cover} alt={title} />
-                    </div>
+    {project.data.cover && (
+        <section class="cover-section">
+            <div class="container">
+                <div class="project-image">
+                    <img src={project.data.cover} alt={title} />
                 </div>
-            </section>
-        )
-    }
+            </div>
+        </section>
+    )}
 
     <!-- Content Section -->
     <section class="content-section">
@@ -90,48 +78,32 @@ const otherProjects = allProjects
     <!-- Related Projects Grid -->
     <div class="related-projects-section">
         <div class="projects-grid">
-            {
-                otherProjects.map((relatedProject) => {
-                    let imageContent;
-                    if (relatedProject.data.cover) {
-                        imageContent = (
-                            <img
-                                src={relatedProject.data.cover}
-                                alt={relatedProject.data.title}
-                            />
-                        );
-                    } else {
-                        imageContent = <div class="placeholder-image" />;
-                    }
-
-                    return (
-                        <a
-                            href={`/projects/${relatedProject.id}`}
-                            class="project-card"
-                        >
-                            <div class="card-image">{imageContent}</div>
-                            <div class="card-overlay">
-                                <h3 class="project-title-card">
-                                    {relatedProject.data.title}
-                                </h3>
-                                <p class="project-preview">
-                                    {relatedProject.data.description}
-                                </p>
-                            </div>
-                        </a>
+            {otherProjects.map((relatedProject) => {
+                let imageContent;
+                if (relatedProject.data.cover) {
+                    imageContent = (
+                        <img src={relatedProject.data.cover} alt={relatedProject.data.title} />
                     );
-                })
-            }
+                } else {
+                    imageContent = <div class="placeholder-image" />;
+                }
+
+                return (
+                    <a href={`/projects/${relatedProject.id}`} class="project-card">
+                        <div class="card-image">{imageContent}</div>
+                        <div class="card-overlay">
+                            <h3 class="project-title-card">{relatedProject.data.title}</h3>
+                            <p class="project-preview">{relatedProject.data.description}</p>
+                        </div>
+                    </a>
+                );
+            })}
         </div>
 
         <div class="back-button-container">
             <a href="/projects" class="back-button">
                 <svg width="20" height="20" viewBox="0 0 24 24" fill="none">
-                    <path
-                        d="M19 12H5M12 19l-7-7 7-7"
-                        stroke="currentColor"
-                        stroke-width="2"
-                        stroke-linecap="round"></path>
+                    <path d="M19 12H5M12 19l-7-7 7-7" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
                 </svg>
                 Back to all projects
             </a>
@@ -154,6 +126,7 @@ const otherProjects = allProjects
         padding: 0 1.5rem;
     }
 
+    /* ===== HERO SECTION ===== */
     .hero-section {
         background: linear-gradient(135deg, #093354 0%, #0a4a6b 100%);
         padding: 8rem 0 5rem;
@@ -168,24 +141,15 @@ const otherProjects = allProjects
         right: -10%;
         width: 600px;
         height: 600px;
-        background: radial-gradient(
-            circle,
-            rgba(228, 99, 84, 0.15) 0%,
-            transparent 70%
-        );
+        background: radial-gradient(circle, rgba(228, 99, 84, 0.15) 0%, transparent 70%);
         border-radius: 50%;
         filter: blur(60px);
         animation: float 20s ease-in-out infinite;
     }
 
     @keyframes float {
-        0%,
-        100% {
-            transform: translate(0, 0);
-        }
-        50% {
-            transform: translate(-50px, 50px);
-        }
+        0%, 100% { transform: translate(0, 0); }
+        50% { transform: translate(-50px, 50px); }
     }
 
     .back-link {
@@ -303,7 +267,7 @@ const otherProjects = allProjects
     .status-badge {
         display: inline-block;
         padding: 0.5rem 1.25rem;
-        background: #fff6f5;
+        background: #b8d8ba;
         color: #093354;
         border-radius: 50px;
         font-size: 0.875rem;
@@ -312,6 +276,7 @@ const otherProjects = allProjects
         width: fit-content;
     }
 
+    /* ===== COVER SECTION ===== */
     .cover-section {
         padding: 5rem 0;
         background: #fff6f5;
@@ -321,17 +286,13 @@ const otherProjects = allProjects
         width: 100%;
         border-radius: 24px;
         overflow: hidden;
-        box-shadow:
-            0 20px 60px rgba(9, 51, 84, 0.12),
-            0 0 0 1px rgba(9, 51, 84, 0.05);
+        box-shadow: 0 20px 60px rgba(9, 51, 84, 0.12), 0 0 0 1px rgba(9, 51, 84, 0.05);
         transition: all 0.5s cubic-bezier(0.34, 1.56, 0.64, 1);
     }
 
     .project-image:hover {
         transform: translateY(-10px);
-        box-shadow:
-            0 30px 80px rgba(9, 51, 84, 0.18),
-            0 0 0 1px rgba(9, 51, 84, 0.08);
+        box-shadow: 0 30px 80px rgba(9, 51, 84, 0.18), 0 0 0 1px rgba(9, 51, 84, 0.08);
     }
 
     .project-image img {
@@ -345,7 +306,7 @@ const otherProjects = allProjects
         transform: scale(1.03);
     }
 
-    /* ===== CONTENT SECTION ===== */
+    /* Conetnts */
     .content-section {
         padding: 3rem 0 6rem;
         background: #fff6f5;
@@ -450,12 +411,7 @@ const otherProjects = allProjects
     .content :global(hr) {
         border: none;
         height: 3px;
-        background: linear-gradient(
-            90deg,
-            transparent,
-            rgba(228, 99, 84, 0.3),
-            transparent
-        );
+        background: linear-gradient(90deg, transparent, rgba(228, 99, 84, 0.3), transparent);
         margin: 4rem 0;
         border-radius: 2px;
     }
@@ -478,3 +434,190 @@ const otherProjects = allProjects
         font-size: 0.9em;
         font-family: "Courier New", monospace;
     }
+
+    /*Related projects */
+    .related-projects-section {
+        padding: 0 0 0 0;
+        margin: 0;
+        width: 100%;
+    }
+
+    .projects-grid {
+        display: grid;
+        grid-template-columns: 1fr;
+        gap: 0;
+        width: 100%;
+        margin: 0 auto;
+        padding: 0;
+        max-width: 1600px;
+    }
+
+    .project-card {
+        display: block;
+        position: relative;
+        aspect-ratio: 1 / 1;
+        overflow: hidden;
+        text-decoration: none;
+        cursor: pointer;
+        border: none;
+        margin: 0;
+        padding: 0;
+        min-height: 300px;
+    }
+
+    .card-image {
+        width: 100%;
+        height: 100%;
+        position: relative;
+    }
+
+    .card-image::before {
+        content: "";
+        position: absolute;
+        inset: 0;
+        background: rgba(9, 51, 84, 0.7);
+        z-index: 1;
+        transition: opacity 0.4s ease;
+    }
+
+    .project-card:hover .card-image::before {
+        opacity: 0;
+    }
+
+    .card-image img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        display: block;
+        transition: transform 0.6s cubic-bezier(0.165, 0.84, 0.44, 1);
+    }
+
+    .project-card:hover .card-image img {
+        transform: scale(1.05);
+    }
+
+    .placeholder-image {
+        width: 100%;
+        height: 100%;
+        background: linear-gradient(135deg, #e46354 0%, #d94a3d 100%);
+    }
+
+    .card-overlay {
+        position: absolute;
+        inset: 0;
+        background: rgba(228, 99, 84, 0.85);
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        padding: 2rem;
+        opacity: 0;
+        transition: opacity 0.4s ease;
+        text-align: center;
+        z-index: 2;
+    }
+
+    .project-card:hover .card-overlay {
+        opacity: 1;
+    }
+
+    .project-title-card {
+        font-size: clamp(1.25rem, 2vw, 1.75rem);
+        font-weight: 900;
+        color: rgb(9, 51, 84);
+        margin: 0 0 1rem 0;
+        letter-spacing: -0.02em;
+        text-transform: uppercase;
+    }
+
+    .project-preview {
+        font-size: clamp(0.9375rem, 1.2vw, 1.0625rem);
+        color: rgba(9, 51, 84, 0.9);
+        line-height: 1.6;
+        margin: 0;
+        display: -webkit-box;
+        -webkit-line-clamp: 3;
+        -webkit-box-orient: vertical;
+        overflow: hidden;
+    }
+
+    .back-button-container {
+        padding: 3rem 1.5rem 4rem;
+        text-align: center;
+    }
+
+    .back-button {
+        display: inline-flex;
+        align-items: center;
+        gap: 0.5rem;
+        color: #e46354;
+        text-decoration: none;
+        font-size: 0.9375rem;
+        font-weight: 700;
+        padding: 0.75rem 1.5rem;
+        background: rgba(228, 99, 84, 0.1);
+        border: 2px solid rgba(228, 99, 84, 0.2);
+        border-radius: 50px;
+        transition: all 0.3s ease;
+    }
+
+    .back-button:hover {
+        background: rgba(228, 99, 84, 0.2);
+        border-color: #e46354;
+        transform: translateX(-3px);
+    }
+
+    .back-button svg {
+        transition: transform 0.3s ease;
+    }
+
+    .back-button:hover svg {
+        transform: translateX(-3px);
+    }
+
+    /* Better respsive look */
+    @media (min-width: 640px) {
+        .hero-section {
+            padding: 10rem 0 6rem;
+        }
+
+        .cover-section {
+            padding: 6rem 0;
+        }
+
+        .content-section {
+            padding: 4rem 0 7rem;
+        }
+
+        .meta-info {
+            grid-template-columns: repeat(3, 1fr);
+            gap: 3rem;
+        }
+
+        .projects-grid {
+            grid-template-columns: repeat(2, 1fr);
+        }
+    }
+
+    @media (min-width: 1024px) {
+        .hero-section {
+            padding: 12rem 0 7rem;
+        }
+
+        .container {
+            padding: 0 2rem;
+        }
+
+        .cover-section {
+            padding: 7rem 0;
+        }
+
+        .content-section {
+            padding: 5rem 0 8rem;
+        }
+
+        .projects-grid {
+            grid-template-columns: repeat(4, 1fr);
+        }
+    }
+</style>
