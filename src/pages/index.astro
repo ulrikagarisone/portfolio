@@ -3,13 +3,15 @@ import { getCollection } from "astro:content";
 import BaseLayout from "../layouts/BaseLayout.astro";
 import FeaturedWork from "../components/FeaturedWork.astro";
 import ExperimentsGrid from "../components/ExperimentsGrid.astro";
+import PersonalitySection from "../components/PersonalitySection.astro";
 
-// Projects Data Fetching 
+// Projects Data Fetching
 const allProjects = await getCollection("projects");
 const featuredProjects = allProjects
 	.sort((a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf())
 	.slice(0, 3); // Showing 3 featured projects
 
+// Experiments Data Fetching
 const allExperiments = await getCollection("experiments");
 const recentExperiments = allExperiments
 	.sort((a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf())
@@ -17,6 +19,7 @@ const recentExperiments = allExperiments
 ---
 
 <BaseLayout title="Ulrika Garisone - UX & Creative Developer">
+	<PersonalitySection />
 	<FeaturedWork projects={featuredProjects} />
 	<ExperimentsGrid experiments={recentExperiments} />
 </BaseLayout>

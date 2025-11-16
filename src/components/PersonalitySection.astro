@@ -1,0 +1,419 @@
+---
+// src/components/PersonalitySection.astro
+---
+
+<section class="personality-section">
+    <div class="horizontal-track">
+        <!-- Panel 1: Web Development -->
+        <div class="panel panel--1">
+            <div class="panel__content">
+                <span class="panel__number">01</span>
+                <h2 class="panel__title">Web Development</h2>
+                <p class="panel__text">
+                    I’m still growing as a web developer, but I love the process
+                    of figuring out how things work. I pay close attention to
+                    small details — structure, spacing, clarity — and I enjoy
+                    turning messy ideas into clean, thoughtful interfaces. Every
+                    project teaches me something new, and that’s what keeps me
+                    excited about the web.
+                </p>
+                <div class="panel__tags">
+                    <span class="tag">HTML/CSS</span>
+                    <span class="tag">React</span>
+                    <span class="tag">JavaScript</span>
+                    <span class="tag">GSAP</span>
+                </div>
+            </div>
+        </div>
+
+        <!-- Panel 2: Visual Design -->
+        <div class="panel panel--2">
+            <div class="panel__content">
+                <span class="panel__number">02</span>
+                <h2 class="panel__title">Visual Design</h2>
+                <p class="panel__text">
+                    Design is where I feel most at home. I’m naturally drawn to
+                    composition, micro-details, and creating visuals that feel
+                    balanced and intentional. I love shaping a story through
+                    color, layout, and typography — making sure every element
+                    earns its place.
+                </p>
+                <div class="panel__tags">
+                    <span class="tag">Figma</span>
+                    <span class="tag">Typography</span>
+                    <span class="tag">Color Theory</span>
+                    <span class="tag">Branding</span>
+                </div>
+            </div>
+        </div>
+
+        <!-- Panel 3: UX Research -->
+        <div class="panel panel--3">
+            <div class="panel__content">
+                <span class="panel__number">03</span>
+                <h2 class="panel__title">UX Research</h2>
+                <p class="panel__text">
+                    I’m the kind of person who notices patterns in how people
+                    behave. UX research lets me turn that curiosity into
+                    something useful. Through observation, testing, and asking
+                    honest questions, I try to understand what people actually
+                    need — not just what we assume they need.
+                </p>
+                <div class="panel__tags">
+                    <span class="tag">User Testing</span>
+                    <span class="tag">Ethnography</span>
+                    <span class="tag">Analytics</span>
+                    <span class="tag">Personas</span>
+                </div>
+            </div>
+        </div>
+
+        <!-- Panel 4: Featured Work -->
+        <div class="panel panel--4">
+            <div class="panel__content">
+                <span class="panel__number">04</span>
+                <h2 class="panel__title">Let's Explore</h2>
+                <p class="panel__text">
+                    My projects combine everything I’m learning — design,
+                    research, and development — into experiences that feel
+                    personal and purposeful. Take a look below to see how I
+                    approach storytelling, detail, and creativity in my work.
+                </p>
+                <div class="panel__cta">
+                    <svg
+                        class="arrow-down"
+                        width="40"
+                        height="40"
+                        viewBox="0 0 24 24"
+                        fill="none"
+                    >
+                        <path
+                            d="M12 5v14M5 12l7 7 7-7"
+                            stroke="currentColor"
+                            stroke-width="2"
+                            stroke-linecap="round"
+                            stroke-linejoin="round"></path>
+                    </svg>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Scroll indicator -->
+    <div class="scroll-indicator">
+        <span class="scroll-text">Scroll to explore</span>
+        <div class="scroll-line"></div>
+    </div>
+</section>
+
+<style>
+    .personality-section {
+        position: relative;
+        height: 100vh;
+        overflow: hidden;
+        background: #093354;
+    }
+
+    /* Horizontal Track*/
+    .horizontal-track {
+        display: flex;
+        height: 100%;
+        width: 400vw; /* 4 panels × 100vw */
+    }
+
+    .panel {
+        min-width: 100vw;
+        height: 100vh;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        padding: 2rem;
+        position: relative;
+    }
+
+    .panel--1 {
+        background: #093354;
+    }
+
+    .panel--2 {
+        background: #0a3a5c;
+    }
+
+    .panel--3 {
+        background: #0b4164;
+    }
+
+    .panel--4 {
+        background: #e46354;
+    }
+
+    .panel__content {
+        max-width: 800px;
+        width: 100%;
+    }
+
+    /* Panel elemnts*/
+    .panel__number {
+        display: block;
+        font-size: clamp(0.875rem, 1.5vw, 1rem);
+        font-weight: 700;
+        color: rgba(228, 99, 84, 0.6);
+        margin-bottom: 1.5rem;
+        letter-spacing: 0.1em;
+        opacity: 0;
+        transform: translateY(20px);
+    }
+
+    .panel--4 .panel__number {
+        color: rgba(9, 51, 84, 0.6);
+    }
+
+    .panel__title {
+        font-size: clamp(3rem, 10vw, 7rem);
+        font-weight: 900;
+        line-height: 0.95;
+        color: #fff6f5;
+        margin-bottom: 2rem;
+        letter-spacing: -0.03em;
+        text-transform: uppercase;
+        opacity: 0;
+        transform: translateY(30px);
+    }
+
+    .panel--4 .panel__title {
+        color: #093354;
+    }
+
+    .panel__text {
+        font-size: clamp(1.125rem, 2vw, 1.5rem);
+        line-height: 1.7;
+        color: rgba(255, 246, 245, 0.8);
+        margin-bottom: 2.5rem;
+        max-width: 650px;
+        opacity: 0;
+        transform: translateY(20px);
+    }
+
+    .panel--4 .panel__text {
+        color: rgba(9, 51, 84, 0.8);
+    }
+
+    .panel__tags {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 0.75rem;
+        opacity: 0;
+        transform: translateY(20px);
+    }
+
+    .tag {
+        display: inline-block;
+        padding: 0.5rem 1rem;
+        background: rgba(228, 99, 84, 0.15);
+        border: 2px solid rgba(228, 99, 84, 0.4);
+        color: #e46354;
+        font-size: 0.875rem;
+        font-weight: 700;
+        text-transform: uppercase;
+        letter-spacing: 0.05em;
+        transition: all 0.3s ease;
+    }
+
+    .tag:hover {
+        background: rgba(228, 99, 84, 0.25);
+        border-color: #e46354;
+        transform: translateY(-2px);
+    }
+
+    .panel--4 .tag {
+        background: rgba(9, 51, 84, 0.15);
+        border-color: rgba(9, 51, 84, 0.4);
+        color: #093354;
+    }
+
+    .panel--4 .tag:hover {
+        background: rgba(9, 51, 84, 0.25);
+        border-color: #093354;
+    }
+
+    /* cta Arrow*/
+    .panel__cta {
+        margin-top: 3rem;
+        opacity: 0;
+        transform: translateY(20px);
+    }
+
+    .arrow-down {
+        width: 50px;
+        height: 50px;
+        color: #093354;
+        animation: bounce 2s ease-in-out infinite;
+    }
+
+    @keyframes bounce {
+        0%,
+        100% {
+            transform: translateY(0);
+        }
+        50% {
+            transform: translateY(-10px);
+        }
+    }
+
+    /* Scroll indecator */
+    .scroll-indicator {
+        position: fixed;
+        bottom: 2rem;
+        right: 2rem;
+        display: flex;
+        align-items: center;
+        gap: 1rem;
+        z-index: 10;
+        opacity: 0;
+    }
+
+    .scroll-text {
+        font-size: 0.875rem;
+        font-weight: 700;
+        color: rgba(255, 246, 245, 0.6);
+        text-transform: uppercase;
+        letter-spacing: 0.1em;
+    }
+
+    .scroll-line {
+        width: 60px;
+        height: 2px;
+        background: rgba(228, 99, 84, 0.4);
+        position: relative;
+        overflow: hidden;
+    }
+
+    .scroll-line::after {
+        content: "";
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 30%;
+        height: 100%;
+        background: #e46354;
+        animation: slide 2s ease-in-out infinite;
+    }
+
+    @keyframes slide {
+        0% {
+            left: 0;
+        }
+        100% {
+            left: 100%;
+        }
+    }
+
+    /* Desktop */
+    @media (min-width: 1024px) {
+        .panel__content {
+            max-width: 900px;
+        }
+    }
+
+    /* Accesibility */
+    @media (prefers-reduced-motion: reduce) {
+        .arrow-down,
+        .scroll-line::after {
+            animation: none !important;
+        }
+    }
+</style>
+
+<script>
+    import { gsap } from "gsap";
+    import { ScrollTrigger } from "gsap/ScrollTrigger";
+
+    gsap.registerPlugin(ScrollTrigger);
+
+    const initHorizontalScroll = () => {
+        const section = document.querySelector(".personality-section");
+        const track = document.querySelector(".horizontal-track");
+        const panels = gsap.utils.toArray<HTMLElement>(".panel");
+
+        if (!section || !track) return;
+
+        // Horizontal scroll animation
+        gsap.to(track, {
+            x: () => -(track.scrollWidth - window.innerWidth),
+            ease: "none",
+            scrollTrigger: {
+                trigger: section,
+                start: "top top",
+                end: () => `+=${track.scrollWidth - window.innerWidth}`,
+                scrub: 1,
+                pin: true,
+                anticipatePin: 1,
+                invalidateOnRefresh: true,
+            },
+        });
+
+        // Animate panel content as they come into view
+        panels.forEach((panel: HTMLElement, index: number) => {
+            const elements = panel.querySelectorAll<HTMLElement>(
+                ".panel__number, .panel__title, .panel__text, .panel__tags, .panel__cta",
+            );
+
+            gsap.fromTo(
+                elements,
+                {
+                    opacity: 0,
+                    y: 40,
+                },
+                {
+                    opacity: 1,
+                    y: 0,
+                    duration: 0.8,
+                    stagger: 0.15,
+                    ease: "power3.out",
+                    scrollTrigger: {
+                        trigger: panel,
+                        containerAnimation: gsap.getById("horizontal"),
+                        start: "left center",
+                        end: "center center",
+                        toggleActions: "play none none reverse",
+                    },
+                },
+            );
+        });
+
+        // Scroll indicator fade out
+        gsap.to(".scroll-indicator", {
+            opacity: 1,
+            duration: 0.6,
+            delay: 1,
+            scrollTrigger: {
+                trigger: section,
+                start: "top top",
+                end: "top -10%",
+                toggleActions: "play none none reverse",
+            },
+        });
+
+        gsap.to(".scroll-indicator", {
+            opacity: 0,
+            scrollTrigger: {
+                trigger: section,
+                start: "top -50%",
+                end: "top -60%",
+                scrub: true,
+            },
+        });
+    };
+
+    // Initialize
+    if (document.readyState === "loading") {
+        document.addEventListener("DOMContentLoaded", initHorizontalScroll);
+    } else {
+        initHorizontalScroll();
+    }
+
+    // Reinitialize on resize
+    window.addEventListener("resize", () => {
+        ScrollTrigger.refresh();
+    });
+</script>
