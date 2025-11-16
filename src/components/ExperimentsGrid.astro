@@ -34,14 +34,8 @@ const featuredExperiments = experiments.slice(0, 4);
                     >
                         <div class="square-image">
                             {(() => {
-                                if (exp.data.image) {
-                                    return (
-                                        <img
-                                            src={exp.data.image}
-                                            alt={exp.data.title}
-                                            loading="lazy"
-                                        />
-                                    );
+                                if (exp.data.cover) {
+                                    return <img src={exp.data.cover} />;
                                 } else {
                                     return (
                                         <div class="placeholder">
