@@ -16,7 +16,5 @@ const { Content } = await render(experiment);
 ---
 
 <BaseLayout title={experiment.data.title}>
-    <div class="container">
         <ExperimentDetail experiment={experiment} Content={Content} />
-    </div>
 </BaseLayout>

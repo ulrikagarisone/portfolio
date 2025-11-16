@@ -1,0 +1,120 @@
+---
+import type { CollectionEntry } from "astro:content";
+import { getCollection } from "astro:content";
+
+interface Props {
+    experiment: CollectionEntry<"experiments">;
+    Content: any;
+}
+
+const { experiment, Content } = Astro.props;
+const { title, description, tags, status, pubDate } = experiment.data;
+
+// Get other experiments for related section
+const allExperiments = await getCollection("experiments");
+const otherExperiments = allExperiments
+    .filter((e) => e.id !== experiment.id)
+    .sort(() => Math.random() - 0.5)
+    .slice(0, 4);
+---
+
+<div class="experiment-detail">
+    <!-- Simpler Hero -->
+    <section class="hero-section">
+        <div class="container">
+            <a href="/experiments" class="back-link">← Back to Experiments</a>
+
+            <h1 class="experiment-title">{title}</h1>
+            <p class="experiment-description">{description}</p>
+
+            {
+                tags && tags.length > 0 && (
+                    <div class="tags-list">
+                        {tags.map((tag) => (
+                            <span class="tag">{tag}</span>
+                        ))}
+                    </div>
+                )
+            }
+
+            <div class="meta-info">
+                <div class="meta-item">
+                    <span class="meta-label">YEAR</span>
+                    <span class="meta-value"
+                        >{new Date(pubDate).getFullYear()}</span
+                    >
+                </div>
+                <div class="meta-item">
+                    <span class="meta-label">STATUS</span>
+                    <span class="meta-value">{status}</span>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Cover Image -->
+    {
+        experiment.data.cover && (
+            <section class="cover-section">
+                <div class="container">
+                    <div class="experiment-image">
+                        <img src={experiment.data.cover} alt={title} />
+                    </div>
+                </div>
+            </section>
+        )
+    }
+
+    <!-- Content -->
+    <section class="content-section">
+        <div class="container">
+            <article class="content">
+                <Content />
+            </article>
+        </div>
+    </section>
+
+    <!-- Related Experiments -->
+    {
+        otherExperiments.length > 0 && (
+            <div class="related-section">
+                <div class="experiments-grid">
+                    {otherExperiments.map((related) => {
+                        let imageContent;
+                        if (related.data.cover) {
+                            imageContent = (
+                                <img
+                                    src={related.data.cover}
+                                    alt={related.data.title}
+                                />
+                            );
+                        } else {
+                            imageContent = <div class="card-placeholder" />;
+                        }
+
+                        return (
+                            <a
+                                href={`/experiments/${related.id}`}
+                                class="experiment-card"
+                            >
+                                <div class="card-image">{imageContent}</div>
+                                <div class="card-content">
+                                    <h3>{related.data.title}</h3>
+                                    <p>{related.data.description}</p>
+                                </div>
+                            </a>
+                        );
+                    })}
+                </div>
+
+                <div class="back-button-container">
+                    <a href="/experiments" class="back-button">
+                        View All Experiments
+                    </a>
+                </div>
+            </div>
+        )
+    }
+</div>
+
+
