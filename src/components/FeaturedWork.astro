@@ -39,7 +39,7 @@ const { projects } = Astro.props;
                     return (
                         <article class="archive-item" data-index={i}>
                             <a
-                                href={`/projects/${project.slug}`}
+                                href={`/projects/${project.id}`}
                                 class="archive-link"
                             >
                                 <div class="archive-item__number">
@@ -96,7 +96,7 @@ const { projects } = Astro.props;
     }
 
     .section-header h2 {
-        font-size: clamp(2.5rem, 8vw, 5rem);
+        font-size: clamp(2.5rem, 8vw, 4rem);
         color: #fff6f5;
         font-weight: 900;
     }
@@ -145,7 +145,7 @@ const { projects } = Astro.props;
     }
 
     .archive-item__number {
-        font-size: clamp(1rem, 2vw, 1.25rem);
+        font-size: clamp(0.875rem, 1.5vw, 1rem);
         font-weight: 700;
         color: rgba(228, 99, 84, 0.5);
         transition: color 0.3s ease;
@@ -170,7 +170,7 @@ const { projects } = Astro.props;
     .archive-item__meta {
         display: flex;
         gap: 1rem;
-        font-size: clamp(0.875rem, 2vw, 1rem);
+        font-size: clamp(0.75rem, 1.5vw, 0.9rem);
         color: rgba(255, 246, 245, 0.6);
         font-weight: 600;
         justify-self: end;
@@ -244,7 +244,6 @@ const { projects } = Astro.props;
         archiveItems.forEach((item, i) => {
             const link = item.querySelector(".archive-link");
             const teaser = item.querySelector(".archive-teaser") as HTMLElement;
-
 
             if (!link || !teaser) {
                 console.log(` Item ${i}: Missing link or teaser`);

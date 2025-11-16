@@ -10,7 +10,7 @@ import Hero from "../components/Hero.astro";
 const allProjects = await getCollection("projects");
 const featuredProjects = allProjects
 	.sort((a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf())
-	.slice(0, 3); // Showing 3 featured projects
+	.slice(0, 6); 
 
 // Experiments Data Fetching
 const allExperiments = await getCollection("experiments");
