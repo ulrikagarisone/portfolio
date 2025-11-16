@@ -19,7 +19,6 @@
                 </p>
                 <div class="panel__tags">
                     <span class="tag">HTML/CSS</span>
-                    <span class="tag">React</span>
                     <span class="tag">JavaScript</span>
                     <span class="tag">GSAP</span>
                 </div>
@@ -169,7 +168,7 @@
     }
 
     .panel__title {
-        font-size: clamp(3rem, 10vw, 7rem);
+        font-size: clamp(2.5rem, 8vw, 7rem);
         font-weight: 900;
         line-height: 0.95;
         color: #fff6f5;
@@ -185,7 +184,7 @@
     }
 
     .panel__text {
-        font-size: clamp(1.125rem, 2vw, 1.5rem);
+        font-size: clamp(1rem, 1.7vw, 1.25rem);
         line-height: 1.7;
         color: rgba(255, 246, 245, 0.8);
         margin-bottom: 2.5rem;
@@ -211,8 +210,9 @@
         padding: 0.5rem 1rem;
         background: rgba(228, 99, 84, 0.15);
         border: 2px solid rgba(228, 99, 84, 0.4);
+        border-radius: 50px;
         color: #e46354;
-        font-size: 0.875rem;
+        font-size: clamp(0.75rem, 1.2vw, 0.95rem);
         font-weight: 700;
         text-transform: uppercase;
         letter-spacing: 0.05em;
@@ -330,7 +330,7 @@
 
     gsap.registerPlugin(ScrollTrigger);
 
-    const initHorizontalScroll = () => {
+    const init = () => {
         const section = document.querySelector(".personality-section");
         const track = document.querySelector(".horizontal-track");
         const panels = gsap.utils.toArray<HTMLElement>(".panel");
@@ -353,7 +353,7 @@
         });
 
         // Animate panel content as they come into view
-        panels.forEach((panel: HTMLElement, index: number) => {
+        panels.forEach((panel: HTMLElement) => {
             const elements = panel.querySelectorAll<HTMLElement>(
                 ".panel__number, .panel__title, .panel__text, .panel__tags, .panel__cta",
             );
@@ -403,17 +403,12 @@
                 scrub: true,
             },
         });
+
+        // Handle resize
+        window.addEventListener("resize", () => {
+            ScrollTrigger.refresh();
+        });
     };
 
-    // Initialize
-    if (document.readyState === "loading") {
-        document.addEventListener("DOMContentLoaded", initHorizontalScroll);
-    } else {
-        initHorizontalScroll();
-    }
-
-    // Reinitialize on resize
-    window.addEventListener("resize", () => {
-        ScrollTrigger.refresh();
-    });
+    init();
 </script>
