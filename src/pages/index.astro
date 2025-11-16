@@ -2,13 +2,21 @@
 import { getCollection } from "astro:content";
 import BaseLayout from "../layouts/BaseLayout.astro";
 import FeaturedWork from "../components/FeaturedWork.astro";
+import ExperimentsGrid from "../components/ExperimentsGrid.astro";
 
+// Projects Data Fetching 
 const allProjects = await getCollection("projects");
 const featuredProjects = allProjects
 	.sort((a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf())
-	.slice(0, 6);
+	.slice(0, 3); // Showing 3 featured projects
+
+const allExperiments = await getCollection("experiments");
+const recentExperiments = allExperiments
+	.sort((a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf())
+	.slice(0, 6); // Showing 6 recent experiments
 ---
 
 <BaseLayout title="Ulrika Garisone - UX & Creative Developer">
 	<FeaturedWork projects={featuredProjects} />
+	<ExperimentsGrid experiments={recentExperiments} />
 </BaseLayout>
