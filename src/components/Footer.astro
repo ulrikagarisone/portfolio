@@ -91,7 +91,7 @@
         display: flex;
         justify-content: space-between;
         gap: 2rem;
-        margin-bottom: 6rem;
+        margin-bottom: clamp(1rem, 5vw, 6rem);
         padding-bottom: 2rem;
         border-bottom: 1px solid rgba(228, 99, 84, 0.3);
     }
@@ -103,7 +103,7 @@
     }
 
     .footer-nav a {
-        color: #fdfdfd;
+        color: #fff6f5;
         font-size: 0.875rem;
         font-weight: 500;
         text-transform: uppercase;
@@ -136,7 +136,7 @@
     }
 
     .footer-social a:hover {
-        color: #fdfdfd;
+        color: #fff6f5;
     }
 
     .arrow {
@@ -155,7 +155,7 @@
     }
 
     .footer-name {
-        font-size: 3rem;
+        font-size: clamp(1.75rem, 9vw, 3rem);
         font-family: "Archivo Black", sans-serif;
         font-weight: 900;
         letter-spacing: -0.02em;
@@ -198,7 +198,7 @@
     }
 
     .footer-links a:hover {
-        color: #fdfdfd;
+        color: #fff6f5;
     }
 
     .footer-credits {
@@ -209,7 +209,7 @@
     .footer-credits p {
         margin: 0;
         font-size: 0.75rem;
-        color: #fdfdfd;
+        color: #fff6f5;
         text-transform: uppercase;
         letter-spacing: 0.05em;
         line-height: 1.8;
