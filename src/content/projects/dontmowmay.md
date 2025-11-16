@@ -4,7 +4,8 @@ description: "A digital awareness campaign concept encouraging Flemish residents
 pubDate: 2024-05-25
 tags: ["UX Design", "Campaign Design", "Sustainability", "Concepting", "Storyboarding"]
 status: "completed"
-cover: ""
+cover: "/images/try.jpeg"
+image: "/images/try.jpeg"
 ---
 
 
@@ -95,7 +96,7 @@ cover: ""
 - **Pitch Materials** – Canva slides and recorded pitch embedded in Behance.
 - **Reflection** – Insights on challenges, learning moments, and personal growth.
 
-**View full project on Behance:** [Don’t Mow May](https://www.behance.net/gallery/213638307/Dont-Mow-May)
+**View full project work on Miro:** [Don’t Mow May](https://miro.com/app/board/uXjVLGNNk4U=/?share_link_id=444135727093)
 
 ---
 

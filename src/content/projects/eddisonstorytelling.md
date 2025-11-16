@@ -4,7 +4,8 @@ description: "An interactive scrollytelling investigation debunking the myth tha
 pubDate: 2024-10-10
 tags: ["Storytelling", "Web Design", "Scrollytelling", "Figma", "Illustration"]
 status: "completed"
-cover: ""
+cover: "/images/try.jpeg"
+image: "/images/try.jpeg"
 ---
 
 
@@ -17,8 +18,8 @@ This project was created as a **storytelling and web design assignment**, where 
 
 ## Preview
 The design can be explored in the Figma file here:  
-[Figma Design – Edison Myth Fact-Check](https://www.figma.com/file/yourfilelink)
-
+[Figma Design – Edison Myth Fact-Check](https://www.figma.com/proto/HAUwTQves6q7JkTDoSGdFL/Storytelling_website?page-id=16%3A9&node-id=979-17863&viewport=-4262%2C148%2C0.07&t=H8tDYqlHvA1VlpAk-1&scaling=min-zoom&content-scaling=fixed&starting-point-node-id=341%3A129599)
+[Figma Work File – Edison Myth Fact-Check](https://www.figma.com/design/HAUwTQves6q7JkTDoSGdFL/Storytelling_website?node-id=16-9&t=pYoiskt33Pwp9F6h-1)
 ---
 
 ## Overview
@@ -61,3 +62,4 @@ The final product is a **one-page interactive experience** that blends fact-chec
 - **Illustration:** Hand-drawn sketches digitized and integrated into the page  
 - **Typography:** Vintage typewriter-inspired fonts for dossier feel  
 - **UX & Layout:** Narrative-driven scrollytelling, clue-based interaction, engaging visual hierarchy
+

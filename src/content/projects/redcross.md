@@ -4,7 +4,8 @@ description: "A UX research project analyzing and improving the blood donation e
 pubDate: 2025-02-05
 tags: ["UX Research", "User Journey", "AIDA Funnel", "Field Observation", "Miro", "Figjam"]
 status: "completed"
-cover: ""
+cover: "/images/try.jpeg"
+image: "/images/try.jpeg"
 ---
 
 # Red Cross Flanders – User Experience Analysis
@@ -14,7 +15,7 @@ This project focuses on analyzing and improving the **blood donation experience*
 
 **Live project & documentation:**  
 - [Behance: Red Cross Flanders User Journey](https://www.behance.net/gallery/220329445/Red-Cross-Flanders-User-Map-Journey)  
-- [Miro board: UX research & journey](https://miro.com/app/board/uXjVIeF0Rio=/)  
+- [Miro board: UX research & journey](https://miro.com/app/board/uXjVIeF0Rio=/?share_link_id=106082440595)  
 - [User journey PDF](file:///Users/ulrikagarisone/Downloads/1DEV_21_XD2_userjourney.pdf)
 
 ---
