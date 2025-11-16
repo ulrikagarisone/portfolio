@@ -1,0 +1,288 @@
+---
+// src/components/FeaturedWork.astro
+interface Props {
+    projects: any[];
+}
+
+const { projects } = Astro.props;
+---
+
+<section class="featured-work">
+    <div class="container">
+        <div class="section-header">
+            <h2>Selected Work</h2>
+            <a href="/projects" class="link-arrow">
+                All Projects
+                <svg width="20" height="20" viewBox="0 0 20 20">
+                    <path
+                        d="M5 10h10M11 6l4 4-4 4"
+                        stroke="currentColor"
+                        stroke-width="2"
+                        fill="none"></path>
+                </svg>
+            </a>
+        </div>
+
+        <div class="archive-grid">
+            {
+                projects.map((project, i) => {
+                    let year = "2024";
+                    if (project.data.pubDate) {
+                        year = project.data.pubDate.getFullYear();
+                    }
+
+                    let tags = "";
+                    if (project.data.tags && project.data.tags.length > 0) {
+                        tags = project.data.tags.slice(0, 2).join(" · ");
+                    }
+
+                    return (
+                        <article class="archive-item" data-index={i}>
+                            <a
+                                href={`/projects/${project.slug}`}
+                                class="archive-link"
+                            >
+                                <div class="archive-item__number">
+                                    {String(i + 1).padStart(2, "0")}
+                                </div>
+                                <h3 class="archive-item__title">
+                                    {project.data.title}
+                                </h3>
+                                <div class="archive-item__meta">
+                                    <span>{year}</span>
+                                    <span class="archive-item__tags">
+                                        {tags}
+                                    </span>
+                                </div>
+                            </a>
+
+                            <div class="archive-teaser" data-teaser={i}>
+                                <img
+                                    src={project.data.image}
+                                    alt={project.data.title}
+                                    loading="lazy"
+                                />
+                            </div>
+                        </article>
+                    );
+                })
+            }
+        </div>
+    </div>
+</section>
+
+<style>
+    .featured-work {
+        background: #093354;
+        padding: clamp(4rem, 10vh, 8rem) 0;
+        position: relative;
+    }
+
+    .container {
+        width: 100%;
+        max-width: 1200px;
+        margin: 0 auto;
+        padding: 0 1.25rem;
+    }
+
+    /* Section Header */
+    .section-header {
+        display: flex;
+        justify-content: space-between;
+        align-items: baseline;
+        margin-bottom: clamp(3rem, 8vh, 6rem);
+        flex-wrap: wrap;
+        gap: 1rem;
+    }
+
+    .section-header h2 {
+        font-size: clamp(2.5rem, 8vw, 5rem);
+        color: #fff6f5;
+        font-weight: 900;
+    }
+
+    .link-arrow {
+        display: inline-flex;
+        align-items: center;
+        gap: 0.5rem;
+        font-weight: 700;
+        font-size: 1.125rem;
+        transition: gap 0.3s cubic-bezier(0.34, 1.56, 0.64, 1);
+        color: #e46354;
+        text-decoration: none;
+    }
+
+    .link-arrow:hover {
+        gap: 1rem;
+    }
+
+    /* Archive Grid */
+    .archive-grid {
+        display: grid;
+        gap: 0;
+        border-top: 2px solid rgba(228, 99, 84, 0.3);
+    }
+
+    .archive-item {
+        border-bottom: 2px solid rgba(228, 99, 84, 0.3);
+        position: relative;
+        transition: background 0.3s ease;
+    }
+
+    .archive-item:hover {
+        background: rgba(228, 99, 84, 0.05);
+    }
+
+    .archive-link {
+        display: grid;
+        grid-template-columns: auto 1fr auto;
+        align-items: center;
+        gap: clamp(1rem, 4vw, 2rem);
+        padding: clamp(1.5rem, 4vh, 2.5rem) clamp(1rem, 3vw, 2rem);
+        position: relative;
+        text-decoration: none;
+        color: inherit;
+    }
+
+    .archive-item__number {
+        font-size: clamp(1rem, 2vw, 1.25rem);
+        font-weight: 700;
+        color: rgba(228, 99, 84, 0.5);
+        transition: color 0.3s ease;
+    }
+
+    .archive-item:hover .archive-item__number {
+        color: #e46354;
+    }
+
+    .archive-item__title {
+        font-size: clamp(1.5rem, 4vw, 2.5rem);
+        font-weight: 700;
+        letter-spacing: -0.02em;
+        color: #fff6f5;
+        transition: color 0.3s ease;
+    }
+
+    .archive-item:hover .archive-item__title {
+        color: #e46354;
+    }
+
+    .archive-item__meta {
+        display: flex;
+        gap: 1rem;
+        font-size: clamp(0.875rem, 2vw, 1rem);
+        color: rgba(255, 246, 245, 0.6);
+        font-weight: 600;
+        justify-self: end;
+    }
+
+    .archive-item__tags {
+        display: none;
+    }
+
+    /* Teaser Image */
+    .archive-teaser {
+        position: fixed;
+        width: 400px;
+        height: 300px;
+        pointer-events: none;
+        opacity: 0;
+        transform: scale(0.9) rotate(-2deg);
+        transition:
+            opacity 0.3s ease,
+            transform 0.3s ease;
+        z-index: 1000;
+        border: 4px solid #e46354;
+        box-shadow: 0 20px 60px rgba(0, 0, 0, 0.5);
+        overflow: hidden;
+        background: #093354;
+        display: none;
+    }
+
+    .archive-teaser[data-has-image="true"] {
+        background: #093354;
+    }
+
+    .archive-teaser[data-has-image="false"] {
+        background: #e46354;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+
+    .archive-teaser img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        transition: transform 0.5s ease;
+    }
+
+    .archive-item:hover .archive-teaser img {
+        transform: scale(1.05);
+    }
+
+    /* Show teaser on hover - Desktop only */
+    .archive-item.is-hovered .archive-teaser {
+        opacity: 1;
+        transform: scale(1) rotate(0deg);
+    }
+
+    /* Desktop - Enable teaser */
+    @media (min-width: 1024px) {
+        .archive-teaser {
+            display: block;
+        }
+    }
+</style>
+<script>
+    const init = () => {
+        console.log("Initializing teasers...");
+
+        const archiveItems = document.querySelectorAll(".archive-item");
+        console.log("Found items:", archiveItems.length);
+
+        archiveItems.forEach((item, i) => {
+            const link = item.querySelector(".archive-link");
+            const teaser = item.querySelector(".archive-teaser") as HTMLElement;
+
+
+            if (!link || !teaser) {
+                console.log(` Item ${i}: Missing link or teaser`);
+                return;
+            }
+
+            console.log(`Item ${i}: Setting up hover`);
+
+            // Mouse enter
+            link.addEventListener("mouseenter", () => {
+                console.log("Mouse entered!");
+                item.classList.add("is-hovered");
+                teaser.style.opacity = "1";
+                teaser.style.transform = "scale(1) rotate(0deg)";
+            });
+
+            // Mouse leave
+            link.addEventListener("mouseleave", () => {
+                console.log("Mouse left!");
+                item.classList.remove("is-hovered");
+                teaser.style.opacity = "0";
+                teaser.style.transform = "scale(0.9) rotate(-2deg)";
+            });
+
+            // Mouse move - follow cursor
+            link.addEventListener("mousemove", (e) => {
+                const mouseEvent = e as MouseEvent;
+                const x = mouseEvent.clientX;
+                const y = mouseEvent.clientY;
+
+                // Position the teaser near the cursor
+                teaser.style.left = `${x + 30}px`;
+                teaser.style.top = `${y - 150}px`;
+            });
+        });
+
+        console.log(`Initialized ${archiveItems.length} teasers`);
+    };
+
+    init();
+</script>
