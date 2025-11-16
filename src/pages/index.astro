@@ -4,6 +4,7 @@ import BaseLayout from "../layouts/BaseLayout.astro";
 import FeaturedWork from "../components/FeaturedWork.astro";
 import ExperimentsGrid from "../components/ExperimentsGrid.astro";
 import PersonalitySection from "../components/PersonalitySection.astro";
+import Hero from "../components/Hero.astro";
 
 // Projects Data Fetching
 const allProjects = await getCollection("projects");
@@ -19,6 +20,7 @@ const recentExperiments = allExperiments
 ---
 
 <BaseLayout title="Ulrika Garisone - UX & Creative Developer">
+	<Hero />
 	<PersonalitySection />
 	<FeaturedWork projects={featuredProjects} />
 	<ExperimentsGrid experiments={recentExperiments} />
