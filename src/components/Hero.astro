@@ -204,6 +204,7 @@ import ArrowSVG from "../assets/arrow.svg?raw";
         cursor: pointer;
         z-index: 10;
         transition: transform 0.3s ease;
+        display: none;
     }
 
     .hero__arrow:hover {
@@ -264,6 +265,10 @@ import ArrowSVG from "../assets/arrow.svg?raw";
             text-align: left;
             margin-left: 3rem;
         }
+
+        .hero__arrow {
+            display: block;
+        }
     }
 
     /* large desktop */
@@ -296,16 +301,22 @@ import ArrowSVG from "../assets/arrow.svg?raw";
 
     gsap.registerPlugin(DrawSVGPlugin, ScrollToPlugin);
 
-    const animateHero = () => {
+    const init = () => {
         const logo = document.querySelector("#animatedLogo");
-        const svg = logo?.querySelector("svg");
+
+        if (!logo) {
+            console.error("Logo element not found");
+            return;
+        }
+
+        const svg = logo.querySelector("svg");
 
         if (!svg) {
             console.error("SVG not found");
             return;
         }
 
-        // Get all pathsand
+        // Get all paths
         const paths = svg.querySelectorAll(".cls-1");
 
         console.log("Found", paths.length, "SVG paths to animate");
@@ -341,12 +352,12 @@ import ArrowSVG from "../assets/arrow.svg?raw";
                     opacity: 1,
                     clipPath: "inset(0 0% 0 0)",
                     duration: 3,
-                    ease: "none", // Linear - constant speed
+                    ease: "none",
                     stagger: 0.2,
                 },
             )
 
-            // 6. Name appears
+            // 4. Name appears
             .to(
                 ".name-letter",
                 {
@@ -359,7 +370,7 @@ import ArrowSVG from "../assets/arrow.svg?raw";
                 "-=0.3",
             )
 
-            // 7. Description
+            // 5. Description
             .to(
                 ".hero__description",
                 {
@@ -371,7 +382,7 @@ import ArrowSVG from "../assets/arrow.svg?raw";
                 "-=0.4",
             )
 
-            // 8. Arrow
+            // 6. Arrow
             .to(
                 ".hero__arrow",
                 {
@@ -382,7 +393,7 @@ import ArrowSVG from "../assets/arrow.svg?raw";
                 "-=0.3",
             )
 
-            // 9. Blue section
+            // 7. Blue section
             .to(
                 ".hero__next-section",
                 {
@@ -403,39 +414,33 @@ import ArrowSVG from "../assets/arrow.svg?raw";
             delay: 2,
         });
 
-        // Logo click to replay with clip-path
-        if (logo) {
-            logo.addEventListener("click", () => {
-                gsap.timeline()
-                    // Hide with clip-path
-                    .to(paths, {
-                        clipPath: "inset(0 100% 0 0)",
-                        duration: 1,
-                        ease: "power2.in",
-                        stagger: {
-                            each: 0.1,
-                            from: "end",
-                        },
-                    })
-                    // Reveal with clip-path
-                    .to(paths, {
-                        clipPath: "inset(0 0% 0 0)",
-                        duration: 2.5,
-                        ease: "none",
-                        stagger: 0.15,
-                    });
-            });
-        }
-    };
+        // Logo click to replay animation
+        logo.addEventListener("click", () => {
+            gsap.timeline()
+                // Hide with clip-path
+                .to(paths, {
+                    clipPath: "inset(0 100% 0 0)",
+                    duration: 1,
+                    ease: "power2.in",
+                    stagger: {
+                        each: 0.1,
+                        from: "end",
+                    },
+                })
+                // Reveal with clip-path
+                .to(paths, {
+                    clipPath: "inset(0 0% 0 0)",
+                    duration: 2.5,
+                    ease: "none",
+                    stagger: 0.15,
+                });
+        });
 
-    // Arrow scroll
-    const initArrowClick = () => {
+        // Arrow scroll functionality
         const arrow = document.querySelector("#scrollArrow");
         if (arrow) {
             arrow.addEventListener("click", () => {
-                const target =
-                    document.querySelector(".featured-work") ||
-                    document.querySelector(".archive-section");
+                const target = document.querySelector(".personality-section");
                 if (target) {
                     gsap.to(window, {
                         scrollTo: { y: target, offsetY: 0 },
@@ -447,14 +452,8 @@ import ArrowSVG from "../assets/arrow.svg?raw";
         }
     };
 
-    // Initialize
-    if (document.readyState === "loading") {
-        document.addEventListener("DOMContentLoaded", () => {
-            animateHero();
-            initArrowClick();
-        });
-    } else {
-        animateHero();
-        initArrowClick();
-    }
+    init();
+
+    // Reinitialize after Astro page transitions
+    document.addEventListener("astro:after-swap", init);
 </script>
