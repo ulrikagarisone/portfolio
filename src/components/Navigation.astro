@@ -1,16 +1,17 @@
 ---
 const currentPath = Astro.url.pathname;
+const baseUrl = import.meta.env.BASE_URL;
 
 const links = [
-    { href: "/", label: "HOME", exact: true },
-    { href: "/about", label: "ABOUT", exact: true },
-    { href: "/projects", label: "PROJECTS", exact: false },
-    { href: "/experiments", label: "EXPERIMENTS", exact: false },
+    { href: `${baseUrl}`, label: "HOME", exact: true },
+    { href: `${baseUrl}about`, label: "ABOUT", exact: true },
+    { href: `${baseUrl}projects`, label: "PROJECTS", exact: false },
+    { href: `${baseUrl}experiments`, label: "EXPERIMENTS", exact: false },
 ];
 
 function isActive(href: string, exact: boolean): boolean {
     if (exact) {
-        return currentPath === href;
+        return currentPath === href || currentPath === href + "/";
     } else {
         return currentPath.startsWith(href);
     }
