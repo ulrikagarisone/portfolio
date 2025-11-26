@@ -4,7 +4,8 @@ description: "A cosmic rhythm clicker game where players conduct stars, earn cos
 pubDate: 2025-01-15
 tags: ["Creative Coding", "JavaScript", "Game Design", "UX", "Animation"]
 status: "completed"
-cover: ""
+cover: "/images/try.jpeg"
+image: "/images/try.jpeg"
 ---
 
 # Click-Driven Game – Star Symphony
@@ -43,3 +44,5 @@ Star Symphony is an interactive, rhythm-based clicker game. Players take on the 
 - Built a fully interactive rhythm-based game with upgrades and automated progress
 - Applied UX principles to improve clarity and engagement
 - Learned advanced JS techniques for timing, animations, and state management
+
+

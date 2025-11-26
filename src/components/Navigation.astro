@@ -2,10 +2,10 @@
 const currentPath = Astro.url.pathname;
 
 const links = [
-    { href: "/", label: "Home", exact: true },
-    { href: "/about", label: "About", exact: true },
-    { href: "/projects", label: "Projects", exact: false },
-    { href: "/experiments", label: "Experiments", exact: false },
+    { href: "/", label: "HOME", exact: true },
+    { href: "/about", label: "ABOUT", exact: true },
+    { href: "/projects", label: "PROJECTS", exact: false },
+    { href: "/experiments", label: "EXPERIMENTS", exact: false },
 ];
 
 function isActive(href: string, exact: boolean): boolean {
@@ -17,6 +17,7 @@ function isActive(href: string, exact: boolean): boolean {
 }
 ---
 
+<!-- SVG Sprite for Icons (hidden) -->
 <svg style="display:none">
     <symbol id="navicon" viewBox="0 0 24 24" fill="currentColor">
         <path
@@ -40,35 +41,52 @@ function isActive(href: string, exact: boolean): boolean {
 </svg>
 
 <nav class="nav">
-    <h1 class="nav__title">
-        <a href="/">UG</a>
-    </h1>
-    <button
-        class="nav__button hidden"
-        aria-label="Navigation menu"
-        aria-expanded="false"
-        aria-controls="nav__list">
-        <svg role="img" aria-labelledby="svg-title" focusable="false">
-            <title id="svg-title">Menu</title>
-            <use id="iconlink" xlink:href="#navicon"></use>
-        </svg>
-    </button>
-    <ul class="nav__list" id="nav__list">
-        {
-            links.map((link) => (
-                <li class="nav__item">
-                    <a
-                        class:list={[
-                            "nav__link",
-                            { active: isActive(link.href, link.exact) },
-                        ]}
-                        href={link.href}>
-                        {link.label}
-                    </a>
-                </li>
-            ))
-        }
-    </ul>
+    <div class="nav-container">
+        <h1 class="nav__title">
+            <a href="/" aria-label="Ulrika Garisone - Home">
+                <svg viewBox="0 0 559.33 359.73" aria-hidden="true">
+                    <path
+                        class="logo-path"
+                        d="M382.05,276.24c-1.69,8.29-16.32,19-23.94,22.16-25.22,10.47-61.02,7.96-83.24-8.32-4.93-3.61-10.19-10.33-14.55-13.33-.9-.62-1.06-1.49-2.68-1.05-6.36,17.76-16.83,35.52-33.35,45.46-38.1,22.93-84.07-1.58-115.48-24.94-11.17,2.66-22.19,7.62-34.02,8.46-70.27,4.98-61.36-91.61-56.22-137.63,2.71-24.26,15.68-92.51,29.93-110.5,14.1-17.81,38.98-13.67,41.69,9.74,6.53,56.26-14.18,133.93,11.72,185.5,1.22,2.42,8.86,14.89,10.52,15.21,2.47.48,8.97-6.15,11.67-7.31,2.15,3.75,13.76,15.76,11.85,19.25-.84,1.53-4.62,2.67-4.89,3.76-.5,1.97,11.92,9.01,14.3,10.35,36.33,20.57,69.53,24.51,88.87-18.75,1.16-2.58,6.14-15.4,5.97-17.18-.6-6.09-13.55-23.52-14.2-31.77-18.19,27.65-54.2,59.94-87.78,35.18-8.66-6.39-18.96-23.95-18.96-34.65V46.34h22.53l.97,11.37c1.76,52.27-5.67,112.19-.95,163.85,1.27,13.9,10.58,27.31,26.01,24.94,6.32-.97,15.74-7.32,20.6-11.56,7.34-6.4,30.65-35.76,31.7-44.42,1.25-10.28-.53-23.57-.07-34.37,1.11-26.3,8.79-79.61,24.25-101.17,8.82-12.31,27.55-12.23,30.25,3.94.71,4.27.9,20.1-.23,23.91-.43,1.45-14.64,23.68-16.2,25.61-1.02,1.26-1.74,2.58-3.69,2.21v-17.15c-3.22-.54-1.69.85-2.26,2.52-8.57,25.21-11.44,68.94-9.53,95.54.72,10.05,5.68,22.83,12.3,30.58,1.9,2.22,10.06,7.6,10.23,8.24.92,3.4-.52,10.05.24,14.52,1.53,8.99,21.63,27.27,29.73,31.38,16.36,8.29,53.78,9.18,65.3-7.72,1.87-2.75,5.89-14.42,6.57-14.87,2.41-1.61,11.65.15,15.06-.49-.94,6.74,1.28,16.77,0,23.04ZM91.36,277.83c-41.32-60.77-18.01-139.15-24.13-207.91-12.86,27.19-20.93,59.75-25.06,89.64-3.55,25.73-9.03,93.8,6.91,113.9,10.9,13.75,27.74,8.78,42.27,4.37Z"
+                    ></path>
+                    <path
+                        class="logo-path"
+                        d="M395.46,306.79l-1.61-106.1-27.86,16.63c-75.61,44.66-129.18,8.7-102.21-78.55,12.8-41.42,42.54-88.87,84.74-105.03,44.11-16.9,79.59,12.4,60.54,58.35-3.73,9-9.91,15.42-14.16,23.92-.9.64-18.22-10.83-18.82-11.77-1.15-1.82,6.37-10.88,7.9-13.63,10.69-19.21,13.46-42.23-16.3-38.8-47.99,5.54-93.63,92.44-88.49,136.42,6.63,56.75,88.98,2.97,111.99-13.28,1.56-1.86-2.29-1.03-3.08-.93-9.55,1.21-36.72,8.71-43.62,6.84-9.94-2.68-12.07-17.95-.2-21.69,35.24-11.12,93.1-14.82,130.55-16.39,16.81-.71,41.53-3.19,57.84-.97,15.88,2.16,14.83,22.47-.07,23.41-3.2.2-5.51-1.03-8.37-1.05-24.3-.11-48.53.45-72.75,2.43l-35.69,20.12c.98,10.18.27,20.4.55,30.6.67,25.41,4.06,61.17,1.17,85.75-.13,1.08-.49,3.7-1.66,3.7h-20.38Z"
+                    ></path>
+                </svg>
+            </a>
+        </h1>
+
+        <button
+            class="nav__button hidden"
+            aria-label="Navigation menu"
+            aria-expanded="false"
+            aria-controls="nav__list"
+        >
+            <svg role="img" aria-labelledby="svg-title" focusable="false">
+                <title id="svg-title">Menu</title>
+                <use id="iconlink" xlink:href="#navicon"></use>
+            </svg>
+        </button>
+
+        <ul class="nav__list" id="nav__list">
+            {
+                links.map((link) => (
+                    <li class="nav__item">
+                        <a
+                            class:list={[
+                                "nav__link",
+                                { active: isActive(link.href, link.exact) },
+                            ]}
+                            href={link.href}
+                        >
+                            {link.label}
+                        </a>
+                    </li>
+                ))
+            }
+        </ul>
+    </div>
 </nav>
 
 <style>
@@ -77,15 +95,17 @@ function isActive(href: string, exact: boolean): boolean {
     }
 
     .nav a:any-link {
-        color: var(--navy);
+        color: #fff6f5;
         text-decoration: none;
     }
 
     .nav {
-        margin: 1rem auto 2rem auto;
-        max-width: 1200px;
-        padding: 0 1.25rem;
-        display: grid;
+        background: #093354;
+        padding: 1rem 0;
+        position: sticky;
+        top: 0;
+        z-index: 1000;
+        border-bottom: 2px solid #e46354;
     }
 
     .nav--fixed {
@@ -93,10 +113,18 @@ function isActive(href: string, exact: boolean): boolean {
         width: 100%;
         top: 0;
         padding-top: 1rem;
-        background-color: var(--cream);
+        background-color: #093354;
         z-index: 100;
     }
 
+    .nav-container {
+        max-width: 1400px;
+        margin: 0 auto;
+        padding: 0 1.5rem;
+        display: grid;
+    }
+
+    /* Logo */
     .nav__title {
         grid-row: 1;
         grid-column: 1;
@@ -104,27 +132,57 @@ function isActive(href: string, exact: boolean): boolean {
         font-size: 1.5rem;
     }
 
+    .nav__title a {
+        display: block;
+        width: 60px;
+        height: auto;
+        transition: transform 0.3s ease;
+    }
+
+    .nav__title a:hover {
+        transform: scale(1.05);
+    }
+
+    .nav__title svg {
+        width: 100%;
+        height: auto;
+        display: block;
+    }
+
+    .logo-path {
+        fill: #e46354;
+    }
+
+    /* Mobile Menu Button */
     .nav__button {
         grid-row: 1;
         grid-column: 2;
         align-self: center;
         justify-self: end;
+
+        /* Reset button styles */
         border: none;
         margin: 0;
-        padding: 0;
+        padding: 0.5rem;
         font-size: 1rem;
         line-height: 1;
         background: transparent;
         appearance: none;
-        color: var(--navy);
+        color: #e46354;
         cursor: pointer;
+        transition: transform 0.3s ease;
+    }
+
+    .nav__button:hover {
+        transform: scale(1.1);
     }
 
     .nav__button svg {
-        width: 1.5rem;
-        height: 1.5rem;
+        width: 1.75rem;
+        height: 1.75rem;
     }
 
+    /* Navigation List */
     .nav__list {
         grid-row: 2;
         grid-column: 1 / span 2;
@@ -134,58 +192,123 @@ function isActive(href: string, exact: boolean): boolean {
     }
 
     .nav__item {
-        border-top: solid 1px var(--navy);
+        border-top: solid 2px rgba(228, 99, 84, 0.3);
     }
 
     .nav__item:last-of-type {
-        border-bottom: solid 1px var(--navy);
+        border-bottom: solid 2px rgba(228, 99, 84, 0.3);
     }
 
     .nav__link {
         display: block;
         text-align: center;
-        padding: 0.75rem;
+        padding: 1rem 0.75rem;
+        font-size: 1.125rem;
+        font-weight: 700;
+        letter-spacing: 0.02em;
         transition: all 0.3s ease;
+        position: relative;
     }
 
     .nav__link:hover,
     .nav__link.active {
-        background-color: var(--teal);
-        color: var(--cream);
+        background-color: rgba(228, 99, 84, 0.15);
+        color: #e46354;
+    }
+
+    /* Desktop Navigation */
+    @media screen and (min-width: 768px) {
+        .nav-container {
+            grid-template-columns: auto 1fr;
+            align-items: center;
+            gap: 2rem;
+        }
+
+        .nav__title {
+            grid-row: 1;
+            grid-column: 1;
+        }
+
+        .nav__button {
+            display: none;
+        }
+
+        .nav__list {
+            grid-row: 1;
+            grid-column: 2;
+            display: flex;
+            justify-content: flex-end;
+            gap: 0.5rem;
+            margin-inline-start: auto;
+        }
+
+        .nav__item,
+        .nav__item:last-of-type {
+            border: none;
+        }
+
+        .nav__link {
+            padding: 0.75rem 1.25rem;
+            border-radius: 8px;
+            font-size: 0.9375rem;
+            font-weight: 200;
+        }
+
+        .nav__link::after {
+            content: "";
+            position: absolute;
+            bottom: 0.5rem;
+            left: 1.25rem;
+            right: 1.25rem;
+            height: 2px;
+            background: #e46354;
+            transform: scaleX(0);
+            transition: transform 0.3s ease;
+        }
+
+        .nav__link:hover,
+        .nav__link.active {
+            background: transparent;
+        }
+
+        .nav__link.active::after {
+            transform: scaleX(1);
+        }
     }
 </style>
 
 <script>
     const initNavigation = () => {
-        const navButton = document.querySelector(".nav__button");
-        const navList = document.querySelector(".nav__list");
-        const iconLink = document.querySelector("#iconlink");
-        const nav = document.querySelector(".nav");
-        const listItems = navList?.querySelectorAll("li a");
+        const $nav = document.querySelector(".nav");
+        const $navButton = document.querySelector(".nav__button");
+        const $navList = document.querySelector(".nav__list");
+        const $iconLink = document.querySelector("#iconlink");
+        const listItems = $navList?.querySelectorAll("li a");
 
-        if (!navButton || !navList || !iconLink || !nav || !listItems) {
+        if (!$nav || !$navButton || !$navList || !$iconLink || !listItems) {
             return;
         }
 
-        navButton.classList.remove("hidden");
-        navList.classList.add("hidden");
+        // Progressive Enhancement: Hide button and show list by default
+        $navButton.classList.remove("hidden");
+        $navList.classList.add("hidden");
 
         const openNavigation = () => {
-            navButton.setAttribute("aria-expanded", "true");
-            iconLink.setAttribute("xlink:href", "#close");
-            navList.classList.remove("hidden");
-            nav.classList.add("nav--fixed");
+            $navButton.setAttribute("aria-expanded", "true");
+            $iconLink.setAttribute("xlink:href", "#close");
+            $navList.classList.remove("hidden");
+            $nav.classList.add("nav--fixed");
         };
 
         const closeNavigation = () => {
-            navButton.setAttribute("aria-expanded", "false");
-            iconLink.setAttribute("xlink:href", "#navicon");
-            navList.classList.add("hidden");
-            nav.classList.remove("nav--fixed");
+            $navButton.setAttribute("aria-expanded", "false");
+            $iconLink.setAttribute("xlink:href", "#navicon");
+            $navList.classList.add("hidden");
+            $nav.classList.remove("nav--fixed");
         };
 
         const toggleNavigation = () => {
-            const open = navButton.getAttribute("aria-expanded");
+            const open = $navButton.getAttribute("aria-expanded");
             if (open === "false") {
                 openNavigation();
             } else {
@@ -197,16 +320,24 @@ function isActive(href: string, exact: boolean): boolean {
             closeNavigation();
         };
 
-        navButton.addEventListener("click", toggleNavigation);
+        // Toggle menu on button click
+        $navButton.addEventListener("click", toggleNavigation);
+
+        // Close menu when user tabs out of last item
         listItems[listItems.length - 1].addEventListener("blur", handleBlur);
 
+        // Close menu on Escape key
         window.addEventListener("keyup", (e) => {
             if (e.key === "Escape") {
-                (navButton as HTMLButtonElement).focus();
+                ($navButton as HTMLButtonElement).focus();
                 closeNavigation();
             }
         });
     };
 
+    // Initialize on page load
     initNavigation();
+
+    // Reinitialize after Astro page transitions
+    document.addEventListener("astro:after-swap", initNavigation);
 </script>

@@ -1,31 +1,69 @@
 <footer>
     <div class="container">
-        <div class="footer-content">
-            <p>
-                &copy; {new Date().getFullYear()} Ulrika Garisone
-            </p>
-            <div class="footer-links">
+        <div class="footer-top">
+            <div class="footer-nav">
+                <a href="/about">ABOUT ME</a>
+                <a href="/projects">WORKS</a>
+                <a href="/experiments">EXPERIMENTS</a>
+            </div>
+            <div class="footer-social">
+                <a
+                    href="https://instagram.com/ulrikagarisone"
+                    target="_blank"
+                    rel="noopener"
+                >
+                    INSTAGRAM <span class="arrow">↗</span>
+                </a>
+                <a
+                    href="https://t.me/ulrikagarisone"
+                    target="_blank"
+                    rel="noopener"
+                >
+                    TELEGRAM <span class="arrow">↗</span>
+                </a>
                 <a
                     href="mailto:ulrika.garisone@gmail.com"
                     target="_blank"
                     rel="noopener"
                 >
-                    Email
+                    EMAIL <span class="arrow">↗</span>
                 </a>
+            </div>
+        </div>
+
+        <div class="footer-main">
+            <h2 class="footer-name">ULRIKA GARISONE</h2>
+        </div>
+
+        <div class="footer-bottom">
+            <div class="footer-links">
                 <a
                     href="https://github.com/ulrikagarisone"
                     target="_blank"
                     rel="noopener"
                 >
-                    GitHub
+                    [ GITHUB ]
+                </a>
+                <a
+                    href="https://behance.net/ulrikagarisone"
+                    target="_blank"
+                    rel="noopener"
+                >
+                    [ BEHANCE ]
                 </a>
                 <a
                     href="https://linkedin.com/in/ulrikagarisone"
                     target="_blank"
                     rel="noopener"
                 >
-                    LinkedIn
+                    [ LINKEDIN ]
                 </a>
+            </div>
+            <div class="footer-credits">
+                <p>UX RESEARCHER — CREATIVE DEVELOPER</p>
+                <p>
+                    {new Date().getFullYear()} ULRIKA GARISONE
+                </p>
             </div>
         </div>
     </div>
@@ -33,39 +71,200 @@
 
 <style>
     footer {
-        border-top: 1px solid rgba(0, 0, 0, 0.1);
-        padding: 3rem 0;
-        margin-top: 6rem;
+        background: #093354;
+        border-top: 2px solid #e46354;
+        padding: 2.5rem 1.25rem 1.5rem;
+        margin-top: auto;
+        font-family: "Archivo", sans-serif;
+        position: relative;
+        overflow: hidden;
     }
 
-    .footer-content {
+    .container {
+        max-width: 1400px;
+        margin: 0 auto;
+        position: relative;
+        z-index: 2;
+    }
+
+    .footer-top {
         display: flex;
         justify-content: space-between;
-        align-items: center;
-        flex-wrap: wrap;
-        gap: 1.5rem;
+        gap: 2rem;
+        margin-bottom: clamp(1rem, 5vw, 6rem);
+        padding-bottom: 2rem;
+        border-bottom: 1px solid rgba(228, 99, 84, 0.3);
     }
 
-    .footer-content p {
+    .footer-nav {
+        display: flex;
+        flex-direction: column;
+        gap: 0.75rem;
+    }
+
+    .footer-nav a {
+        color: #fff6f5;
+        font-size: 0.875rem;
+        font-weight: 500;
+        text-transform: uppercase;
+        letter-spacing: 0.05em;
+        transition: color 0.3s ease;
+    }
+
+    .footer-nav a:hover {
+        color: #e46354;
+    }
+
+    .footer-social {
+        display: flex;
+        flex-direction: column;
+        gap: 0.75rem;
+        align-items: flex-start;
+    }
+
+    .footer-social a {
+        color: #e46354;
+        font-size: 0.875rem;
+        font-weight: 600;
+        text-decoration: underline;
+        text-transform: uppercase;
+        letter-spacing: 0.05em;
+        transition: color 0.3s ease;
+        display: inline-flex;
+        align-items: center;
+        gap: 0.25rem;
+    }
+
+    .footer-social a:hover {
+        color: #fff6f5;
+    }
+
+    .arrow {
+        display: inline-block;
+        transition: transform 0.3s ease;
+    }
+
+    .footer-social a:hover .arrow {
+        transform: translate(3px, -3px);
+    }
+
+    .footer-main {
+        margin-bottom: 3rem;
+        position: relative;
+        height: 2rem;
+    }
+
+    .footer-name {
+        font-size: clamp(1.75rem, 9vw, 3rem);
+        font-family: "Archivo Black", sans-serif;
+        font-weight: 900;
+        letter-spacing: -0.02em;
+        line-height: 1;
         margin: 0;
-        color: rgba(0, 0, 0, 0.6);
-        font-size: 0.9375rem;
+        text-transform: uppercase;
+        color: rgba(228, 99, 84, 0.2);
+        position: absolute;
+        bottom: -1.2rem;
+        left: 50%;
+        transform: translateX(-50%);
+        white-space: nowrap;
+        pointer-events: none;
+        text-align: center;
+    }
+
+    .footer-bottom {
+        display: flex;
+        flex-direction: column;
+        gap: 2rem;
+        padding-top: 2rem;
+        border-top: 1px solid rgba(228, 99, 84, 0.3);
     }
 
     .footer-links {
         display: flex;
-        gap: 2rem;
+        flex-wrap: wrap;
+        justify-content: center;
+        gap: 1rem;
+        order: 1;
     }
 
     .footer-links a {
-        color: var(--navy);
+        color: #e46354;
+        font-size: 0.75rem;
         font-weight: 600;
-        font-size: 0.9375rem;
-        transition: all 0.3s ease;
+        text-transform: uppercase;
+        letter-spacing: 0.05em;
+        transition: color 0.3s ease;
     }
 
     .footer-links a:hover {
-        color: var(--teal);
-        transform: translateY(-2px);
+        color: #fff6f5;
+    }
+
+    .footer-credits {
+        order: 2;
+        text-align: center;
+    }
+
+    .footer-credits p {
+        margin: 0;
+        font-size: 0.75rem;
+        color: #fff6f5;
+        text-transform: uppercase;
+        letter-spacing: 0.05em;
+        line-height: 1.8;
+    }
+
+    .footer-credits p:first-child {
+        margin-bottom: 1rem;
+        font-weight: 600;
+    }
+
+    /* Desktop */
+    @media (min-width: 1024px) {
+        footer {
+            padding: 3rem 2rem 2rem;
+        }
+
+        .footer-top {
+            flex-direction: row;
+            justify-content: space-between;
+            margin-bottom: 8rem;
+        }
+
+        .footer-main {
+            height: 4rem;
+        }
+
+        .footer-name {
+            font-size: 8rem;
+            bottom: -3rem;
+        }
+
+        .footer-nav,
+        .footer-social {
+            flex-direction: row;
+            gap: 2rem;
+        }
+
+        .footer-links a,
+        .footer-credits p {
+            font-size: 0.875rem;
+        }
+        .footer-bottom {
+            flex-direction: row;
+            justify-content: space-between;
+            align-items: flex-end;
+        }
+
+        .footer-credits {
+            order: 1;
+            text-align: left;
+        }
+
+        .footer-links {
+            order: 2;
+            justify-content: flex-end;
+        }
     }
 </style>

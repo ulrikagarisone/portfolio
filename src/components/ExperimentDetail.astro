@@ -1,0 +1,507 @@
+---
+import type { CollectionEntry } from "astro:content";
+import { getCollection } from "astro:content";
+
+interface Props {
+    experiment: CollectionEntry<"experiments">;
+    Content: any;
+}
+
+const { experiment, Content } = Astro.props;
+const { title, description, tags, status, pubDate } = experiment.data;
+
+// Get other experiments for related section
+const allExperiments = await getCollection("experiments");
+const otherExperiments = allExperiments
+    .filter((e) => e.id !== experiment.id)
+    .sort(() => Math.random() - 0.5)
+    .slice(0, 4);
+---
+
+<div class="experiment-detail">
+    <!-- Simpler Hero -->
+    <section class="hero-section">
+        <div class="container">
+            <a href="/experiments" class="back-link">← Back to Experiments</a>
+
+            <h1 class="experiment-title">{title}</h1>
+            <p class="experiment-description">{description}</p>
+
+            {
+                tags && tags.length > 0 && (
+                    <div class="tags-list">
+                        {tags.map((tag) => (
+                            <span class="tag">{tag}</span>
+                        ))}
+                    </div>
+                )
+            }
+
+            <div class="meta-info">
+                <div class="meta-item">
+                    <span class="meta-label">YEAR</span>
+                    <span class="meta-value"
+                        >{new Date(pubDate).getFullYear()}</span
+                    >
+                </div>
+                <div class="meta-item">
+                    <span class="meta-label">STATUS</span>
+                    <span class="meta-value">{status}</span>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Cover Image -->
+    {
+        experiment.data.cover && (
+            <section class="cover-section">
+                <div class="container">
+                    <div class="experiment-image">
+                        <img src={experiment.data.cover} alt={title} />
+                    </div>
+                </div>
+            </section>
+        )
+    }
+
+    <!-- Content -->
+    <section class="content-section">
+        <div class="container">
+            <article class="content">
+                <Content />
+            </article>
+        </div>
+    </section>
+
+    <!-- Related Experiments -->
+    {
+        otherExperiments.length > 0 && (
+            <div class="related-section">
+                <div class="experiments-grid">
+                    {otherExperiments.map((related) => {
+                        let imageContent;
+                        if (related.data.cover) {
+                            imageContent = (
+                                <img
+                                    src={related.data.cover}
+                                    alt={related.data.title}
+                                />
+                            );
+                        } else {
+                            imageContent = <div class="card-placeholder" />;
+                        }
+
+                        return (
+                            <a
+                                href={`/experiments/${related.id}`}
+                                class="experiment-card"
+                            >
+                                <div class="card-image">{imageContent}</div>
+                                <div class="card-content">
+                                    <h3>{related.data.title}</h3>
+                                    <p>{related.data.description}</p>
+                                </div>
+                            </a>
+                        );
+                    })}
+                </div>
+
+                <div class="back-button-container">
+                    <a href="/experiments" class="back-button">
+                        View All Experiments
+                    </a>
+                </div>
+            </div>
+        )
+    }
+</div>
+
+<style>
+    .experiment-detail {
+        background: #fff6f5;
+        min-height: 100vh;
+        font-family: "Archivo", sans-serif;
+    }
+
+    .container {
+        max-width: 1000px;
+        margin: 0 auto;
+        padding: 0 1.25rem;
+    }
+
+    .hero-section {
+        background: #fff6f5;
+        padding: 8rem 0 4rem;
+        border-bottom: 1px solid rgba(9, 51, 84, 0.1);
+    }
+
+    .back-link {
+        display: inline-block;
+        color: #093354;
+        text-decoration: none;
+        font-size: 0.875rem;
+        font-weight: 600;
+        margin-bottom: 2.5rem;
+        transition: opacity 0.3s;
+    }
+
+    .back-link:hover {
+        opacity: 0.6;
+    }
+
+    .experiment-title {
+        font-family: "Archivo", sans-serif;
+        font-size: clamp(2.5rem, 6vw, 4.5rem);
+        line-height: 1.1;
+        color: #093354;
+        margin: 0 0 1.5rem 0;
+        letter-spacing: -0.02em;
+    }
+
+    .experiment-description {
+        font-size: clamp(1.125rem, 2vw, 1.375rem);
+        line-height: 1.6;
+        color: rgba(9, 51, 84, 0.7);
+        margin: 0 0 2.5rem 0;
+        max-width: 900px;
+    }
+
+    .tags-list {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 0.75rem;
+        margin-bottom: 3rem;
+    }
+
+    .tag {
+        font-size: 0.875rem;
+        font-weight: 600;
+        color: #093354;
+        background: rgba(9, 51, 84, 0.08);
+        padding: 0.5rem 1rem;
+        text-transform: uppercase;
+        letter-spacing: 0.05em;
+        border-radius: 50px;
+        border: 1px solid rgba(9, 51, 84, 0.15);
+    }
+
+    .meta-info {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 2rem;
+        padding: 2.5rem 0 0;
+        border-top: 1px solid rgba(9, 51, 84, 0.1);
+    }
+
+    .meta-item {
+        display: flex;
+        flex-direction: column;
+        gap: 0.75rem;
+    }
+
+    .meta-label {
+        font-size: 0.75rem;
+        font-weight: 700;
+        letter-spacing: 0.15em;
+        color: rgba(9, 51, 84, 0.4);
+        text-transform: uppercase;
+    }
+
+    .meta-value {
+        font-size: 1.125rem;
+        font-weight: 700;
+        color: #093354;
+    }
+
+    .cover-section {
+        padding: 5rem 0;
+        background: #fff6f5;
+    }
+
+    .experiment-image {
+        width: 100%;
+        border-radius: 8px;
+        overflow: hidden;
+        box-shadow: 0 4px 16px rgba(9, 51, 84, 0.06);
+        border: 1px solid rgba(9, 51, 84, 0.08);
+    }
+
+    .experiment-image img {
+        width: 100%;
+        height: auto;
+        display: block;
+    }
+
+    /* Content */
+    .content-section {
+        padding: 3rem 0 6rem;
+        background: #fff6f5;
+    }
+
+    .content {
+        font-size: 1.0625rem;
+        line-height: 1.8;
+        color: rgba(9, 51, 84, 0.85);
+        max-width: 900px;
+    }
+
+    .content :global(h2) {
+        font-family: "Archivo", sans-serif;
+        font-size: clamp(2rem, 4vw, 2.75rem);
+        line-height: 1.15;
+        color: #093354;
+        margin: 3.5rem 0 1.5rem 0;
+        letter-spacing: -0.02em;
+    }
+
+    .content :global(h3) {
+        font-size: clamp(1.375rem, 3vw, 1.875rem);
+        font-weight: 800;
+        color: #093354;
+        margin: 2.5rem 0 1rem 0;
+    }
+
+    .content :global(h4) {
+        font-size: 1.25rem;
+        font-weight: 700;
+        color: #093354;
+        margin: 2rem 0 1rem 0;
+    }
+
+    .content :global(p) {
+        margin: 0 0 1.5rem 0;
+    }
+
+    .content :global(ul),
+    .content :global(ol) {
+        padding-left: 2rem;
+        margin: 2rem 0;
+    }
+
+    .content :global(li) {
+        margin-bottom: 1rem;
+        line-height: 1.8;
+    }
+
+    .content :global(strong) {
+        font-weight: 800;
+        color: #093354;
+    }
+
+    .content :global(a) {
+        color: #e46354;
+        font-weight: 700;
+        text-decoration: none;
+        border-bottom: 1px solid rgba(228, 99, 84, 0.3);
+        transition: all 0.3s;
+    }
+
+    .content :global(a:hover) {
+        border-bottom-color: #e46354;
+    }
+
+    .content :global(img) {
+        width: 100%;
+        height: auto;
+        border-radius: 8px;
+        margin: 3rem 0;
+        box-shadow: 0 4px 16px rgba(9, 51, 84, 0.08);
+    }
+
+    .content :global(hr) {
+        border: none;
+        height: 1px;
+        background: rgba(9, 51, 84, 0.1);
+        margin: 3rem 0;
+    }
+
+    .content :global(code) {
+        background: rgba(9, 51, 84, 0.06);
+        color: #093354;
+        padding: 0.25rem 0.5rem;
+        border-radius: 4px;
+        font-size: 0.9em;
+        font-family: "Courier New", monospace;
+    }
+
+    /* You may also like  */
+    .related-section {
+        padding: 0;
+        margin: 0;
+        width: 100%;
+        background: #fdfdfd;
+    }
+
+    .related-title {
+        font-family: "Archivo", sans-serif;
+        font-size: clamp(1.75rem, 4vw, 2.5rem);
+        color: #093354;
+        text-align: center;
+        margin: 0;
+        padding: 3rem 1.25rem 2rem;
+    }
+
+    .experiments-grid {
+        display: grid;
+        grid-template-columns: 1fr;
+        gap: 0;
+        width: 100%;
+        margin: 0 auto;
+        padding: 0;
+        max-width: 1600px;
+    }
+
+    .experiment-card {
+        display: block;
+        position: relative;
+        aspect-ratio: 1 / 1;
+        overflow: hidden;
+        text-decoration: none;
+        cursor: pointer;
+        border: none;
+        margin: 0;
+        padding: 0;
+        min-height: 300px;
+    }
+
+    .card-image,
+    .card-placeholder {
+        width: 100%;
+        height: 100%;
+        position: relative;
+    }
+
+    .card-image::before {
+        content: "";
+        position: absolute;
+        inset: 0;
+        background: rgba(9, 51, 84, 0.7);
+        z-index: 1;
+        transition: opacity 0.4s ease;
+    }
+
+    .experiment-card:hover .card-image::before {
+        opacity: 0;
+    }
+
+    .card-image img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        display: block;
+        transition: transform 0.6s cubic-bezier(0.165, 0.84, 0.44, 1);
+    }
+
+    .experiment-card:hover .card-image img {
+        transform: scale(1.05);
+    }
+
+    .card-placeholder {
+        background: #e46354;
+    }
+
+    .card-content {
+        position: absolute;
+        inset: 0;
+        background: rgba(228, 99, 84, 0.85);
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        padding: 2rem;
+        opacity: 0;
+        transition: opacity 0.4s ease;
+        text-align: center;
+        z-index: 2;
+    }
+
+    .experiment-card:hover .card-content {
+        opacity: 1;
+    }
+
+    .card-content h3 {
+        font-size: clamp(clamp(1.4rem, 2.5vw, 2rem));
+        font-weight: 900;
+        color: #093354;
+        margin: 0 0 1rem 0;
+        letter-spacing: -0.02em;
+        text-transform: uppercase;
+    }
+
+    .card-content p {
+        font-size: clamp(1rem, 1.5vw, 1.25rem);
+        color: rgba(9, 51, 84, 0.9);
+        line-height: 1.6;
+        margin: 0;
+        display: -webkit-box;
+        -webkit-line-clamp: 3;
+        -webkit-box-orient: vertical;
+        overflow: hidden;
+    }
+
+    .back-button-container {
+        padding: 3rem 1.5rem 4rem;
+        text-align: center;
+        background: #fff6f5;
+    }
+
+    .back-button {
+        display: inline-flex;
+        align-items: center;
+        gap: 0.5rem;
+        color: #e46354;
+        text-decoration: none;
+        font-size: 0.9375rem;
+        font-weight: 700;
+        padding: 0.75rem 1.5rem;
+        background: rgba(228, 99, 84, 0.1);
+        border: 2px solid rgba(228, 99, 84, 0.2);
+        border-radius: 50px;
+        transition: all 0.3s ease;
+    }
+
+    .back-button:hover {
+        background: rgba(228, 99, 84, 0.2);
+        border-color: #e46354;
+        transform: translateX(-3px);
+    }
+
+    /* Resizing beter */
+    @media (min-width: 768px) {
+        .hero-section {
+            padding: 10rem 0 5rem;
+        }
+
+        .container {
+            padding: 0 2rem;
+        }
+
+        .cover-section {
+            padding: 6rem 0;
+        }
+
+        .content-section {
+            padding: 4rem 0 7rem;
+        }
+
+        .experiments-grid {
+            grid-template-columns: repeat(2, 1fr);
+        }
+    }
+
+    /* Desktop */
+    @media (min-width: 1024px) {
+        .hero-section {
+            padding: 12rem 0 6rem;
+        }
+
+        .content-section {
+            padding: 1rem 0 4rem;
+        }
+
+        .experiments-grid {
+            grid-template-columns: repeat(4, 1fr);
+        }
+    }
+</style>

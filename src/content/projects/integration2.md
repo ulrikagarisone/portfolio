@@ -4,7 +4,8 @@ description: "An interactive website transforming everyday keys into storyteller
 pubDate: 2025-05-25
 tags: ["UX Design", "Interaction Design", "Wireframing", "Storytelling", "Figma", "Front-End Development"]
 status: "completed"
-cover: ""
+cover: "/images/try.jpeg"
+image: "/images/try.jpeg"
 ---
 
 # Integration 2 – Key Whisperers
@@ -99,5 +100,8 @@ This project followed the Integration 2 briefing, which asked for:
 
 ---
 
-## Visuals / GIFs
-*(Replace these placeholders with your actual images or GIFs)*  
+## Process & Documentation
+- **Figma Process File:** [Link to Figma – Ideation, Brainstorm, Wireframes, UX Decisions](https://www.figma.com/board/QO8abpom1n5HOyyWAMSKHC/INT2-process-docomentation-ulrika?node-id=0-1&t=Js4BcKqwZxQnwgjt-1) 
+- **Figma Design File:** [Link to Figma – Visual Style, UI Design](https://www.figma.com/design/PrCEvqhdENX4NNLpUeRTWM/integration2?node-id=0-1&t=V73NNkxhXvfs1fx3-1)
+- **Figma Wireframes File:** [Link to Figma – UX heuristics, Deign States, Interactions](https://www.figma.com/design/oiHVKK31owz3NEbCWIniGG/Integration_wireframes?node-id=0-1&t=TQed7KbyqTAjgwc3-1)
+ 

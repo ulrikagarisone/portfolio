@@ -1,0 +1,380 @@
+---
+// src/components/StoryTimeline.astro
+---
+
+<section class="about-story">
+    <!-- Panel 1 -->
+    <div class="story-panel panel-left" data-panel="1">
+        <div class="panel-side panel-image">
+            <img src="" alt="The Beginning" />
+            <div class="image-overlay"></div>
+        </div>
+        <div class="panel-side panel-content">
+            <span class="panel-number">01</span>
+            <h3 class="panel-title">The Beginning</h3>
+            <p class="panel-text">
+                My journey started with motion, competition, and curiosity.
+                Sport taught me that <strong>creativity is a muscle</strong> — you
+                train it daily. Now I channel that discipline into creating interactive
+                experiences where design meets code.
+            </p>
+        </div>
+    </div>
+
+    <!-- Panel 2 -->
+    <div class="story-panel panel-right" data-panel="2">
+        <div class="panel-side panel-content">
+            <span class="panel-number">02</span>
+            <h3 class="panel-title">The Craft</h3>
+            <p class="panel-text">
+                I experiment with motion, visuals, and interaction — creating
+                digital moments that feel <strong>alive and seamless</strong>.
+                From playful front-end experiments to meaningful visual systems.
+            </p>
+        </div>
+        <div class="panel-side panel-image">
+            <img src="" alt="The Craft" />
+            <div class="image-overlay"></div>
+        </div>
+    </div>
+
+    <!-- Panel 3 -->
+    <div class="story-panel panel-left" data-panel="3">
+        <div class="panel-side panel-image">
+            <img
+                src=""
+                alt="The Process"
+            />
+            <div class="image-overlay"></div>
+        </div>
+        <div class="panel-side panel-content">
+            <span class="panel-number">03</span>
+            <h3 class="panel-title">The Process</h3>
+            <p class="panel-text">
+                I find inspiration everywhere — sketching on paper, iterating in
+                code, always looking for those <strong
+                    >small details that elevate</strong
+                >
+                experience. Every pixel matters, every interaction tells a story.
+            </p>
+        </div>
+    </div>
+
+    <!-- Custom Portrait Cursor (Desktop Only) -->
+    <div class="portrait-cursor" data-cursor="portrait">
+        <div class="cursor-frame">
+            <img src="/images/try.jpeg" alt="Ulrika" />
+        </div>
+        <span class="cursor-label">I'm Ulrika</span>
+    </div>
+</section>
+
+<style>
+    .about-story {
+        background: #093354;
+        padding: 0;
+        position: relative;
+        overflow: hidden;
+    }
+
+    .story-panel {
+        display: grid;
+        grid-template-columns: 1fr;
+        gap: 2.5rem;
+        padding: 4rem 1.5rem;
+        opacity: 1;
+        transform: translateY(0);
+    }
+
+    /* Everything stacks, image first */
+    .panel-image {
+        grid-column: 1;
+        order: 1;
+    }
+
+    .panel-content {
+        grid-column: 1;
+        order: 2;
+        text-align: center;
+    }
+
+    .panel-content {
+        color: #fff6f5;
+    }
+
+    .panel-number {
+        display: block;
+        font-size: 1.25rem;
+        font-weight: 900;
+        color: #e46354;
+        margin-bottom: 1.5rem;
+        letter-spacing: 0.15em;
+    }
+
+    .panel-title {
+        font-size: clamp(2.5rem, 6vw, 4rem);
+        font-weight: 900;
+        line-height: 1;
+        margin: 0 0 2rem;
+        letter-spacing: -0.03em;
+        text-transform: uppercase;
+    }
+
+    .panel-text {
+        font-size: clamp(1rem, 1.7vw, 1.25rem);
+        line-height: 1.8;
+        color: rgba(255, 246, 245, 0.9);
+        margin: 0;
+    }
+
+    .panel-text strong {
+        color: #e46354;
+        font-weight: 700;
+    }
+
+    .panel-image {
+        position: relative;
+        width: 100%;
+        max-width: 100%;
+        height: 300px;
+        overflow: hidden;
+        margin: 0 auto;
+    }
+
+    .panel-image img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        display: block;
+        transform: scale(1.1);
+        transition: transform 0.8s cubic-bezier(0.165, 0.84, 0.44, 1);
+    }
+
+    .story-panel:hover .panel-image img {
+        transform: scale(1);
+    }
+
+    .image-overlay {
+        position: absolute;
+        inset: 0;
+        background: linear-gradient(
+            135deg,
+            rgba(228, 99, 84, 0.2),
+            rgba(9, 51, 84, 0.3)
+        );
+        mix-blend-mode: multiply;
+        opacity: 0.6;
+        transition: opacity 0.5s ease;
+    }
+
+    .story-panel:hover .image-overlay {
+        opacity: 0.3;
+    }
+
+    /* Portrait cursor - hidden on mobile */
+    .portrait-cursor {
+        display: none;
+    }
+
+    /* Desktop */
+    @media (min-width: 1024px) {
+        .story-panel {
+            min-height: 100vh;
+            grid-template-columns: 1fr 1fr 1fr;
+            align-items: center;
+            gap: 2rem;
+            padding: 2rem clamp(2rem, 6vw, 8rem);
+            margin-bottom: -20vh;
+            opacity: 0;
+            transform: translateY(60px);
+        }
+
+        .story-panel:last-child {
+            margin-bottom: 0;
+        }
+
+        /* Left layout */
+        .panel-left .panel-image {
+            grid-column: 1;
+            order: 0;
+        }
+
+        .panel-left .panel-content {
+            grid-column: 2;
+            order: 0;
+            text-align: left;
+        }
+
+        /* Right layout */
+        .panel-right .panel-content {
+            grid-column: 2;
+            order: 0;
+            text-align: right;
+        }
+
+        .panel-right .panel-image {
+            grid-column: 3;
+            order: 0;
+        }
+
+        .panel-image {
+            max-width: 400px;
+            height: clamp(280px, 35vh, 400px);
+        }
+
+        /* Show portrait cursor on desktop */
+        .portrait-cursor {
+            display: block;
+            position: fixed;
+            left: 50%;
+            top: 50%;
+            pointer-events: none;
+            z-index: 9999;
+            opacity: 0;
+            transition: opacity 0.5s ease;
+        }
+
+        .cursor-frame {
+            width: 140px;
+            height: 180px;
+            border: 4px solid #fff6f5
+            overflow: hidden;
+            background: #fff6f5;
+            position: relative;
+        }
+
+        .cursor-frame img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            display: block;
+        }
+
+        .cursor-label {
+            position: absolute;
+            bottom: -15px;
+            left: 50%;
+            transform: translateX(-50%);
+            font-size: 1.125rem;
+            font-weight: 900;
+            color: #fff6f5;
+            text-shadow: 0 2px 10px rgba(0, 0, 0, 0.5);
+            letter-spacing: 0.02em;
+            white-space: nowrap;
+            z-index: 10;
+        }
+    }
+</style>
+
+<script>
+    import gsap from "gsap";
+    import ScrollTrigger from "gsap/ScrollTrigger";
+
+    gsap.registerPlugin(ScrollTrigger);
+
+    const init = () => {
+        const panels = gsap.utils.toArray(".story-panel") as HTMLElement[];
+        const cursor = document.querySelector(
+            '[data-cursor="portrait"]',
+        ) as HTMLElement;
+        const section = document.querySelector(".about-story") as HTMLElement;
+
+        if (!section) return;
+
+        const isDesktop = window.innerWidth >= 1024;
+
+        if (isDesktop) {
+            // Desktop animate panels on scroll
+            panels.forEach((panel) => {
+                gsap.to(panel, {
+                    opacity: 1,
+                    y: 0,
+                    duration: 1,
+                    ease: "power3.out",
+                    scrollTrigger: {
+                        trigger: panel,
+                        start: "top 75%",
+                        once: true,
+                    },
+                });
+            });
+
+            // Portrait cursour
+            if (cursor) {
+                let mouseX = 0;
+                let mouseY = 0;
+                const maxDistanceX = window.innerWidth / 4;
+                const maxDistanceY = window.innerHeight / 4;
+
+                // Show cursor when entering section
+                ScrollTrigger.create({
+                    trigger: section,
+                    start: "top center",
+                    end: "bottom center",
+                    onEnter: () => {
+                        gsap.to(cursor, { opacity: 1, duration: 0.5 });
+                    },
+                    onLeave: () => {
+                        gsap.to(cursor, { opacity: 0, duration: 0.5 });
+                    },
+                    onEnterBack: () => {
+                        gsap.to(cursor, { opacity: 1, duration: 0.5 });
+                    },
+                    onLeaveBack: () => {
+                        gsap.to(cursor, { opacity: 0, duration: 0.5 });
+                    },
+                });
+
+                // Follow mouse with constrained movement
+                document.addEventListener("mousemove", (e) => {
+                    const centerX = window.innerWidth / 2;
+                    const centerY = window.innerHeight / 2;
+
+                    let deltaX = e.clientX - centerX;
+                    let deltaY = e.clientY - centerY;
+
+                    if (deltaX < -maxDistanceX) {
+                        deltaX = -maxDistanceX;
+                    }
+                    if (deltaX > maxDistanceX) {
+                        deltaX = maxDistanceX;
+                    }
+                    if (deltaY < -maxDistanceY) {
+                        deltaY = -maxDistanceY;
+                    }
+                    if (deltaY > maxDistanceY) {
+                        deltaY = maxDistanceY;
+                    }
+
+                    mouseX = deltaX;
+                    mouseY = deltaY;
+                });
+
+                // Smooth animation loop
+                let currentX = 0;
+                let currentY = 0;
+
+                function animateCursor() {
+                    const dx = mouseX - currentX;
+                    const dy = mouseY - currentY;
+
+                    currentX = currentX + dx * 0.1;
+                    currentY = currentY + dy * 0.1;
+
+                    cursor.style.transform = `translate(calc(-50% + ${currentX}px), calc(-50% + ${currentY}px))`;
+
+                    requestAnimationFrame(animateCursor);
+                }
+                animateCursor();
+            }
+        } else {
+            // All panels visible
+            panels.forEach((panel) => {
+                panel.style.opacity = "1";
+                panel.style.transform = "translateY(0)";
+            });
+        }
+    };
+
+    init();
+</script>

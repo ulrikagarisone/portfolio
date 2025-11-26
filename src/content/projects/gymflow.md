@@ -4,7 +4,8 @@ description: "A user-centered redesign of a gym website tailored to the needs, m
 pubDate: 2025-04-15
 tags: ["UX Design", "Wireframing", "User Research", "Accessibility", "Figma"]
 status: "completed"
-cover: ""
+cover: "/images/try.jpeg"
+image: "/images/try.jpeg"
 ---
 
 # Gym Website Redesign for 50+ Audience
@@ -66,9 +67,9 @@ The wireframes use **clear hierarchy, annotations, and a tone of voice** that re
 
 ---
 
-## Deliverables
-- **Flowchart / Information Architecture:** [Figma Link](https://www.figma.com/design/KlJ4MjeRcg1ZnVBMfdWx86/gym-flow-wireframes?node-id=0-1&p=f&t=idOphOJZpwnz9Skl-0)  
-- **High-Fidelity Wireframes:** Homepage, Community, About, Problems (annotated in Figma)  
+## End Result
+- **High fidelity Wireframe Design File:** [Figma Link](https://www.figma.com/design/KlJ4MjeRcg1ZnVBMfdWx86/gym-flow-wireframes?node-id=161-6865&t=uDP780whHCGLYVz7-1)
+- **High-Fidelity Wireframes:** Homepage, Community, About, Problems 
 - **Quick & Dirty Prototype Testing Video:** Documenting user scenarios and feedback  
 
 ---
@@ -85,3 +86,9 @@ The wireframes use **clear hierarchy, annotations, and a tone of voice** that re
 - User-centered testing is essential for designing for a specific demographic  
 - Older adults value **community, guidance, and reassurance** in fitness services  
 - Iterative design and testing lead to **clarity, usability, and motivation** for users  
+
+---
+## Process & Documentation
+- **Quick & Dirty Prototype Testing Video:** Documenting user scenarios and feedback  
+- **Figma Process File:** [Link to Figma – Brainstorm, Flowcharts, Wireframes, User Testing, UX Decisions](https://www.figma.com/board/nnivY568YUKP7neBRP1bk9/gym-flow?node-id=0-1&t=44fEbOMxdd9GEXzA-1) 
+- **High fidelity Wireframe Design File:** [Link to Figma](https://www.figma.com/design/KlJ4MjeRcg1ZnVBMfdWx86/gym-flow-wireframes?node-id=161-6865&t=uDP780whHCGLYVz7-1)

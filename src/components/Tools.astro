@@ -1,0 +1,454 @@
+<section class="services-section">
+    <div class="services-container">
+        <!-- Header -->
+        <div class="services-header">
+            <h2 class="services-title">SKILLS & TOOLS</h2>
+        </div>
+
+        <!-- Service Items -->
+        <div class="services-list">
+            <!-- Item 1 -->
+            <div class="service-item" data-number="01">
+                <div class="service-main">
+                    <span class="service-number">01</span>
+                    <h3 class="service-name">VISUAL DESIGN</h3>
+                    <button class="service-toggle" aria-label="Toggle details">
+                        <span class="toggle-icon">+</span>
+                    </button>
+                </div>
+                <div class="service-details">
+                    <div class="details-content">
+                        <ul class="service-features">
+                            <li>Figma</li>
+                            <li>Adobe Illustrator</li>
+                            <li>Adobe Photoshop</li>
+                            <li>UI/UX Design</li>
+                            <li>Prototyping</li>
+                        </ul>
+                        <p class="service-description">
+                            I design clean, intentional visuals with a soft spot
+                            for tiny details. From UI to motion to illustration,
+                            I bring ideas to life in a way that feels both
+                            beautiful and practical.
+                        </p>
+                        <div class="service-image">
+                            <img src="" alt="UX/UI Design" />
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Item 2 -->
+            <div class="service-item" data-number="02">
+                <div class="service-main">
+                    <span class="service-number">02</span>
+                    <h3 class="service-name">WEB DEVELOPMENT</h3>
+                    <button class="service-toggle" aria-label="Toggle details">
+                        <span class="toggle-icon">+</span>
+                    </button>
+                </div>
+                <div class="service-details">
+                    <div class="details-content">
+                        <ul class="service-features">
+                            <li>HTML & CSS</li>
+                            <li>JavaScript</li>
+                            <li>PHP</li>
+                            <li>Astro</li>
+                            <li>Git & GitHub</li>
+                            <li>GSAP Animations</li>
+                        </ul>
+                        <p class="service-description">
+                            I enjoy taking designs and turning them into smooth,
+                            responsive experiences. I like solving little
+                            front-end puzzles and making everything feel fast
+                            and effortless.
+                        </p>
+                        <div class="service-image">
+                            <img src="" alt="Development" />
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Item 3 -->
+            <div class="service-item" data-number="03">
+                <div class="service-main">
+                    <span class="service-number">03</span>
+                    <h3 class="service-name">USER EXPERIANCE</h3>
+                    <button class="service-toggle" aria-label="Toggle details">
+                        <span class="toggle-icon">+</span>
+                    </button>
+                </div>
+                <div class="service-details">
+                    <div class="details-content">
+                        <ul class="service-features">
+                            <li>User Research</li>
+                            <li>Prototyping</li>
+                            <li>Wireframing</li>
+                            <li>Information Architecture</li>
+                            <li>Personas & storytelling</li>
+                        </ul>
+                        <p class="service-description">
+                            I love uncovering the “why” behind every click and
+                            swipe. Using research, wireframes, and prototypes, I
+                            design products that feel natural, guide users
+                            smoothly, and make everyday digital interactions a
+                            little more enjoyable.
+                        </p>
+                        <div class="service-image">
+                            <img src="" alt="User reasearch" />
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Item 4 -->
+            <div class="service-item" data-number="04">
+                <div class="service-main">
+                    <span class="service-number">04</span>
+                    <h3 class="service-name">MOTION</h3>
+                    <button class="service-toggle" aria-label="Toggle details">
+                        <span class="toggle-icon">+</span>
+                    </button>
+                </div>
+                <div class="service-details">
+                    <div class="details-content">
+                        <ul class="service-features">
+                            <li>p5.js</li>
+                            <li>Creative coding experiments</li>
+                            <li>Adobe After Effects</li>
+                        </ul>
+                        <p class="service-description">
+                            I love adding life to designs with motion, whether
+                            it’s playful micro-interactions or full-screen
+                            creative coding experiments.
+                        </p>
+                        <div class="service-image">
+                            <img src="" alt="Motion" />
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<style>
+    .services-section {
+        background: #f5f5f5;
+        padding: 4rem 0;
+        position: relative;
+    }
+
+    .services-container {
+        max-width: 100%;
+        margin: 0 auto;
+        padding: 0;
+    }
+
+    /* Header */
+    .services-header {
+        margin-bottom: 3rem;
+        padding: 0 1.5rem;
+        opacity: 0;
+        animation: fadeIn 0.8s ease forwards;
+    }
+
+    @keyframes fadeIn {
+        to {
+            opacity: 1;
+        }
+    }
+
+    .services-title {
+        font-size: clamp(2rem, 5vw, 4rem);
+        font-weight: 900;
+        color: #093354;
+        margin: 0;
+        letter-spacing: -0.02em;
+    }
+
+    .services-list {
+        display: flex;
+        flex-direction: column;
+    }
+
+    .service-item {
+        border-bottom: 2px solid rgba(9, 51, 84, 0.1);
+        background: #f5f5f5;
+        transition: background 0.3s ease;
+        opacity: 0;
+        transform: translateY(20px);
+        animation: slideUp 0.6s ease forwards;
+    }
+
+    .service-item.active {
+        background: #ffffff;
+    }
+
+    .service-item:nth-child(1) {
+        animation-delay: 0.1s;
+    }
+    .service-item:nth-child(2) {
+        animation-delay: 0.2s;
+    }
+    .service-item:nth-child(3) {
+        animation-delay: 0.3s;
+    }
+    .service-item:nth-child(4) {
+        animation-delay: 0.4s;
+    }
+
+    @keyframes slideUp {
+        to {
+            opacity: 1;
+            transform: translateY(0);
+        }
+    }
+
+    .service-main {
+        display: flex;
+        align-items: center;
+        gap: 1rem;
+        padding: 1.5rem 1.5rem;
+        cursor: pointer;
+        transition: all 0.3s ease;
+    }
+
+    .service-main:hover {
+        padding-left: 2rem;
+    }
+
+    .service-number {
+        font-size: clamp(0.875rem, 1.5vw, 1rem);
+        font-weight: 900;
+        color: rgba(9, 51, 84, 0.3);
+        min-width: 2rem;
+    }
+
+    .service-name {
+        flex: 1;
+        font-size: clamp(1.5rem, 4vw, 2.5rem);
+        font-weight: 900;
+        color: #093354;
+        margin: 0;
+        letter-spacing: -0.02em;
+        transition: color 0.3s ease;
+    }
+
+    .service-main:hover .service-name {
+        color: #e46354;
+    }
+
+    .service-toggle {
+        width: 2.5rem;
+        height: 2.5rem;
+        border: 2px solid #093354;
+        border-radius: 50%;
+        background: transparent;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        cursor: pointer;
+        transition: all 0.3s ease;
+        flex-shrink: 0;
+    }
+
+    .service-toggle:hover {
+        background: #e46354;
+        border-color: #e46354;
+        transform: rotate(90deg);
+    }
+
+    .toggle-icon {
+        font-size: 1.25rem;
+        font-weight: 300;
+        color: #093354;
+        transition: color 0.3s ease;
+    }
+
+    .service-toggle:hover .toggle-icon {
+        color: #ffffff;
+    }
+
+    .service-item.active .toggle-icon {
+        transform: rotate(45deg);
+    }
+
+    .service-item.active .service-toggle {
+        background: #e46354;
+        border-color: #e46354;
+    }
+
+    .service-item.active .toggle-icon {
+        color: #ffffff;
+    }
+
+    .service-details {
+        max-height: 0;
+        overflow: hidden;
+        transition: max-height 0.5s cubic-bezier(0.165, 0.84, 0.44, 1);
+        background: #ffffff;
+    }
+
+    .service-item.active .service-details {
+        max-height: 1000px;
+    }
+
+    /*  side-by-side iamge*/
+    .details-content {
+        padding: 2rem 2rem 3rem;
+        display: grid;
+        grid-template-columns: 1fr 120px;
+        gap: 1.5rem;
+        align-items: start;
+    }
+
+    .service-features {
+        list-style: none;
+        padding: 0;
+        margin: 0;
+        grid-column: 1;
+        grid-row: 1;
+    }
+
+    .service-description {
+        grid-column: 1 / -1;
+        grid-row: 2;
+    }
+
+    .service-image {
+        width: 120px;
+        height: 150px;
+        border-radius: 8px;
+        overflow: hidden;
+        box-shadow: 0 10px 40px rgba(0, 0, 0, 0.1);
+        opacity: 0;
+        transform: translateX(20px);
+        transition: all 0.6s cubic-bezier(0.165, 0.84, 0.44, 1);
+        grid-column: 2;
+        grid-row: 1;
+    }
+
+    .service-item.active .service-image {
+        opacity: 1;
+        transform: translateX(0);
+        transition-delay: 0.2s;
+    }
+
+    .service-image img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+    }
+
+    .service-features li {
+        font-size: clamp(0.9375rem, 1.5vw, 1.0625rem);
+        color: #093354;
+        padding: 0.5rem 0;
+        position: relative;
+        padding-left: 1.5rem;
+        font-weight: 500;
+    }
+
+    .service-features li::before {
+        content: "/";
+        position: absolute;
+        left: 0;
+        color: #e46354;
+        font-weight: 700;
+    }
+
+    .service-description {
+        font-size: clamp(1rem, 1.7vw, 1.25rem); 
+        line-height: 1.8;
+        color: rgba(9, 51, 84, 0.8);
+        margin: 0;
+    }
+
+    /* Desktop */
+    @media (min-width: 1024px) {
+        .services-section {
+            padding: 10rem 0;
+        }
+
+        .services-header {
+            margin-bottom: 5rem;
+        }
+
+        .services-header {
+            padding: 0 clamp(2rem, 5vw, 6rem);
+        }
+
+        .service-main {
+            gap: 2rem;
+            padding: 2rem clamp(2rem, 5vw, 6rem);
+        }
+
+        .service-main:hover {
+            padding-left: calc(clamp(2rem, 5vw, 6rem) + 1rem);
+        }
+
+        .service-number {
+            min-width: 3rem;
+        }
+
+        .service-toggle {
+            width: 3rem;
+            height: 3rem;
+        }
+
+        .toggle-icon {
+            font-size: 1.5rem;
+        }
+
+        .details-content {
+            grid-template-columns: 1fr 1.5fr 1fr;
+            gap: 3rem;
+            padding: 2rem clamp(2rem, 5vw, 6rem) 3rem;
+        }
+
+        .service-features {
+            grid-column: 1;
+            grid-row: auto;
+        }
+
+        .service-description {
+            grid-column: 2;
+            grid-row: auto;
+        }
+
+        .service-image {
+            width: 100%;
+            height: 300px;
+            grid-column: 3;
+            grid-row: auto;
+        }
+    }
+</style>
+
+<script>
+    const init = () => {
+        const items = document.querySelectorAll(".service-item");
+
+        items.forEach((item) => {
+            const main = item.querySelector(".service-main");
+
+            if (main) {
+                main.addEventListener("click", () => {
+                    // Close other items
+                    items.forEach((other) => {
+                        if (other !== item) {
+                            other.classList.remove("active");
+                        }
+                    });
+
+                    // Toggle current item
+                    item.classList.toggle("active");
+                });
+            }
+        });
+    };
+
+    init();
+</script>

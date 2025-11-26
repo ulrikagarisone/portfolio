@@ -4,7 +4,8 @@ description: "A playful, narrative-driven booking form designed to immerse users
 pubDate: 2025-03-18
 tags: ["UX Design", "Interaction Design", "Illustration", "Prototyping", "Figma", "User Experience"]
 status: "completed"
-cover: ""
+cover: "/images/try.jpeg"
+image: "/images/try.jpeg"
 ---
 
 # Workshop Booking Platform – Immersive Wilderness Form Experience
@@ -13,7 +14,7 @@ cover: ""
 This project reimagines a traditional booking form into a playful, immersive touchpoint for a fictional outdoor workshop program. Rather than creating a typical transaction flow, the goal was to design a **form that feels like the first step of an adventure** — warm, imaginative, and inspiring curiosity from the very first interaction.
 
 Explore the full design here:  
-[Figma — Workshop Booking Platform](https://www.figma.com/file/yourfilelink)
+[Figma — Workshop Booking Platform](https://www.figma.com/proto/FP5bgM58NNKg8nUdvc5iId/Untitled?page-id=0%3A1&node-id=2-245089&viewport=226%2C225%2C0.06&t=YN7iMm4QePr9zBo5-1&scaling=min-zoom&content-scaling=fixed)
 
 ---
 
@@ -70,3 +71,8 @@ This project demonstrates how thoughtful storytelling, illustration, and UX can 
 - **Figma** — UI design, prototyping
 - **Illustrator / Procreate / Sketching** — custom illustrations
 - **User Testing & Copy Refinement** — tone, clarity, thematic consistency
+
+---
+## Process & Documentation
+- **Figma Process File:** [Link to Figma – Ideation, Brainstorm, Reflection, UX Decisions](https://www.figma.com/design/IThdYmRxxnNfU0OrFgg94r/workshop-booking-final-design?node-id=84-30&t=xTXSIiDWMo7xxuIN-1) 
+- **Figma Design File:** [Link to Figma – Visual Style, Moodboards, UI Design]  (https://www.figma.com/design/gigjdtwoJ1IxRBvc6wHLmn/not-so-glichy-worhshop?node-id=57-92684&t=ABpu3SBXqXTvc9fD-1)

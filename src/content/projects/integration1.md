@@ -4,7 +4,8 @@ description: "An engaging and practical website helping a targeted audience embr
 pubDate: 2025-01-15
 tags: ["UX Design", "User Research", "Wireframing", "Prototyping", "Figma"]
 status: "completed"
-cover: ""
+cover: "/images/try.jpeg"
+image: "/images/try.jpeg"
 ---
 
 # Integration 1 – Off The Grid Tips & Tricks
@@ -84,7 +85,8 @@ cover: ""
 ---
 
 ## Process & Documentation
-- **Figma Process File:** [Link to Figma – Ideation, Brainstorm, Wireframes, UX Decisions]  
-- **Figma Design File:** [Link to Figma – Visual Style, Moodboards, UI Design]  
+- **Figma Process File:** [Link to Figma – Ideation, Brainstorm, Wireframes, UX Decisions](https://www.figma.com/board/UIBcykiFAAvTvpSfGtaPUS/Untitled?node-id=0-115&t=jhUJ60WE8M6wcBQz-1) 
+- **Figma Design File:** [Link to Figma – Visual Style, Moodboards, UI Design]  (https://www.figma.com/design/8dypb6zT92q4QEPOCJnOZL/ulrikagarisone_integration1?node-id=0-1&t=gWuHJcdoa87Zrgi8-1)
+- **Figma Design For Smaller Desktop Screens:** [Link to Figma – Visual Style, Moodboards, UI Design](https://www.figma.com/proto/8dypb6zT92q4QEPOCJnOZL/ulrikagarisone_integration1?page-id=0%3A1&node-id=312-113&viewport=-855%2C195%2C0.09&t=mQhZJpTmvXWVVGNA-1&scaling=min-zoom&content-scaling=fixed&starting-point-node-id=317%3A8245&show-proto-sidebar=1)
+ 
 
-**Screenshots / GIFs** *(replace placeholders with actual assets)*  

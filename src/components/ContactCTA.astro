@@ -1,0 +1,373 @@
+---
+// src/components/ContactCTA.astro
+---
+
+<section class="contact-section">
+    <div class="contact-container">
+        <!-- Big Background Text -->
+        <div class="contact-bg-text" data-bg="text">
+            <span class="bg-word">LET'S</span>
+            <span class="bg-word">TALK</span>
+        </div>
+
+        <div class="contact-content">
+            <!-- Main Message -->
+            <div class="contact-message">
+                <h2 class="contact-title">
+                    I am actively seeking <span class="highlight"
+                        >internship opportunities</span
+                    >
+                    in visual design, front-end development, and user experience
+                    (UX) for 2026.
+                </h2>
+
+                <p class="contact-subtitle">
+                    If you have a project or team that values <strong
+                        >visual quality, user experience, and engaging motion</strong
+                    > — I'd love to hear from you!
+                </p>
+            </div>
+
+            <!-- CTA Buttons -->
+            <div class="contact-cta">
+                <a href="mailto:ulrika.garisone@gmail.com" class="cta-primary">
+                    <span class="cta-text">Say Hello</span>
+                    <svg
+                        class="cta-arrow"
+                        width="24"
+                        height="24"
+                        viewBox="0 0 24 24"
+                        fill="none"
+                    >
+                        <path
+                            d="M5 12h14M15 8l4 4-4 4"
+                            stroke="currentColor"
+                            stroke-width="2.5"
+                            stroke-linecap="round"></path>
+                    </svg>
+                </a>
+
+                <div class="social-links">
+                    <a
+                        href="https://github.com/ulrikagarisone"
+                        target="_blank"
+                        rel="noopener"
+                        class="social-link"
+                    >
+                        <span>GitHub</span>
+                    </a>
+                    <span class="social-divider">/</span>
+                    <a
+                        href="https://linkedin.com/in/ulrikagarisone"
+                        target="_blank"
+                        rel="noopener"
+                        class="social-link"
+                    >
+                        <span>LinkedIn</span>
+                    </a>
+                </div>
+            </div>
+
+            <!-- Bottom Note -->
+            <p class="contact-note">
+                For general inquiries or to just say hello,<br />
+                my inbox is always open.
+            </p>
+        </div>
+
+        <style>
+            .contact-section {
+                position: relative;
+                min-height: 100vh;
+                background: #fff6f5;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                padding: 4rem 1.5rem;
+                overflow: hidden;
+            }
+
+            .contact-container {
+                position: relative;
+                width: 100%;
+                max-width: 1400px;
+                margin: 0 auto;
+            }
+
+            /* Big background text */
+            .contact-bg-text {
+                position: absolute;
+                top: 50%;
+                left: 50%;
+                transform: translate(-50%, -50%);
+                z-index: 1;
+                opacity: 0.03;
+                pointer-events: none;
+                white-space: nowrap;
+                display: flex;
+                flex-direction: column;
+                align-items: center;
+                line-height: 0.85;
+            }
+
+            .bg-word {
+                font-size: clamp(6rem, 20vw, 10rem);
+                font-weight: 900;
+                color: #093354;
+                letter-spacing: -0.05em;
+            }
+
+            .contact-content {
+                position: relative;
+                z-index: 2;
+                text-align: center;
+                max-width: 900px;
+                margin: 0 auto;
+            }
+
+            .contact-message {
+                margin-bottom: 3rem;
+            }
+
+            .contact-title {
+                font-size: clamp(1.75rem, 4vw, 3rem);
+                line-height: 1.3;
+                color: #093354;
+                font-weight: 700;
+                margin: 0 0 1.5rem 0;
+                letter-spacing: -0.02em;
+            }
+
+            .highlight {
+                color: #e46354;
+                position: relative;
+                display: inline-block;
+            }
+
+            .highlight::after {
+                content: "";
+                position: absolute;
+                bottom: 0;
+                left: 0;
+                right: 0;
+                height: 8px;
+                background: #e46354;
+                opacity: 0.2;
+                z-index: -1;
+            }
+
+            .contact-subtitle {
+                font-size: clamp(1.125rem, 2.5vw, 1.5rem);
+                line-height: 1.7;
+                color: rgba(9, 51, 84, 0.8);
+                font-weight: 500;
+                margin: 0;
+            }
+
+            .contact-subtitle strong {
+                color: #093354;
+                font-weight: 700;
+            }
+
+            .contact-cta {
+                display: flex;
+                flex-direction: column;
+                align-items: center;
+                gap: 2rem;
+                margin-bottom: 3rem;
+            }
+
+            .cta-primary {
+                display: inline-flex;
+                align-items: center;
+                gap: 0.5rem;
+                color: #e46354;
+                text-decoration: none;
+                font-size: (clamp(1.125rem, 2vw, 1.375rem));
+                font-weight: 700;
+                padding: 0.75rem 1.5rem;
+                background: rgba(228, 99, 84, 0.1);
+                border: 2px solid rgba(228, 99, 84, 0.2);
+                border-radius: 50px;
+                transition: all 0.3s ease;
+            }
+
+            .cta-primary::before {
+                content: "";
+                position: absolute;
+                inset: 0;
+                transform: scaleX(0);
+                transform-origin: right;
+                transition: transform 0.5s cubic-bezier(0.215, 0.61, 0.355, 1);
+                z-index: -1;
+            }
+
+            .cta-primary:hover::before {
+                transform: scaleX(1);
+                transform-origin: left;
+            }
+
+            .cta-primary:hover {
+                background: rgba(228, 99, 84, 0.2);
+                border-color: #e46354;
+                transform: translateX(-3px);
+            }
+
+            .cta-text {
+                position: relative;
+                z-index: 1;
+            }
+
+            .cta-arrow {
+                transition: transform 0.3s ease;
+                position: relative;
+                z-index: 1;
+            }
+
+            .cta-primary:hover .cta-arrow {
+                transform: translateX(5px);
+            }
+
+            .social-links {
+                display: flex;
+                align-items: center;
+                gap: 1rem;
+                font-size: clamp(1.125rem, 2vw, 1.075rem);
+                font-weight: 700;
+                flex-wrap: wrap;
+                justify-content: center;
+            }
+
+            .social-link {
+                color: #093354;
+                text-decoration: none;
+                position: relative;
+                transition: color 0.3s ease;
+            }
+
+            .social-link::after {
+                content: "";
+                position: absolute;
+                bottom: -4px;
+                left: 0;
+                width: 100%;
+                height: 3px;
+                background: #e46354;
+                transform: scaleX(0);
+                transform-origin: right;
+                transition: transform 0.3s ease;
+            }
+
+            .social-link:hover {
+                color: #e46354;
+            }
+
+            .social-link:hover::after {
+                transform: scaleX(1);
+                transform-origin: left;
+            }
+
+            .social-divider {
+                color: #e46354;
+                font-weight: 900;
+                font-size: 1.5rem;
+            }
+
+            .contact-note {
+                font-size: clamp(1rem, 2vw, 1.125rem);
+                line-height: 1.6;
+                color: rgba(9, 51, 84, 0.6);
+                font-style: italic;
+                margin: 0;
+            }
+
+            /* Desktop */
+            @media (min-width: 1024px) {
+                .contact-message {
+                    margin-bottom: 4rem;
+                }
+
+                .contact-title {
+                    margin-bottom: 2rem;
+                }
+
+                .cta-primary {
+                    width: auto;
+                    padding: 0.75rem 1.5rem;
+                }
+
+                .social-links {
+                    flex-wrap: nowrap;
+                }
+
+                .bg-word {
+                    font-size: clamp(8rem, 20vw, 20rem);
+                }
+
+                .contact-section {
+                    padding: 8rem 4rem;
+                }
+
+                .contact-cta {
+                    flex-direction: row;
+                    justify-content: center;
+                    gap: 3rem;
+                }
+            }
+        </style>
+        <script>
+            const init = () => {
+                const bgText = document.querySelector(
+                    '[data-bg="text"]',
+                ) as HTMLElement;
+                const section = document.querySelector(
+                    ".contact-section",
+                ) as HTMLElement;
+
+                if (!bgText || !section) return;
+
+                // Parallax effect on scroll
+                let ticking = false;
+
+                const handleScroll = () => {
+                    const rect = section.getBoundingClientRect();
+                    const scrollProgress = 1 - rect.top / window.innerHeight;
+
+                    if (scrollProgress > 0 && scrollProgress < 1) {
+                        const rotation = scrollProgress * 10;
+                        const scale = 1 + scrollProgress * 0.1;
+                        bgText.style.transform = `translate(-50%, -50%) rotate(${rotation}deg) scale(${scale})`;
+                    }
+                };
+
+                window.addEventListener("scroll", () => {
+                    if (!ticking) {
+                        window.requestAnimationFrame(() => {
+                            handleScroll();
+                            ticking = false;
+                        });
+                        ticking = true;
+                    }
+                });
+
+                // Mouse follow effect for background text
+                section.addEventListener("mousemove", (e) => {
+                    const rect = section.getBoundingClientRect();
+                    const ev = e as MouseEvent;
+                    const x =
+                        ((ev.clientX - rect.left) / rect.width - 0.5) * 20;
+                    const y =
+                        ((ev.clientY - rect.top) / rect.height - 0.5) * 20;
+
+                    bgText.style.transform = `translate(calc(-50% + ${x}px), calc(-50% + ${y}px))`;
+                });
+
+                section.addEventListener("mouseleave", () => {
+                    bgText.style.transform = "translate(-50%, -50%)";
+                });
+            };
+
+            init();
+        </script>
+    </div>
+</section>

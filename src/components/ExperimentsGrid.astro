@@ -1,0 +1,386 @@
+---
+// src/components/ExperimentsGrid.astro
+interface Props {
+    experiments: any[];
+}
+
+const { experiments } = Astro.props;
+const featuredExperiments = experiments.slice(0, 4);
+---
+
+<section class="experiments-section">
+    <div class="container">
+        <div class="section-header">
+            <div class="header-text">
+                <span class="label">Quick Observations</span>
+                <h2>What Catches My Eye</h2>
+                <p class="subtitle">
+                    UX moments, design patterns and creative code experiments
+                    that catch my attention and make me curious.
+                </p>
+            </div>
+        </div>
+
+        <!-- Big background text that moves -->
+        <div class="background-text" aria-hidden="true">EXPERIMENTS</div>
+
+        <div class="experiments-grid">
+            {
+                featuredExperiments.map((exp, index) => (
+                    <a
+                        href={`/experiments/${exp.id}`}
+                        class="experiment-square"
+                        data-index={index}
+                    >
+                        <div class="square-image">
+                            {(() => {
+                                if (exp.data.cover) {
+                                    return <img src={exp.data.cover} />;
+                                } else {
+                                    return (
+                                        <div class="placeholder">
+                                            <span>?</span>
+                                        </div>
+                                    );
+                                }
+                            })()}
+                        </div>
+                        <div class="square-overlay">
+                            <span class="category">
+                                {exp.data.category || "Observation"}
+                            </span>
+                            <h3 class="square-title">{exp.data.title}</h3>
+                        </div>
+                    </a>
+                ))
+            }
+        </div>
+
+        <div class="section-footer">
+            <a href="/experiments" class="view-all">
+                View All Experiments
+                <svg width="20" height="20" viewBox="0 0 20 20">
+                    <path
+                        d="M5 10h10M11 6l4 4-4 4"
+                        stroke="currentColor"
+                        stroke-width="2"
+                        fill="none"></path>
+                </svg>
+            </a>
+        </div>
+    </div>
+</section>
+
+<style>
+    .experiments-section {
+        background: #fff6f5;
+        padding: clamp(4rem, 12vh, 8rem) 0;
+        overflow: hidden;
+        position: relative;
+    }
+
+    .container {
+        width: 100%;
+        max-width: 1400px;
+        margin: 0 auto;
+        padding: 0 1.25rem;
+    }
+
+    /* Header */
+    .section-header {
+        margin-bottom: clamp(1rem, 8vh, 4rem);
+        position: relative;
+        z-index: 2;
+    }
+
+    .header-text {
+        max-width: 700px;
+    }
+
+    .label {
+        font-size: 0.875rem;
+        font-weight: 700;
+        text-transform: uppercase;
+        letter-spacing: 0.1em;
+        color: #e46354;
+        display: block;
+        margin-bottom: 0.75rem;
+    }
+
+    .section-header h2 {
+        font-size: clamp(2.5rem, 7vw, 4rem);
+        color: #093354;
+        font-weight: 900;
+        line-height: 1;
+        margin: 0 0 1rem 0;
+    }
+
+    .subtitle {
+        font-size: clamp(1rem, 2vw, 1.15rem);
+        color: rgba(9, 51, 84, 0.7);
+        line-height: 1.6;
+        margin: 0;
+        max-width: 600px;
+    }
+
+    .background-text {
+        position: absolute;
+        bottom: 13%;
+        left: 50%;
+        font-size: clamp(10rem, 25vw, 22rem);
+        font-weight: 900;
+        color: rgba(228, 99, 84, 0.2);
+        white-space: nowrap;
+        pointer-events: none;
+        z-index: 1;
+        opacity: 0;
+        transition:
+            opacity 1s cubic-bezier(0.23, 1.07, 0.32, 1),
+            transform 1s cubic-bezier(0.23, 1.07, 0.32, 1);
+    }
+
+    .background-text.is-visible {
+        opacity: 1;
+        transform: translateX(-50%) translateX(0);
+    }
+
+    /* Hide on mobile */
+    @media (max-width: 767px) {
+        .background-text {
+            display: none;
+        }
+    }
+
+    /* Grid */
+    .experiments-grid {
+        display: grid;
+        grid-template-columns: repeat(2, 1fr);
+        gap: 1.25rem;
+        margin-bottom: 3rem;
+        position: relative;
+        z-index: 2;
+    }
+
+    .experiment-square {
+        position: relative;
+        aspect-ratio: 1 / 1;
+        overflow: hidden;
+        text-decoration: none;
+        display: block;
+        background: #093354;
+        border: 3px solid #093354;
+        /* Initial state for animation */
+        opacity: 0;
+        transform: translateX(60px);
+        transition:
+            opacity 0.8s cubic-bezier(0.23, 1.07, 0.32, 1),
+            transform 0.8s cubic-bezier(0.23, 1.07, 0.32, 1),
+            border-color 0.3s ease;
+    }
+
+    /* Visible state */
+    .experiment-square.is-visible {
+        opacity: 1;
+        transform: translateX(0);
+    }
+
+    /* Hover scale effect */
+    .experiment-square:hover {
+        transform: translateX(0) scale(0.98);
+        border-color: #e46354;
+    }
+
+    .square-image {
+        width: 100%;
+        height: 100%;
+        position: relative;
+        overflow: hidden;
+    }
+
+    .square-image img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        transition: transform 0.6s ease;
+    }
+
+    .experiment-square:hover .square-image img {
+        transform: scale(1.08);
+    }
+
+    /* Placeholder for no image */
+    .placeholder {
+        width: 100%;
+        height: 100%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        background: linear-gradient(135deg, #e46354 0%, #093354 100%);
+        font-size: 4rem;
+        color: rgba(255, 255, 255, 0.3);
+        font-weight: 900;
+    }
+
+    .square-overlay {
+        position: absolute;
+        inset: 0;
+        background: linear-gradient(
+            to top,
+            rgba(9, 51, 84, 0.95) 0%,
+            rgba(9, 51, 84, 0.7) 40%,
+            transparent 100%
+        );
+        padding: 1.5rem;
+        display: flex;
+        flex-direction: column;
+        justify-content: flex-end;
+        opacity: 0;
+        transition: opacity 0.4s ease;
+    }
+
+    .experiment-square:hover .square-overlay {
+        opacity: 1;
+    }
+
+    .category {
+        font-size: 0.75rem;
+        font-weight: 700;
+        text-transform: uppercase;
+        letter-spacing: 0.1em;
+        color: #e46354;
+        margin-bottom: 0.5rem;
+    }
+
+    .square-title {
+        font-size: clamp(1rem, 2.5vw, 1.25rem);
+        font-weight: 700;
+        color: #fff6f5;
+        line-height: 1.3;
+        margin: 0;
+    }
+
+    /* Footer*/
+    .section-footer {
+        display: flex;
+        justify-content: center;
+        padding-top: 2rem;
+    }
+
+    .view-all {
+        display: inline-flex;
+        align-items: center;
+        gap: 0.75rem;
+        padding: 0.85rem 2rem;
+        background: transparent;
+        border: 3px solid #093354;
+        color: #093354;
+        text-decoration: none;
+        font-weight: 700;
+        font-size: clamp(0.95rem, 1.5vw, 1.125rem);
+        transition: all 0.3s cubic-bezier(0.34, 1.56, 0.64, 1);
+        position: relative;
+        overflow: hidden;
+        border-radius: 50px;
+    }
+
+    .view-all::before {
+        content: "";
+        position: absolute;
+        inset: 0;
+        background: #093354;
+        transform: translateY(100%);
+        transition: transform 0.3s cubic-bezier(0.34, 1.56, 0.64, 1);
+        z-index: -1;
+    }
+
+    .view-all:hover::before {
+        transform: translateY(0);
+    }
+
+    .view-all:hover {
+        color: #093354;
+    }
+
+    .view-all svg {
+        position: relative;
+        z-index: 1;
+    }
+
+    .view-all span,
+    .view-all svg {
+        position: relative;
+        z-index: 1;
+    }
+
+    .view-all:hover svg {
+        transform: translateX(4px);
+    }
+
+    /* Desktop */
+    @media (min-width: 1024px) {
+        .experiments-grid {
+            grid-template-columns: repeat(4, 1fr);
+            gap: 2rem;
+        }
+
+        /* Stagger animation delay */
+        .experiment-square {
+            transition-delay: calc(var(--index) * 0.1s);
+        }
+
+        .section-header h2 {
+            font-size: clamp(2rem, 10vw, 4rem);
+        }
+    }
+
+    /* Accesability */
+    @media (prefers-reduced-motion: reduce) {
+        .experiment-square {
+            opacity: 1;
+            transform: none;
+            transition: none;
+        }
+
+        .experiment-square:hover {
+            transform: none;
+        }
+
+        .square-image img {
+            transition: none;
+        }
+    }
+</style>
+<script>
+    // Scroll-triggered animation
+    const init = () => {
+        const backgroundText = document.querySelector(".background-text");
+        const squares = document.querySelectorAll(".experiment-square");
+
+        const observerOptions = {
+            threshold: 0.15,
+            rootMargin: "0px 0px -100px 0px",
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach((entry) => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add("is-visible");
+                } else {
+                    entry.target.classList.remove("is-visible");
+                }
+            });
+        }, observerOptions);
+
+        // Observe background text
+        if (backgroundText) observer.observe(backgroundText);
+
+        // Set stagger delay and observe squares
+        squares.forEach((square, index) => {
+            const el = square as HTMLElement;
+            el.style.setProperty("--index", String(index));
+            observer.observe(square);
+        });
+    };
+
+    init();
+</script>
