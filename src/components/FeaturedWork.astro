@@ -1,5 +1,6 @@
 ---
 // src/components/FeaturedWork.astro
+import { Image } from "astro:assets";
 interface Props {
     projects: any[];
 }
@@ -11,7 +12,7 @@ const { projects } = Astro.props;
     <div class="container">
         <div class="section-header">
             <h2>Selected Work</h2>
-            <a href="/projects" class="link-arrow">
+            <a href={`${import.meta.env.BASE_URL}projects`} class="link-arrow">
                 All Projects
                 <svg width="20" height="20" viewBox="0 0 20 20">
                     <path
@@ -36,10 +37,25 @@ const { projects } = Astro.props;
                         tags = project.data.tags.slice(0, 2).join(" · ");
                     }
 
+                    let imageContent;
+                    if (project.data.cover) {
+                        imageContent = (
+                            <Image
+                                src={project.data.cover}
+                                alt={project.data.title}
+                                width={400}
+                                height={300}
+                                loading="lazy"
+                            />
+                        );
+                    } else {
+                        imageContent = <div style="background: #e46354; width: 100%; height: 100%;"></div>;
+                    }
+
                     return (
                         <article class="archive-item" data-index={i}>
                             <a
-                                href={`/projects/${project.id}`}
+                                href={`${import.meta.env.BASE_URL}projects/${project.id}`}
                                 class="archive-link"
                             >
                                 <div class="archive-item__number">
@@ -57,11 +73,7 @@ const { projects } = Astro.props;
                             </a>
 
                             <div class="archive-teaser" data-teaser={i}>
-                                <img
-                                    src={project.data.image}
-                                    alt={project.data.title}
-                                    loading="lazy"
-                                />
+                                {imageContent}
                             </div>
                         </article>
                     );
@@ -228,7 +240,7 @@ const { projects } = Astro.props;
     }
 
     /* Desktop - Enable teaser */
-    @media (min-width: 1024px) {
+    @media (min-width: 64rem) {
         .archive-teaser {
             display: block;
         }

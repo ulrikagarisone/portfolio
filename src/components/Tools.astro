@@ -1,11 +1,17 @@
+---
+import { Image } from "astro:assets";
+import visualDesignImg from "../assets/tools/visual-design.jpeg";
+import webDevImg from "../assets/tools/web-dev.jpeg";
+import uxResearchImg from "../assets/tools/ux-research.jpeg";
+import motionImg from "../assets/tools/motion.jpeg";
+---
+
 <section class="services-section">
     <div class="services-container">
-        <!-- Header -->
         <div class="services-header">
             <h2 class="services-title">SKILLS & TOOLS</h2>
         </div>
 
-        <!-- Service Items -->
         <div class="services-list">
             <!-- Item 1 -->
             <div class="service-item" data-number="01">
@@ -32,7 +38,13 @@
                             beautiful and practical.
                         </p>
                         <div class="service-image">
-                            <img src="" alt="UX/UI Design" />
+                            <Image
+                                src={visualDesignImg}
+                                alt="Visual Design"
+                                width={300}
+                                height={400}
+                                loading="lazy"
+                            />
                         </div>
                     </div>
                 </div>
@@ -64,7 +76,13 @@
                             and effortless.
                         </p>
                         <div class="service-image">
-                            <img src="" alt="Development" />
+                            <Image
+                                src={webDevImg}
+                                alt="Web Development"
+                                width={300}
+                                height={400}
+                                loading="lazy"
+                            />
                         </div>
                     </div>
                 </div>
@@ -89,14 +107,20 @@
                             <li>Personas & storytelling</li>
                         </ul>
                         <p class="service-description">
-                            I love uncovering the “why” behind every click and
+                            I love uncovering the "why" behind every click and
                             swipe. Using research, wireframes, and prototypes, I
                             design products that feel natural, guide users
                             smoothly, and make everyday digital interactions a
                             little more enjoyable.
                         </p>
                         <div class="service-image">
-                            <img src="" alt="User reasearch" />
+                            <Image
+                                src={uxResearchImg}
+                                alt="UX Research"
+                                width={300}
+                                height={400}
+                                loading="lazy"
+                            />
                         </div>
                     </div>
                 </div>
@@ -120,11 +144,17 @@
                         </ul>
                         <p class="service-description">
                             I love adding life to designs with motion, whether
-                            it’s playful micro-interactions or full-screen
+                            it's playful micro-interactions or full-screen
                             creative coding experiments.
                         </p>
                         <div class="service-image">
-                            <img src="" alt="Motion" />
+                            <Image
+                                src={motionImg}
+                                alt="Motion Design"
+                                width={300}
+                                height={400}
+                                loading="lazy"
+                            />
                         </div>
                     </div>
                 </div>
@@ -360,14 +390,14 @@
     }
 
     .service-description {
-        font-size: clamp(1rem, 1.7vw, 1.25rem); 
+        font-size: clamp(1rem, 1.7vw, 1.25rem);
         line-height: 1.8;
         color: rgba(9, 51, 84, 0.8);
         margin: 0;
     }
 
     /* Desktop */
-    @media (min-width: 1024px) {
+    @media (min-width: 64rem) {
         .services-section {
             padding: 10rem 0;
         }

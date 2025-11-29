@@ -1,10 +1,11 @@
 ---
 // src/components/HeroMe.astro
+import { Image } from "astro:assets";
+import heroImage from "../assets/about/me.jpeg";
 ---
 
 <section class="hero-me">
     <div class="hero-me__container">
-        <!-- Large Text Behind -->
         <div class="hero-me__text-back" data-hero="text-back">
             <h1 class="hero-me__title-large">
                 <span class="title-word">ULRIKA</span>
@@ -12,12 +13,16 @@
             </h1>
         </div>
 
-        <!-- Image Overlapping Text -->
         <div class="hero-me__image" data-hero="image">
-            <img src="/images/try.jpeg" alt="Ulrika Garisone" />
+            <Image
+                src={heroImage}
+                alt="Ulrika Garisone"
+                width={450}
+                height={550}
+                loading="eager"
+            />
         </div>
 
-        <!-- Small Text Below -->
         <div class="hero-me__text-front" data-hero="text-front">
             <p class="hero-me__intro">Hi, I'm</p>
             <p class="hero-me__subtitle">
@@ -155,7 +160,7 @@
     }
 
     /* Desktop */
-    @media (min-width: 1024px) {
+    @media (min-width: 64rem) {
         .hero-me__text-back {
             top: 42%; /* Back to center area */
         }
@@ -184,7 +189,7 @@
     }
 
     /*Large desktop*/
-    @media (min-width: 1400px) {
+    @media (min-width: 87.5rem) {
         .hero-me__text-back {
             top: 45%;
         }

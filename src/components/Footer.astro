@@ -2,9 +2,11 @@
     <div class="container">
         <div class="footer-top">
             <div class="footer-nav">
-                <a href="/about">ABOUT ME</a>
-                <a href="/projects">WORKS</a>
-                <a href="/experiments">EXPERIMENTS</a>
+                <a href={`${import.meta.env.BASE_URL}about`}>ABOUT ME</a>
+                <a href={`${import.meta.env.BASE_URL}projects`}>PROJECTS</a>
+                <a href={`${import.meta.env.BASE_URL}experiments`}
+                    >EXPERIMENTS</a
+                >
             </div>
             <div class="footer-social">
                 <a
@@ -221,7 +223,7 @@
     }
 
     /* Desktop */
-    @media (min-width: 1024px) {
+    @media (min-width: 64rem) {
         footer {
             padding: 3rem 2rem 2rem;
         }

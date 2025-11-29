@@ -1,12 +1,22 @@
 ---
-// src/components/StoryTimeline.astro
+import { Image } from "astro:assets";
+import beginningImg from "../assets/story/beginning.jpeg";
+import craftImg from "../assets/story/craft.jpeg";
+import processImg from "../assets/story/process.jpeg";
+import portraitImg from "../assets/about/me.jpeg";
 ---
 
 <section class="about-story">
     <!-- Panel 1 -->
     <div class="story-panel panel-left" data-panel="1">
         <div class="panel-side panel-image">
-            <img src="" alt="The Beginning" />
+            <Image 
+                src={beginningImg}
+                alt="The Beginning"
+                width={600}
+                height={800}
+                loading="lazy"
+            />
             <div class="image-overlay"></div>
         </div>
         <div class="panel-side panel-content">
@@ -33,7 +43,13 @@
             </p>
         </div>
         <div class="panel-side panel-image">
-            <img src="" alt="The Craft" />
+            <Image 
+                src={craftImg}
+                alt="The Craft"
+                width={600}
+                height={800}
+                loading="lazy"
+            />
             <div class="image-overlay"></div>
         </div>
     </div>
@@ -41,9 +57,12 @@
     <!-- Panel 3 -->
     <div class="story-panel panel-left" data-panel="3">
         <div class="panel-side panel-image">
-            <img
-                src=""
+            <Image 
+                src={processImg}
                 alt="The Process"
+                width={600}
+                height={800}
+                loading="lazy"
             />
             <div class="image-overlay"></div>
         </div>
@@ -63,7 +82,13 @@
     <!-- Custom Portrait Cursor (Desktop Only) -->
     <div class="portrait-cursor" data-cursor="portrait">
         <div class="cursor-frame">
-            <img src="/images/try.jpeg" alt="Ulrika" />
+            <Image 
+                src={portraitImg}
+                alt="Ulrika"
+                width={200}
+                height={250}
+                loading="eager"
+            />
         </div>
         <span class="cursor-label">I'm Ulrika</span>
     </div>
@@ -177,7 +202,7 @@
     }
 
     /* Desktop */
-    @media (min-width: 1024px) {
+    @media (min-width: 64rem) {
         .story-panel {
             min-height: 100vh;
             grid-template-columns: 1fr 1fr 1fr;

@@ -1,6 +1,7 @@
 ---
 const currentPath = Astro.url.pathname;
 const baseUrl = import.meta.env.BASE_URL;
+console.log("BASE_URL:", baseUrl); 
 
 const links = [
     { href: `${baseUrl}`, label: "HOME", exact: true },
@@ -218,7 +219,7 @@ function isActive(href: string, exact: boolean): boolean {
     }
 
     /* Desktop Navigation */
-    @media screen and (min-width: 768px) {
+    @media screen and (min-width: 48rem) {
         .nav-container {
             grid-template-columns: auto 1fr;
             align-items: center;
