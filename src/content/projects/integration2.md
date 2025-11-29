@@ -4,8 +4,8 @@ description: "An interactive website transforming everyday keys into storyteller
 pubDate: 2025-05-25
 tags: ["UX Design", "Interaction Design", "Wireframing", "Storytelling", "Figma", "Front-End Development"]
 status: "completed"
-cover: "/images/try.jpeg"
-image: "/images/try.jpeg"
+cover: "/src/assets/projects/integration2.jpeg"
+image: "/src/assets/projects/integration2.jpeg"
 ---
 
 # Integration 2 – Key Whisperers

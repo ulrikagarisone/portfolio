@@ -5,6 +5,7 @@ pubDate: 2024-10-10
 tags: ["Public Spaces", "Hygiene", "Error Prevention", "Accessibility"]
 status: "completed"
 category: "observation"
+cover: "/src/assets/experiments/sink.jpg"
 ---
 
 # Unpredictable Washroom Faucet Pressure

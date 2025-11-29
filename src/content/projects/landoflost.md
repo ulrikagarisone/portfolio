@@ -4,7 +4,7 @@ description: "A narrative-driven, whimsical website bringing forgotten things to
 pubDate: 2024-10-01
 tags: ["Web Design", "Illustration", "UX Design", "Storytelling", "Figma", "Digital Collage"]
 status: "completed"
-cover: ""
+cover: "/src/assets/projects/lost_found.jpeg"
 ---
 
 # Land of Lost & Found

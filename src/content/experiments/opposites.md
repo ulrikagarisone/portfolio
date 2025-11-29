@@ -4,7 +4,7 @@ description: "A creative coding project in p5.js interpreting abstract concepts 
 pubDate: 2024-11-01
 tags: ["Creative Coding", "p5.js", "Interactive Art", "Animation", "Generative Design"]
 status: "completed"
-cover: ""
+cover: "/src/assets/experiments/opposites.jpeg"
 ---
 
 # Opposites — Chaos / Order / Dark / Light (p5.js)

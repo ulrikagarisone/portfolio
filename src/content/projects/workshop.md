@@ -4,8 +4,8 @@ description: "A playful, narrative-driven booking form designed to immerse users
 pubDate: 2025-03-18
 tags: ["UX Design", "Interaction Design", "Illustration", "Prototyping", "Figma", "User Experience"]
 status: "completed"
-cover: "/images/try.jpeg"
-image: "/images/try.jpeg"
+cover: "/src/assets/projects/workshop.jpeg"
+image: "/src/assets/projects/workshop.jpeg"
 ---
 
 # Workshop Booking Platform – Immersive Wilderness Form Experience

@@ -4,8 +4,8 @@ description: "An interactive scrollytelling investigation debunking the myth tha
 pubDate: 2024-10-10
 tags: ["Storytelling", "Web Design", "Scrollytelling", "Figma", "Illustration"]
 status: "completed"
-cover: "/images/try.jpeg"
-image: "/images/try.jpeg"
+cover: "/src/assets/projects/eddison_story_telling.jpeg"
+image: "/src/assets/projects/eddison_story_telling.jpeg"
 ---
 
 

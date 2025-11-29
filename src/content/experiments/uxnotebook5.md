@@ -5,6 +5,7 @@ pubDate: 2024-10-17
 tags: ["Travel", "Public Transit", "Interface Design", "International UX"]
 status: "completed"
 category: "observation"
+cover: "/src/assets/experiments/tickets.jpg"
 ---
 
 # Inconsistent Train Ticket Interfaces Abroad
