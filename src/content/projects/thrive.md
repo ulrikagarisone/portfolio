@@ -4,8 +4,8 @@ description: "A university-developed beverage project emphasizing radical transp
 pubDate: 2025-09-26
 tags: ["UX Design", "Visual Design", "Interaction Design", "Prototyping", "Figma", "Brand Experience"]
 status: "in-progress"
-cover: "/images/try.jpeg"
-image: "/images/try.jpeg"
+cover: "../../assets/projects/workshop.jpeg"
+image: "../../assets/projects/workshop.jpeg"
 ---
 
 

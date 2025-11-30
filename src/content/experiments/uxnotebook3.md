@@ -5,7 +5,7 @@ pubDate: 2024-10-26
 tags: ["Sustainability", "Airport Retail", "Consumer Experience", "Environmental Design"]
 status: "completed"
 category: "observation"
-cover: "/src/assets/experiments/water.jpg"
+cover: "../../assets/experiments/water.jpg"
 ---
 
 # Airport Water Bottles: Size, Price, and Waste

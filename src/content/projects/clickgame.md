@@ -4,8 +4,8 @@ description: "A cosmic rhythm clicker game where players conduct stars, earn cos
 pubDate: 2025-01-15
 tags: ["Creative Coding", "JavaScript", "Game Design", "UX", "Animation"]
 status: "completed"
-cover: "/src/assets/projects/star_simpfony.jpeg"
-image: "/src/assets/projects/star_simpfony.jpeg"
+cover: "../../assets/projects/star_simpfony.jpeg"
+image: "../../assets/projects/star_simpfony.jpeg"
 ---
 
 # Click-Driven Game – Star Symphony

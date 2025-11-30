@@ -4,26 +4,26 @@ import { glob } from 'astro/loaders';
 // Projects - Main portfolio work
 const projects = defineCollection({
     loader: glob({ pattern: '**/*.md', base: './src/content/projects' }),
-    schema: z.object({
+    schema: ({ image }) => z.object({
         title: z.string(),
         description: z.string(),
         pubDate: z.coerce.date(),
         tags: z.array(z.string()),
         status: z.enum(['completed', 'in-progress', 'archived']).default('completed'),
-        cover: z.string().optional(),
+        cover: image().optional(),
     }),
 });
 
 // Creative coding + research notes
 const experiments = defineCollection({
     loader: glob({ pattern: '**/*.md', base: './src/content/experiments' }),
-    schema: z.object({
+    schema: ({ image }) => z.object({
         title: z.string(),
         description: z.string(),
         pubDate: z.coerce.date(),
         tags: z.array(z.string()),
         status: z.enum(['completed', 'in-progress', 'archived']).default('completed'),
-        cover: z.string().optional(),
+        cover: image().optional(),
     }),
 });
 

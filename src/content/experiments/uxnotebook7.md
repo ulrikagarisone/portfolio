@@ -5,7 +5,7 @@ pubDate: 2024-10-18
 tags: ["Urban Design", "Bicycles", "Public Infrastructure", "Accessibility"]
 status: "completed"
 category: "observation"
-cover: "/src/assets/experiments/bike.jpg"
+cover: "../../assets/experiments/bike.jpg"
 ---
 
 # Bike Parking: Racks Don't Fit Modern Wheel Sizes

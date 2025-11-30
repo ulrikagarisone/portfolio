@@ -4,8 +4,8 @@ description: "An engaging and practical website helping a targeted audience embr
 pubDate: 2025-01-15
 tags: ["UX Design", "User Research", "Wireframing", "Prototyping", "Figma"]
 status: "completed"
-cover: "/src/assets/projects/integration1.jpeg"
-image: "/src/assets/projects/integration1.jpeg"
+cover: "../../assets/projects/integration1.jpeg"
+image: "../../assets/projects/integration1.jpeg"
 ---
 
 # Integration 1 – Off The Grid Tips & Tricks

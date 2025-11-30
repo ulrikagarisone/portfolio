@@ -5,7 +5,7 @@ pubDate: 2024-10-07
 tags: ["Usability", "Campus Life", "Error Prevention", "Feedback"]
 status: "completed"
 category: "observation"
-cover: "/src/assets/experiments/coffe.jpg"
+cover: "../../assets/experiments/coffe.jpg"
 ---
 
 # Unclear Coffee Machine Interface at Campus

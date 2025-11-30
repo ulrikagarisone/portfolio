@@ -4,8 +4,8 @@ description: "XD3 final assignment — understanding screen-time challenges for 
 pubDate: 2025-09-20
 tags: ["UX Research", "Service Design", "Craftzing", "User Studies"]
 status: "in-progress"
-cover: "/images/try.jpeg"
-image: "/images/try.jpeg"
+cover: "../../assets/projects/workshop.jpeg"
+image: "../../assets/projects/workshop.jpeg"
 ---
 
 # Craftzing UX Research Collaboration

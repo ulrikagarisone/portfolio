@@ -5,7 +5,7 @@ pubDate: 2024-10-23
 tags: ["Retail", "Connectivity", "Wayfinding", "Digital-Physical"]
 status: "completed"
 category: "observation"
-cover: "/src/assets/experiments/phone.jpg"
+cover: "../../assets/experiments/phone.jpg"
 ---
 
 # No Reception in Grocery Store, Stranded Without Maps

@@ -5,7 +5,7 @@ pubDate: 2024-10-31
 tags: ["Airport Design", "Seating", "Travel Experience", "Environmental Fit"]
 status: "completed"
 category: "observation"
-cover: "/src/assets/experiments/bag.jpg"
+cover: "../../assets/experiments/bag.jpg"
 ---
 
 # Nowhere to Place Bags at Airport Gate

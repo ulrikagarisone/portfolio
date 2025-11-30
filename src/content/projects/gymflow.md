@@ -4,8 +4,8 @@ description: "A user-centered redesign of a gym website tailored to the needs, m
 pubDate: 2025-04-15
 tags: ["UX Design", "Wireframing", "User Research", "Accessibility", "Figma"]
 status: "completed"
-cover: "/src/assets/projects/gym_wireframes.jpeg"
-image: "/src/assets/projects/gym_wireframes.jpeg"
+cover: "../../assets/projects/gym_wireframes.jpeg"
+image: "../../assets/projects/gym_wireframes.jpeg"
 ---
 
 # Gym Website Redesign for 50+ Audience

@@ -4,7 +4,7 @@ description: "A digital awareness campaign concept encouraging Flemish residents
 pubDate: 2024-05-25
 tags: ["UX Design", "Campaign Design", "Sustainability", "Concepting", "Storyboarding"]
 status: "completed"
-cover: "/src/assets/projects/dont_mow_may.jpeg"
+cover: "../../assets/projects/dont_mow_may.jpeg"
 image: "/images/try.jpeg"
 ---
 

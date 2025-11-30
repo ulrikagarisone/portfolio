@@ -92,9 +92,11 @@ const otherExperiments = allExperiments
                         let imageContent;
                         if (related.data.cover) {
                             imageContent = (
-                                <img
+                                <Image
                                     src={related.data.cover}
                                     alt={related.data.title}
+                                    width={600}
+                                    height={600}
                                 />
                             );
                         } else {
