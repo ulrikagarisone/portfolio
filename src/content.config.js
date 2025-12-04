@@ -27,7 +27,21 @@ const experiments = defineCollection({
     }),
 });
 
+// Skils and tools
+const skills = defineCollection({
+    type: 'data',
+    schema: z.object({
+        title: z.string(),
+        category: z.string(),
+        tools: z.array(z.string()),
+        description: z.string(),
+        image: image(),
+        order: z.number(),
+    }),
+});
+
 export const collections = {
-    projects,
-    experiments,
+    projects: projectsCollection,
+    experiments: experimentsCollection,
+    skills: skills,
 };
