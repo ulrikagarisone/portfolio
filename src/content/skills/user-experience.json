@@ -1,0 +1,14 @@
+{
+    "title": "USER EXPERIENCE",
+    "category": "UX Research",
+    "order": 3,
+    "tools": [
+        "User Research",
+        "Prototyping",
+        "Wireframing",
+        "Information Architecture",
+        "Personas & storytelling"
+    ],
+    "description": "I love uncovering the \"why\" behind every click and swipe. Using research, wireframes, and prototypes, I design products that feel natural, guide users smoothly, and make everyday digital interactions a little more enjoyable.",
+    "image": "../assets/tools/ux-research.jpeg"
+}

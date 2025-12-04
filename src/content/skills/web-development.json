@@ -1,0 +1,15 @@
+{
+    "title": "WEB DEVELOPMENT",
+    "category": "Development",
+    "order": 2,
+    "tools": [
+        "HTML & CSS",
+        "JavaScript",
+        "PHP",
+        "Astro",
+        "Git & GitHub",
+        "GSAP Animations"
+    ],
+    "description": "I enjoy taking designs and turning them into smooth, responsive experiences. I like solving little front-end puzzles and making everything feel fast and effortless.",
+    "image": "../assets/tools/web-dev.jpeg"
+}
