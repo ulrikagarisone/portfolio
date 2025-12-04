@@ -1,9 +1,10 @@
 ---
+import { getCollection } from "astro:content";
 import { Image } from "astro:assets";
-import visualDesignImg from "../assets/tools/visual-design.jpeg";
-import webDevImg from "../assets/tools/web-dev.jpeg";
-import uxResearchImg from "../assets/tools/ux-research.jpeg";
-import motionImg from "../assets/tools/motion.jpeg";
+
+// Fetch skills from content collection
+const allSkills = await getCollection("skills");
+const sortedSkills = allSkills.sort((a, b) => a.data.order - b.data.order);
 ---
 
 <section class="services-section">
@@ -13,152 +14,47 @@ import motionImg from "../assets/tools/motion.jpeg";
         </div>
 
         <div class="services-list">
-            <!-- Item 1 -->
-            <div class="service-item" data-number="01">
-                <div class="service-main">
-                    <span class="service-number">01</span>
-                    <h3 class="service-name">VISUAL DESIGN</h3>
-                    <button class="service-toggle" aria-label="Toggle details">
-                        <span class="toggle-icon">+</span>
-                    </button>
-                </div>
-                <div class="service-details">
-                    <div class="details-content">
-                        <ul class="service-features">
-                            <li>Figma</li>
-                            <li>Adobe Illustrator</li>
-                            <li>Adobe Photoshop</li>
-                            <li>UI/UX Design</li>
-                            <li>Prototyping</li>
-                        </ul>
-                        <p class="service-description">
-                            I design clean, intentional visuals with a soft spot
-                            for tiny details. From UI to motion to illustration,
-                            I bring ideas to life in a way that feels both
-                            beautiful and practical.
-                        </p>
-                        <div class="service-image">
-                            <Image
-                                src={visualDesignImg}
-                                alt="Visual Design"
-                                width={300}
-                                height={400}
-                                loading="lazy"
-                            />
-                        </div>
-                    </div>
-                </div>
-            </div>
+            {
+                sortedSkills.map((skill, index) => {
+                    const number = String(index + 1).padStart(2, "0");
 
-            <!-- Item 2 -->
-            <div class="service-item" data-number="02">
-                <div class="service-main">
-                    <span class="service-number">02</span>
-                    <h3 class="service-name">WEB DEVELOPMENT</h3>
-                    <button class="service-toggle" aria-label="Toggle details">
-                        <span class="toggle-icon">+</span>
-                    </button>
-                </div>
-                <div class="service-details">
-                    <div class="details-content">
-                        <ul class="service-features">
-                            <li>HTML & CSS</li>
-                            <li>JavaScript</li>
-                            <li>PHP</li>
-                            <li>Astro</li>
-                            <li>Git & GitHub</li>
-                            <li>GSAP Animations</li>
-                        </ul>
-                        <p class="service-description">
-                            I enjoy taking designs and turning them into smooth,
-                            responsive experiences. I like solving little
-                            front-end puzzles and making everything feel fast
-                            and effortless.
-                        </p>
-                        <div class="service-image">
-                            <Image
-                                src={webDevImg}
-                                alt="Web Development"
-                                width={300}
-                                height={400}
-                                loading="lazy"
-                            />
+                    return (
+                        <div class="service-item" data-number={number}>
+                            <div class="service-main">
+                                <span class="service-number">{number}</span>
+                                <h3 class="service-name">{skill.data.title}</h3>
+                                <button
+                                    class="service-toggle"
+                                    aria-label="Toggle details"
+                                >
+                                    <span class="toggle-icon">+</span>
+                                </button>
+                            </div>
+                            <div class="service-details">
+                                <div class="details-content">
+                                    <ul class="service-features">
+                                        {skill.data.tools.map((tool) => (
+                                            <li>{tool}</li>
+                                        ))}
+                                    </ul>
+                                    <p class="service-description">
+                                        {skill.data.description}
+                                    </p>
+                                    <div class="service-image">
+                                        <Image
+                                            src={skill.data.image}
+                                            alt={skill.data.title}
+                                            width={300}
+                                            height={400}
+                                            loading="lazy"
+                                        />
+                                    </div>
+                                </div>
+                            </div>
                         </div>
-                    </div>
-                </div>
-            </div>
-
-            <!-- Item 3 -->
-            <div class="service-item" data-number="03">
-                <div class="service-main">
-                    <span class="service-number">03</span>
-                    <h3 class="service-name">USER EXPERIANCE</h3>
-                    <button class="service-toggle" aria-label="Toggle details">
-                        <span class="toggle-icon">+</span>
-                    </button>
-                </div>
-                <div class="service-details">
-                    <div class="details-content">
-                        <ul class="service-features">
-                            <li>User Research</li>
-                            <li>Prototyping</li>
-                            <li>Wireframing</li>
-                            <li>Information Architecture</li>
-                            <li>Personas & storytelling</li>
-                        </ul>
-                        <p class="service-description">
-                            I love uncovering the "why" behind every click and
-                            swipe. Using research, wireframes, and prototypes, I
-                            design products that feel natural, guide users
-                            smoothly, and make everyday digital interactions a
-                            little more enjoyable.
-                        </p>
-                        <div class="service-image">
-                            <Image
-                                src={uxResearchImg}
-                                alt="UX Research"
-                                width={300}
-                                height={400}
-                                loading="lazy"
-                            />
-                        </div>
-                    </div>
-                </div>
-            </div>
-
-            <!-- Item 4 -->
-            <div class="service-item" data-number="04">
-                <div class="service-main">
-                    <span class="service-number">04</span>
-                    <h3 class="service-name">MOTION</h3>
-                    <button class="service-toggle" aria-label="Toggle details">
-                        <span class="toggle-icon">+</span>
-                    </button>
-                </div>
-                <div class="service-details">
-                    <div class="details-content">
-                        <ul class="service-features">
-                            <li>p5.js</li>
-                            <li>Creative coding experiments</li>
-                            <li>Adobe After Effects</li>
-                        </ul>
-                        <p class="service-description">
-                            I love adding life to designs with motion, whether
-                            it's playful micro-interactions or full-screen
-                            creative coding experiments.
-                        </p>
-                        <div class="service-image">
-                            <Image
-                                src={motionImg}
-                                alt="Motion Design"
-                                width={300}
-                                height={400}
-                                loading="lazy"
-                            />
-                        </div>
-                    </div>
-                </div>
-            </div>
+                    );
+                })
+            }
         </div>
     </div>
 </section>
@@ -325,7 +221,7 @@ import motionImg from "../assets/tools/motion.jpeg";
         max-height: 1000px;
     }
 
-    /*  side-by-side iamge*/
+    /*  side-by-side image*/
     .details-content {
         padding: 2rem 2rem 3rem;
         display: grid;
