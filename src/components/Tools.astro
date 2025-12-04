@@ -2,6 +2,20 @@
 import { getCollection } from "astro:content";
 import { Image } from "astro:assets";
 
+// Import images directly
+import visualDesignImg from "../assets/tools/visual-design.jpeg";
+import webDevImg from "../assets/tools/web-dev.jpeg";
+import uxResearchImg from "../assets/tools/ux-research.jpeg";
+import motionImg from "../assets/tools/motion.jpeg";
+
+// Create image map
+const imageMap: Record<string, any> = {
+    "visual-design.jpeg": visualDesignImg,
+    "web-dev.jpeg": webDevImg,
+    "ux-research.jpeg": uxResearchImg,
+    "motion.jpeg": motionImg,
+};
+
 // Fetch skills from content collection
 const allSkills = await getCollection("skills");
 const sortedSkills = allSkills.sort((a, b) => a.data.order - b.data.order);
@@ -17,6 +31,7 @@ const sortedSkills = allSkills.sort((a, b) => a.data.order - b.data.order);
             {
                 sortedSkills.map((skill, index) => {
                     const number = String(index + 1).padStart(2, "0");
+                    const skillImage = imageMap[skill.data.imagePath];
 
                     return (
                         <div class="service-item" data-number={number}>
@@ -42,7 +57,7 @@ const sortedSkills = allSkills.sort((a, b) => a.data.order - b.data.order);
                                     </p>
                                     <div class="service-image">
                                         <Image
-                                            src={skill.data.image}
+                                            src={skillImage}
                                             alt={skill.data.title}
                                             width={300}
                                             height={400}
@@ -300,9 +315,6 @@ const sortedSkills = allSkills.sort((a, b) => a.data.order - b.data.order);
 
         .services-header {
             margin-bottom: 5rem;
-        }
-
-        .services-header {
             padding: 0 clamp(2rem, 5vw, 6rem);
         }
 

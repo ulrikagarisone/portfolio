@@ -8,5 +8,5 @@
         "Adobe After Effects"
     ],
     "description": "I love adding life to designs with motion, whether it's playful micro-interactions or full-screen creative coding experiments.",
-    "image": "../assets/tools/motion.jpeg"
+    "imagePath": "motion.jpeg"
 }

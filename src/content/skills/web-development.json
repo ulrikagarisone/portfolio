@@ -11,5 +11,5 @@
         "GSAP Animations"
     ],
     "description": "I enjoy taking designs and turning them into smooth, responsive experiences. I like solving little front-end puzzles and making everything feel fast and effortless.",
-    "image": "../assets/tools/web-dev.jpeg"
+    "imagePath": "web-dev.jpeg"
 }

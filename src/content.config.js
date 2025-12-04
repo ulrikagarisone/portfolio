@@ -1,7 +1,6 @@
 import { defineCollection, z } from 'astro:content';
 import { glob } from 'astro/loaders';
 
-// Projects - Main portfolio work
 const projects = defineCollection({
     loader: glob({ pattern: '**/*.md', base: './src/content/projects' }),
     schema: ({ image }) => z.object({
@@ -14,7 +13,6 @@ const projects = defineCollection({
     }),
 });
 
-// Creative coding + research notes
 const experiments = defineCollection({
     loader: glob({ pattern: '**/*.md', base: './src/content/experiments' }),
     schema: ({ image }) => z.object({
@@ -27,21 +25,20 @@ const experiments = defineCollection({
     }),
 });
 
-// Skils and tools
 const skills = defineCollection({
-    type: 'data',
+    loader: glob({ pattern: "**/*.json", base: "./src/content/skills" }),
     schema: z.object({
         title: z.string(),
         category: z.string(),
+        order: z.number(),
         tools: z.array(z.string()),
         description: z.string(),
-        image: image(),
-        order: z.number(),
+        imagePath: z.string(),
     }),
 });
 
 export const collections = {
-    projects: projectsCollection,
-    experiments: experimentsCollection,
-    skills: skills,
+    projects,
+    experiments,
+    skills,
 };
