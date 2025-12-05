@@ -67,7 +67,7 @@ const otherProjects = allProjects
     </section>
 
     <!-- Cover Image Section -->
-   {
+    {
         project.data.cover && (
             <section class="cover-section">
                 <div class="container">
@@ -84,7 +84,15 @@ const otherProjects = allProjects
             </section>
         )
     }
-    
+
+    <section class="content-section">
+        <div class="container">
+            <article class="content">
+                <Content />
+            </article>
+        </div>
+    </section>
+
     <!-- Related Projects Grid -->
     <div class="related-projects-section">
         <div class="projects-grid">

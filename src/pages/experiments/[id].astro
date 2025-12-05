@@ -1,6 +1,6 @@
 ---
 import { getCollection, render } from "astro:content";
-import BaseLayout from "../../layouts/BaseLayout.astro";
+import ContentLayout from "../../layouts/ContentLayout.astro";
 import ExperimentDetail from "../../components/ExperimentDetail.astro";
 
 export async function getStaticPaths() {
@@ -15,6 +15,6 @@ const { experiment } = Astro.props;
 const { Content } = await render(experiment);
 ---
 
-<BaseLayout title={experiment.data.title}>
-        <ExperimentDetail experiment={experiment} Content={Content} />
-</BaseLayout>
+<ContentLayout title={experiment.data.title}>
+    <ExperimentDetail experiment={experiment} Content={Content} />
+</ContentLayout>
