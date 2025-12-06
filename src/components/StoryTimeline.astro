@@ -111,6 +111,26 @@ import portraitImg from "../assets/about/me.jpeg";
         transform: translateY(0);
     }
 
+    .cursor-frame img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+    filter: brightness(1.1) contrast(1.1) saturate(0.8);
+    }
+
+    .cursor-frame::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background: #182a47;
+    opacity: 1;
+    z-index: 1;
+    mix-blend-mode: color;
+    transition: opacity 0.4s ease;
+    pointer-events: none;
+    }
+
     /* Everything stacks, image first */
     .panel-image {
         grid-column: 1;
@@ -315,9 +335,7 @@ import portraitImg from "../assets/about/me.jpeg";
 
     const init = () => {
         const panels = gsap.utils.toArray(".story-panel") as HTMLElement[];
-        const cursor = document.querySelector(
-            '[data-cursor="portrait"]',
-        ) as HTMLElement;
+        const cursor = document.querySelector('[data-cursor="portrait"]') as HTMLElement;
         const section = document.querySelector(".about-story") as HTMLElement;
 
         if (!section) return;
@@ -340,14 +358,15 @@ import portraitImg from "../assets/about/me.jpeg";
                 });
             });
 
-            // Portrait cursour
             if (cursor) {
-                let mouseX = 0;
-                let mouseY = 0;
-                const maxDistanceX = window.innerWidth / 4;
-                const maxDistanceY = window.innerHeight / 4;
+                // Set initial position
+                gsap.set(cursor, {
+                    x: "450px",
+                    y: "0px",
+                    rotation: 3,
+                });
 
-                // Show cursor when entering section
+                // Show/hide cursor
                 ScrollTrigger.create({
                     trigger: section,
                     start: "top center",
@@ -366,56 +385,48 @@ import portraitImg from "../assets/about/me.jpeg";
                     },
                 });
 
-                // Follow mouse with constrained movement
-                document.addEventListener("mousemove", (e) => {
-                    const centerX = window.innerWidth / 2;
-                    const centerY = window.innerHeight / 2;
-
-                    let deltaX = e.clientX - centerX;
-                    let deltaY = e.clientY - centerY;
-
-                    if (deltaX < -maxDistanceX) {
-                        deltaX = -maxDistanceX;
+                // Create ONE smooth timeline for all movement
+                const tl = gsap.timeline({
+                    scrollTrigger: {
+                        trigger: section,
+                        start: "top top",
+                        end: "bottom bottom",
+                        scrub: 2,
                     }
-                    if (deltaX > maxDistanceX) {
-                        deltaX = maxDistanceX;
-                    }
-                    if (deltaY < -maxDistanceY) {
-                        deltaY = -maxDistanceY;
-                    }
-                    if (deltaY > maxDistanceY) {
-                        deltaY = maxDistanceY;
-                    }
-
-                    mouseX = deltaX;
-                    mouseY = deltaY;
                 });
 
-                // Smooth animation loop
-                let currentX = 0;
-                let currentY = 0;
+                // Panel 1 
+                tl.to(cursor, {
+                    x: "350px",
+                    y: "-300px",
+                    rotation: 3,
+                    ease: "none",
+                    duration: 1,
+                })
+                // Transition to left for panel 2
+                .to(cursor, {
+                    x: "-550px",
+                    y: "-200px",
+                    rotation: -3,
+                    ease: "power2.inOut",
+                    duration: 1,
+                })
+                // Transition back to right for panel 3
+                .to(cursor, {
+                    x: "450px",
+                    y: "0px",
+                    rotation: 3,
+                    ease: "power2.inOut",
+                    duration: 1,
+                });
+                            }
+                        } else {
+                            panels.forEach((panel) => {
+                                panel.style.opacity = "1";
+                                panel.style.transform = "translateY(0)";
+                            });
+                        }
+                    };
 
-                function animateCursor() {
-                    const dx = mouseX - currentX;
-                    const dy = mouseY - currentY;
-
-                    currentX = currentX + dx * 0.1;
-                    currentY = currentY + dy * 0.1;
-
-                    cursor.style.transform = `translate(calc(-50% + ${currentX}px), calc(-50% + ${currentY}px))`;
-
-                    requestAnimationFrame(animateCursor);
-                }
-                animateCursor();
-            }
-        } else {
-            // All panels visible
-            panels.forEach((panel) => {
-                panel.style.opacity = "1";
-                panel.style.transform = "translateY(0)";
-            });
-        }
-    };
-
-    init();
+        init();
 </script>
