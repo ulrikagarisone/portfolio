@@ -117,6 +117,17 @@ import portraitImg from "../assets/about/me.jpeg";
         order: 1;
     }
 
+    .panel-image::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background: #182a47;
+    opacity: 1;
+    z-index: 1;
+    mix-blend-mode: color;
+    transition: opacity 0.4s ease;
+    }
+
     .panel-content {
         grid-column: 1;
         order: 2;
@@ -172,11 +183,16 @@ import portraitImg from "../assets/about/me.jpeg";
         object-fit: cover;
         display: block;
         transform: scale(1.1);
+        filter: brightness(1.1) contrast(1.1) saturate(0.8);
         transition: transform 0.8s cubic-bezier(0.165, 0.84, 0.44, 1);
     }
 
-    .story-panel:hover .panel-image img {
-        transform: scale(1);
+    .panel-image:hover::before {
+    opacity: 0;
+    }
+
+    .panel-image:hover img {
+    transform: scale(1);
     }
 
     .image-overlay {
