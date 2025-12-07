@@ -1,0 +1,805 @@
+---
+import type { CollectionEntry } from "astro:content";
+import { getCollection } from "astro:content";
+import { Image } from "astro:assets";
+
+interface Props {
+    project: CollectionEntry<"projects">;
+    Content: any;
+}
+
+const { project, Content } = Astro.props;
+const { title, description, tags, status, pubDate } = project.data;
+
+// Get other projects for related section
+const allProjects = await getCollection("projects");
+const otherProjects = allProjects
+    .filter((p) => p.id !== project.id)
+    .sort(() => Math.random() - 0.5)
+    .slice(0, 4);
+---
+
+<div class="project-detail">
+    <!-- Hero Section -->
+    <section class="hero-section">
+        <div class="container">
+            <a href={`${import.meta.env.BASE_URL}projects`} class="back-link">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none">
+                    <path
+                        d="M19 12H5M12 19l-7-7 7-7"
+                        stroke="currentColor"
+                        stroke-width="2.5"
+                        stroke-linecap="round"></path>
+                </svg>
+                <span>Back to Projects</span>
+            </a>
+
+            <h1 class="project-title">{title}</h1>
+            <p class="project-description">{description}</p>
+
+            {
+                tags && tags.length > 0 && (
+                    <div class="tags-list">
+                        {tags.map((tag) => (
+                            <span class="tag">{tag}</span>
+                        ))}
+                    </div>
+                )
+            }
+
+            <div class="meta-info">
+                <div class="meta-item">
+                    <span class="meta-label">YEAR</span>
+                    <span class="meta-value"
+                        >{new Date(pubDate).getFullYear()}</span
+                    >
+                </div>
+                <div class="meta-item">
+                    <span class="meta-label">STATUS</span>
+                    <span class="meta-value status-badge">{status}</span>
+                </div>
+                <div class="meta-item">
+                    <span class="meta-label">ROLE</span>
+                    <span class="meta-value">UX Designer / Developer</span>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="content-section">
+        <div class="container">
+            <article class="content">
+                <Content />
+            </article>
+        </div>
+    </section>
+
+    <!-- Related Projects Grid -->
+    <div class="related-projects-section">
+        <div class="related-header">
+            <h2>You may also like</h2>
+        </div>
+
+        <div class="projects-grid">
+            {
+                otherProjects.map((relatedProject) => {
+                    let imageContent;
+                    if (relatedProject.data.cover) {
+                        imageContent = (
+                            <Image
+                                src={relatedProject.data.cover}
+                                alt={relatedProject.data.title}
+                                width={800}
+                                height={800}
+                                loading="lazy"
+                            />
+                        );
+                    } else {
+                        imageContent = <div class="placeholder-image" />;
+                    }
+
+                    return (
+                        <a
+                            href={`${import.meta.env.BASE_URL}projects/${relatedProject.id}`}
+                            class="project-card"
+                        >
+                            <div class="card-image">{imageContent}</div>
+                            <div class="card-overlay">
+                                <h3 class="project-title-card">
+                                    {relatedProject.data.title}
+                                </h3>
+                                <p class="project-preview">
+                                    {relatedProject.data.description}
+                                </p>
+                            </div>
+                        </a>
+                    );
+                })
+            }
+        </div>
+
+        <div class="back-button-container">
+            <a href={`${import.meta.env.BASE_URL}projects`} class="back-button">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none">
+                    <path
+                        d="M19 12H5M12 19l-7-7 7-7"
+                        stroke="currentColor"
+                        stroke-width="2"
+                        stroke-linecap="round"></path>
+                </svg>
+                Back to all projects
+            </a>
+        </div>
+    </div>
+</div>
+
+<style>
+    .project-detail {
+        background: #fff6f5;
+        min-height: 100vh;
+        font-family: "Archivo", sans-serif;
+        width: 100%;
+        overflow-x: hidden;
+    }
+
+    .container {
+        max-width: 1200px;
+        margin: 0 auto;
+        padding: 0 1.5rem;
+        width: 100%;
+        box-sizing: border-box;
+    }
+
+    /* Hero Section */
+    .hero-section {
+        background: linear-gradient(
+            135deg,
+            rgba(9, 51, 84, 0.96) 0%,
+            rgba(10, 74, 107, 0.96) 100%
+        );
+        padding: 5rem 0 3rem;
+        position: relative;
+        overflow: hidden;
+        background-size: cover;
+        background-position: center;
+        width: 100%;
+    }
+
+    .hero-section::before {
+        content: "";
+        position: absolute;
+        inset: 0;
+        background: linear-gradient(
+            135deg,
+            rgba(9, 51, 84, 0.96) 0%,
+            rgba(10, 74, 107, 0.96) 100%
+        );
+        z-index: 0;
+    }
+
+    .hero-section::after {
+        content: "";
+        position: absolute;
+        top: -20%;
+        right: -5%;
+        width: 400px;
+        height: 400px;
+        background: radial-gradient(
+            circle,
+            rgba(228, 99, 84, 0.18) 0%,
+            transparent 70%
+        );
+        border-radius: 50%;
+        filter: blur(50px);
+        animation: float 20s ease-in-out infinite;
+        z-index: 0;
+    }
+
+    @keyframes float {
+        0%,
+        100% {
+            transform: translate(0, 0);
+        }
+        50% {
+            transform: translate(-50px, 50px);
+        }
+    }
+
+    .hero-section .container {
+        position: relative;
+        z-index: 1;
+    }
+
+    .back-link {
+        display: inline-flex;
+        align-items: center;
+        gap: 0.5rem;
+        color: #e46354;
+        background: rgba(228, 99, 84, 0.2);
+        text-decoration: none;
+        font-size: 0.8rem;
+        font-weight: 600;
+        padding: 0.5rem 1rem;
+        border-radius: 50px;
+        border: 2px solid rgba(228, 99, 84, 0.4);
+        margin-bottom: 1.5rem;
+        transition: all 0.3s ease;
+    }
+
+    .back-link:hover {
+        background: rgba(228, 99, 84, 0.3);
+        border-color: #e46354;
+        transform: translateX(-3px);
+    }
+
+    .back-link svg {
+        transition: transform 0.3s ease;
+    }
+
+    .back-link:hover svg {
+        transform: translateX(-3px);
+    }
+
+    .project-title {
+        font-size: clamp(1.75rem, 4vw, 2.75rem);
+        line-height: 1.1;
+        color: #fff6f5;
+        margin: 0 0 0.75rem 0;
+        letter-spacing: -0.02em;
+        font-weight: 900;
+    }
+
+    .project-description {
+        font-size: clamp(0.9rem, 1.8vw, 1rem);
+        line-height: 1.5;
+        color: rgba(255, 255, 255, 0.95);
+        margin: 0 0 1.5rem 0;
+        max-width: 650px;
+    }
+
+    .tags-list {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 0.4rem;
+        margin-bottom: 1.5rem;
+    }
+
+    .tag {
+        font-size: 0.7rem;
+        font-weight: 600;
+        color: #e46354;
+        background: rgba(228, 99, 84, 0.2);
+        padding: 0.35rem 0.75rem;
+        text-transform: uppercase;
+        letter-spacing: 0.05em;
+        border-radius: 50px;
+        border: 1.5px solid rgba(228, 99, 84, 0.4);
+    }
+
+    .meta-info {
+        display: grid;
+        grid-template-columns: 1fr;
+        gap: 1.25rem;
+        padding: 1.5rem 0 0;
+        border-top: 1px solid rgba(255, 255, 255, 0.2);
+    }
+
+    .meta-item {
+        display: flex;
+        flex-direction: column;
+        gap: 0.4rem;
+    }
+
+    .meta-label {
+        font-size: 0.65rem;
+        font-weight: 700;
+        letter-spacing: 0.1em;
+        color: rgba(255, 255, 255, 0.6);
+        text-transform: uppercase;
+    }
+
+    .meta-value {
+        font-size: 0.9rem;
+        font-weight: 600;
+        color: #fff6f5;
+    }
+
+    .status-badge {
+        display: inline-block;
+        padding: 0.35rem 0.9rem;
+        background: #fff6f5;
+        color: #093354;
+        border-radius: 50px;
+        font-size: 0.7rem;
+        text-transform: uppercase;
+        letter-spacing: 0.05em;
+        width: fit-content;
+    }
+
+    /* Content Section */
+    .content-section {
+        padding: 4rem 0;
+        background: #fff6f5;
+        width: 100%;
+    }
+
+    .content-section .container {
+        width: 100%;
+        max-width: 1200px;
+    }
+
+    .content {
+        font-size: 1rem;
+        line-height: 1.7;
+        color: rgba(9, 51, 84, 0.9);
+        max-width: 720px;
+        width: 100%;
+    }
+
+    .content :global(h1) {
+        font-size: clamp(2rem, 4vw, 2.5rem);
+        line-height: 1.2;
+        color: #093354;
+        margin: 0 0 1.5rem 0;
+        letter-spacing: -0.02em;
+        font-weight: 900;
+    }
+
+    .content :global(h2) {
+        font-size: clamp(1.5rem, 3vw, 1.875rem);
+        line-height: 1.3;
+        color: #093354;
+        margin: 3rem 0 1rem 0;
+        letter-spacing: -0.01em;
+        position: relative;
+        padding-left: 1.25rem;
+        font-weight: 800;
+    }
+
+    .content :global(h2::before) {
+        content: "";
+        position: absolute;
+        left: 0;
+        top: 0.25rem;
+        bottom: 0.25rem;
+        width: 4px;
+        background: #e46354;
+        border-radius: 2px;
+    }
+
+    .content :global(h3) {
+        font-size: clamp(1.125rem, 2vw, 1.375rem);
+        font-weight: 700;
+        color: #093354;
+        margin: 2rem 0 0.75rem 0;
+    }
+
+    .content :global(p) {
+        margin: 0 0 1.25rem 0;
+    }
+
+    .content :global(ul),
+    .content :global(ol) {
+        padding-left: 1.5rem;
+        margin: 1.25rem 0;
+    }
+
+    .content :global(li) {
+        margin-bottom: 0.625rem;
+        line-height: 1.7;
+    }
+
+    .content :global(ul li::marker) {
+        color: #e46354;
+    }
+
+    .content :global(strong) {
+        font-weight: 700;
+        color: #e46354;
+    }
+
+    .content :global(a) {
+        color: #e46354;
+        font-weight: 600;
+        text-decoration: underline;
+        text-underline-offset: 2px;
+        transition: all 0.2s ease;
+    }
+
+    .content :global(a:hover) {
+        color: #d94a3d;
+    }
+
+    /* SMALL IMAGES - max 400px */
+    .content :global(img) {
+        max-width: 400px;
+        width: 100%;
+        height: auto;
+        border-radius: 8px;
+        margin: 1.5rem 0;
+        display: block;
+        box-shadow: 0 6px 20px rgba(9, 51, 84, 0.12);
+    }
+
+    .content :global(hr) {
+        border: none;
+        height: 2px;
+        background: linear-gradient(
+            90deg,
+            transparent,
+            rgba(228, 99, 84, 0.3),
+            transparent
+        );
+        margin: 2.5rem 0;
+    }
+
+    .content :global(blockquote) {
+        border-left: 4px solid #e46354;
+        padding: 1rem 1.5rem;
+        margin: 1.5rem 0;
+        background: rgba(228, 99, 84, 0.05);
+        border-radius: 0 8px 8px 0;
+        font-style: italic;
+    }
+
+    .content :global(code) {
+        background: rgba(228, 99, 84, 0.1);
+        color: #e46354;
+        padding: 0.2rem 0.4rem;
+        border-radius: 4px;
+        font-size: 0.9em;
+        font-family: "Courier New", monospace;
+    }
+
+    /* Related Projects - BIGGER CARDS */
+    .related-projects-section {
+        padding: 4rem 0 0 0;
+        margin: 0;
+        width: 100%;
+        background: #093354;
+    }
+
+    .related-header {
+        text-align: left;
+        padding: 0 1rem 2rem;
+        max-width: 1600px;
+        margin: 0 auto;
+    }
+
+    .related-header h2 {
+        font-size: clamp(3rem, 8vw, 4rem);
+        color: #fff6f5;
+        margin: 0;
+        font-weight: 900;
+        letter-spacing: -0.02em;
+    }
+
+    /* MOBILE FIRST - 2x2 GRID */
+    .projects-grid {
+        display: grid;
+        grid-template-columns: repeat(2, 1fr);
+        gap: 1rem;
+        width: 100%;
+        margin: 0 auto;
+        padding: 0 1rem;
+        max-width: 1600px;
+    }
+
+    .project-card {
+        display: block;
+        position: relative;
+        aspect-ratio: 1 / 1;
+        overflow: hidden;
+        text-decoration: none;
+        cursor: pointer;
+        border: none;
+        margin: 0;
+        padding: 0;
+    }
+
+    .card-image {
+        width: 100%;
+        height: 100%;
+        position: relative;
+    }
+
+    /* GREYSCALE EFFECT like main grid */
+    .card-image::before {
+        content: "";
+        position: absolute;
+        inset: 0;
+        background: #182a47;
+        opacity: 1;
+        z-index: 1;
+        mix-blend-mode: color;
+        transition: opacity 0.4s ease;
+    }
+
+    .project-card:hover .card-image::before {
+        opacity: 0;
+    }
+
+    .card-image img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        display: block;
+        filter: brightness(1.1) contrast(1.1) saturate(0.8);
+        transition: transform 0.6s cubic-bezier(0.165, 0.84, 0.44, 1);
+    }
+
+    .project-card:hover .card-image img {
+        transform: scale(1.05);
+    }
+
+    .placeholder-image {
+        width: 100%;
+        height: 100%;
+        background: linear-gradient(135deg, #182a47 0%, #0d1f35 100%);
+    }
+
+    .card-overlay {
+        position: absolute;
+        inset: 0;
+        background: rgba(228, 99, 84, 0.85);
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        padding: 2rem;
+        opacity: 0;
+        transition: opacity 0.4s ease;
+        text-align: center;
+        z-index: 2;
+    }
+
+    .project-card:hover .card-overlay {
+        opacity: 1;
+    }
+
+    .project-title-card {
+        font-size: clamp(1.125rem, 2vw, 1.75rem);
+        font-weight: 900;
+        color: #093354;
+        margin: 0 0 1rem 0;
+        letter-spacing: -0.02em;
+        text-transform: uppercase;
+    }
+
+    .project-preview {
+        font-size: clamp(0.9375rem, 1.2vw, 1.125rem);
+        color: rgba(9, 51, 84, 0.9);
+        line-height: 1.6;
+        margin: 0;
+        display: -webkit-box;
+        -webkit-line-clamp: 3;
+        -webkit-box-orient: vertical;
+        overflow: hidden;
+    }
+
+    .back-button-container {
+        padding: 2rem 1rem 3rem;
+        text-align: center;
+        background: #093354;
+    }
+
+    .back-button {
+        display: inline-flex;
+        align-items: center;
+        gap: 0.5rem;
+        color: #e46354;
+        text-decoration: none;
+        font-size: 0.875rem;
+        font-weight: 600;
+        padding: 0.75rem 1.5rem;
+        background: rgba(228, 99, 84, 0.1);
+        border: 2px solid rgba(228, 99, 84, 0.2);
+        border-radius: 50px;
+        transition: all 0.3s ease;
+    }
+
+    .back-button:hover {
+        background: rgba(228, 99, 84, 0.2);
+        border-color: #e46354;
+        transform: translateX(-3px);
+    }
+
+    .back-button svg {
+        transition: transform 0.3s ease;
+    }
+
+    .back-button:hover svg {
+        transform: translateX(-3px);
+    }
+
+    /* Table Styling - Add to your <style> section */
+    .content :global(table) {
+        width: 100%;
+        border-collapse: separate;
+        border-spacing: 0;
+        margin: 2rem 0;
+        background: #fff6f5;
+        border-radius: 8px;
+        overflow: hidden;
+        box-shadow: 0 2px 8px rgba(9, 51, 84, 0.06);
+    }
+
+    .content :global(thead) {
+        background: rgba(9, 51, 84, 0.05);
+    }
+
+    .content :global(th) {
+        padding: 0.875rem 1.25rem;
+        text-align: left;
+        font-size: 0.75rem;
+        font-weight: 700;
+        letter-spacing: 0.08em;
+        text-transform: uppercase;
+        color: rgba(9, 51, 84, 0.6);
+        border-bottom: 1px solid rgba(9, 51, 84, 0.1);
+    }
+
+    .content :global(tbody tr) {
+        transition: background-color 0.2s ease;
+    }
+
+    .content :global(tbody tr:hover) {
+        background: rgba(228, 99, 84, 0.02);
+    }
+
+    .content :global(tbody tr:not(:last-child)) {
+        border-bottom: 1px solid rgba(9, 51, 84, 0.06);
+    }
+
+    .content :global(td) {
+        padding: 1rem 1.25rem;
+        font-size: 0.9rem;
+        line-height: 1.6;
+        color: rgba(9, 51, 84, 0.75);
+        vertical-align: top;
+    }
+
+    .content :global(td:first-child) {
+        font-weight: 600;
+        color: rgba(9, 51, 84, 0.85);
+        width: 35%;
+    }
+
+    .content :global(td:last-child) {
+        width: 65%;
+        font-weight: 400;
+    }
+
+    /* Responsive table styles */
+    @media (max-width: 640px) {
+        .content :global(table) {
+            border-radius: 6px;
+        }
+
+        .content :global(th),
+        .content :global(td) {
+            padding: 0.75rem 1rem;
+            font-size: 0.85rem;
+        }
+
+        .content :global(td:first-child) {
+            width: 40%;
+        }
+
+        .content :global(td:last-child) {
+            width: 60%;
+        }
+    }
+
+    @media (max-width: 480px) {
+        /* Stack table on very small screens */
+        .content :global(table),
+        .content :global(thead),
+        .content :global(tbody),
+        .content :global(th),
+        .content :global(td),
+        .content :global(tr) {
+            display: block;
+        }
+
+        .content :global(thead tr) {
+            display: none;
+        }
+
+        .content :global(tr) {
+            margin-bottom: 1rem;
+            border-radius: 6px;
+            overflow: hidden;
+            box-shadow: 0 1px 4px rgba(9, 51, 84, 0.04);
+        }
+
+        .content :global(tbody tr) {
+            border-bottom: none !important;
+        }
+
+        .content :global(tbody tr:hover) {
+            background: #ffffff;
+        }
+
+        .content :global(td) {
+            border: none;
+            position: relative;
+            padding: 0.75rem 1rem;
+        }
+
+        .content :global(td:first-child) {
+            background: rgba(9, 51, 84, 0.03);
+            font-weight: 600;
+            color: rgba(9, 51, 84, 0.85);
+            border-bottom: 1px solid rgba(9, 51, 84, 0.08);
+            width: 100%;
+        }
+
+        .content :global(td:last-child) {
+            width: 100%;
+            padding: 1rem;
+        }
+    }
+
+    /* Responsive - DESKTOP 4 IN ONE ROW */
+    @media (min-width: 40rem) {
+        .hero-section {
+            padding: 6rem 0 4rem;
+        }
+
+        .content-section {
+            padding: 5rem 0;
+        }
+
+        .meta-info {
+            grid-template-columns: repeat(3, 1fr);
+            gap: 1.5rem;
+        }
+
+        .related-projects-section {
+            padding: 6rem 0 0 0;
+        }
+
+        .related-header {
+            padding: 0 1.5rem 3rem;
+        }
+
+        .projects-grid {
+            padding: 0 1.5rem;
+            gap: 1.5rem;
+        }
+
+        .back-button-container {
+            padding: 3rem 1.5rem 4rem;
+        }
+    }
+
+    @media (min-width: 1024px) {
+        .hero-section {
+            padding: 7rem 0 5rem;
+        }
+
+        .projects-grid {
+            grid-template-columns: repeat(4, 1fr);
+            gap: 2rem;
+        }
+    }
+</style>
+
+<script>
+    function init() {
+        const heroSection = document.querySelector(".hero-section");
+
+        if (!heroSection) {
+            return;
+        }
+
+        const coverImage = heroSection.getAttribute("data-cover");
+
+        if (coverImage) {
+            heroSection.style.backgroundImage = "url(" + coverImage + ")";
+        }
+    }
+
+    init();
+</script>

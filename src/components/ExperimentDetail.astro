@@ -1,0 +1,551 @@
+---
+import type { CollectionEntry } from "astro:content";
+import { getCollection } from "astro:content";
+import { Image } from "astro:assets";
+
+interface Props {
+    experiment: CollectionEntry<"experiments">;
+    Content: any;
+}
+
+const { experiment, Content } = Astro.props;
+const { title, description, tags, status, pubDate } = experiment.data;
+
+// Get other experiments for related section
+const allExperiments = await getCollection("experiments");
+const otherExperiments = allExperiments
+    .filter((e) => e.id !== experiment.id)
+    .sort(() => Math.random() - 0.5)
+    .slice(0, 4);
+---
+
+<div class="experiment-detail">
+    <!-- Hero Section -->
+    <section class="hero-section">
+        <div class="container">
+            <a href={`${import.meta.env.BASE_URL}experiments`} class="back-link">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none">
+                    <path
+                        d="M19 12H5M12 19l-7-7 7-7"
+                        stroke="currentColor"
+                        stroke-width="2.5"
+                        stroke-linecap="round"></path>
+                </svg>
+                <span>Back to Experiments</span>
+            </a>
+
+            <h1 class="experiment-title">{title}</h1>
+            <p class="experiment-description">{description}</p>
+
+            {
+                tags && tags.length > 0 && (
+                    <div class="tags-list">
+                        {tags.map((tag) => (
+                            <span class="tag">{tag}</span>
+                        ))}
+                    </div>
+                )
+            }
+
+            <div class="meta-info">
+                <div class="meta-item">
+                    <span class="meta-label">YEAR</span>
+                    <span class="meta-value"
+                        >{new Date(pubDate).getFullYear()}</span
+                    >
+                </div>
+                <div class="meta-item">
+                    <span class="meta-label">STATUS</span>
+                    <span class="meta-value status-badge">{status}</span>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="content-section">
+        <div class="container">
+            <article class="content">
+                <Content />
+            </article>
+        </div>
+    </section>
+
+    <!-- Related Experiments Grid -->
+    <div class="related-experiments-section">
+        <div class="related-header">
+            <h2>More experiments</h2>
+        </div>
+
+        <div class="experiments-grid">
+            {
+                otherExperiments.map((relatedExperiment) => {
+                    let imageContent;
+                    if (relatedExperiment.data.cover) {
+                        imageContent = (
+                            <Image
+                                src={relatedExperiment.data.cover}
+                                alt={relatedExperiment.data.title}
+                                width={800}
+                                height={800}
+                                loading="lazy"
+                            />
+                        );
+                    } else {
+                        imageContent = <div class="placeholder-image" />;
+                    }
+
+                    return (
+                        <a
+                            href={`${import.meta.env.BASE_URL}experiments/${relatedExperiment.id}`}
+                            class="experiment-card"
+                        >
+                            <div class="card-image">{imageContent}</div>
+                            <div class="card-overlay">
+                                <h3 class="experiment-title-card">
+                                    {relatedExperiment.data.title}
+                                </h3>
+                                <p class="experiment-preview">
+                                    {relatedExperiment.data.description}
+                                </p>
+                            </div>
+                        </a>
+                    );
+                })
+            }
+        </div>
+
+        <div class="back-button-container">
+            <a href={`${import.meta.env.BASE_URL}experiments`} class="back-button">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none">
+                    <path
+                        d="M19 12H5M12 19l-7-7 7-7"
+                        stroke="currentColor"
+                        stroke-width="2"
+                        stroke-linecap="round"></path>
+                </svg>
+                Back to all experiments
+            </a>
+        </div>
+    </div>
+</div>
+
+<style>
+    .experiment-detail {
+        background: #fff6f5;
+        min-height: 100vh;
+        font-family: "Archivo", sans-serif;
+        width: 100%;
+        overflow-x: hidden;
+    }
+
+    .container {
+        max-width: 1200px;
+        margin: 0 auto;
+        padding: 0 1.5rem;
+        width: 100%;
+        box-sizing: border-box;
+    }
+
+    /* Hero Section - LIGHTER COLORS */
+    .hero-section {
+        background: linear-gradient(
+            135deg,
+            rgba(228, 99, 84, 0.08) 0%,
+            rgba(255, 246, 245, 0.5) 100%
+        );
+        padding: 5rem 0 3rem;
+        position: relative;
+        overflow: hidden;
+        width: 100%;
+        border-bottom: 2px solid rgba(228, 99, 84, 0.1);
+    }
+
+    .back-link {
+        display: inline-flex;
+        align-items: center;
+        gap: 0.5rem;
+        color: #e46354;
+        background: rgba(228, 99, 84, 0.1);
+        text-decoration: none;
+        font-size: 0.8rem;
+        font-weight: 600;
+        padding: 0.5rem 1rem;
+        border-radius: 50px;
+        border: 2px solid rgba(228, 99, 84, 0.2);
+        margin-bottom: 1.5rem;
+        transition: all 0.3s ease;
+    }
+
+    .back-link:hover {
+        background: rgba(228, 99, 84, 0.2);
+        border-color: #e46354;
+        transform: translateX(-3px);
+    }
+
+    .experiment-title {
+        font-size: clamp(1.75rem, 4vw, 2.75rem);
+        line-height: 1.1;
+        color: #093354;
+        margin: 0 0 0.75rem 0;
+        letter-spacing: -0.02em;
+        font-weight: 900;
+    }
+
+    .experiment-description {
+        font-size: clamp(0.9rem, 1.8vw, 1rem);
+        line-height: 1.5;
+        color: rgba(9, 51, 84, 0.7);
+        margin: 0 0 1.5rem 0;
+        max-width: 650px;
+    }
+
+    .tags-list {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 0.4rem;
+        margin-bottom: 1.5rem;
+    }
+
+    .tag {
+        font-size: 0.7rem;
+        font-weight: 600;
+        color: #e46354;
+        background: rgba(228, 99, 84, 0.1);
+        padding: 0.35rem 0.75rem;
+        text-transform: uppercase;
+        letter-spacing: 0.05em;
+        border-radius: 50px;
+        border: 1.5px solid rgba(228, 99, 84, 0.2);
+    }
+
+    .meta-info {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 1.25rem;
+        padding: 1.5rem 0 0;
+        border-top: 1px solid rgba(228, 99, 84, 0.15);
+    }
+
+    .meta-item {
+        display: flex;
+        flex-direction: column;
+        gap: 0.4rem;
+    }
+
+    .meta-label {
+        font-size: 0.65rem;
+        font-weight: 700;
+        letter-spacing: 0.1em;
+        color: rgba(9, 51, 84, 0.4);
+        text-transform: uppercase;
+    }
+
+    .meta-value {
+        font-size: 0.9rem;
+        font-weight: 600;
+        color: #093354;
+    }
+
+    .status-badge {
+        display: inline-block;
+        padding: 0.35rem 0.9rem;
+        background: rgba(228, 99, 84, 0.1);
+        color: #e46354;
+        border-radius: 50px;
+        font-size: 0.7rem;
+        text-transform: uppercase;
+        letter-spacing: 0.05em;
+        width: fit-content;
+        border: 1.5px solid rgba(228, 99, 84, 0.2);
+    }
+
+    /* Content Section */
+    .content-section {
+        padding: 4rem 0;
+        background: #fff6f5;
+        width: 100%;
+    }
+
+    .content {
+        font-size: 1rem;
+        line-height: 1.7;
+        color: rgba(9, 51, 84, 0.85);
+        max-width: 720px;
+        width: 100%;
+    }
+
+    .content :global(h1) {
+        font-size: clamp(2rem, 4vw, 2.5rem);
+        line-height: 1.2;
+        color: #093354;
+        margin: 0 0 1.5rem 0;
+        letter-spacing: -0.02em;
+        font-weight: 900;
+    }
+
+    .content :global(h2) {
+        font-size: clamp(1.5rem, 3vw, 1.875rem);
+        line-height: 1.3;
+        color: #093354;
+        margin: 3rem 0 1rem 0;
+        letter-spacing: -0.01em;
+        position: relative;
+        padding-left: 1.25rem;
+        font-weight: 800;
+    }
+
+    .content :global(h2::before) {
+        content: "";
+        position: absolute;
+        left: 0;
+        top: 0.25rem;
+        bottom: 0.25rem;
+        width: 4px;
+        background: #e46354;
+        border-radius: 2px;
+    }
+
+    .content :global(h3) {
+        font-size: clamp(1.125rem, 2vw, 1.375rem);
+        font-weight: 700;
+        color: #093354;
+        margin: 2rem 0 0.75rem 0;
+    }
+
+    .content :global(p) {
+        margin: 0 0 1.25rem 0;
+    }
+
+    .content :global(ul),
+    .content :global(ol) {
+        padding-left: 1.5rem;
+        margin: 1.25rem 0;
+    }
+
+    .content :global(li) {
+        margin-bottom: 0.625rem;
+        line-height: 1.7;
+    }
+
+    .content :global(ul li::marker) {
+        color: #e46354;
+    }
+
+    .content :global(strong) {
+        font-weight: 700;
+        color: #e46354;
+    }
+
+    .content :global(a) {
+        color: #e46354;
+        font-weight: 600;
+        text-decoration: underline;
+        text-underline-offset: 2px;
+        transition: all 0.2s ease;
+    }
+
+    .content :global(a:hover) {
+        color: #d94a3d;
+    }
+
+    /* SMALL IMAGES */
+    .content :global(img) {
+        max-width: 400px;
+        width: 100%;
+        height: auto;
+        border-radius: 8px;
+        margin: 1.5rem 0;
+        display: block;
+        box-shadow: 0 6px 20px rgba(9, 51, 84, 0.1);
+    }
+
+    .content :global(hr) {
+        border: none;
+        height: 2px;
+        background: linear-gradient(90deg, transparent, rgba(228, 99, 84, 0.2), transparent);
+        margin: 2.5rem 0;
+    }
+
+    /* Related Experiments - LIGHTER */
+    .related-experiments-section {
+        padding: 4rem 0 0 0;
+        margin: 0;
+        width: 100%;
+        background: rgba(228, 99, 84, 0.05);
+    }
+
+    .related-header {
+        text-align: left;
+        padding: 0 1rem 2rem;
+        max-width: 1600px;
+        margin: 0 auto;
+    }
+
+    .related-header h2 {
+        font-size: clamp(2.5rem, 6vw, 3.5rem);
+        color: #093354;
+        margin: 0;
+        font-weight: 900;
+        letter-spacing: -0.02em;
+    }
+
+    .experiments-grid {
+        display: grid;
+        grid-template-columns: repeat(2, 1fr);
+        gap: 1rem;
+        width: 100%;
+        margin: 0 auto;
+        padding: 0 1rem;
+        max-width: 1600px;
+    }
+
+    .experiment-card {
+        display: block;
+        position: relative;
+        aspect-ratio: 1 / 1;
+        overflow: hidden;
+        text-decoration: none;
+        cursor: pointer;
+        border: none;
+        margin: 0;
+        padding: 0;
+    }
+
+    .card-image {
+        width: 100%;
+        height: 100%;
+        position: relative;
+    }
+
+    .card-image::before {
+        content: "";
+        position: absolute;
+        inset: 0;
+        background: rgba(228, 99, 84, 0.1);
+        z-index: 1;
+        transition: opacity 0.4s ease;
+    }
+
+    .experiment-card:hover .card-image::before {
+        opacity: 0;
+    }
+
+    .card-image img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        display: block;
+        filter: brightness(1.05) saturate(0.9);
+        transition: transform 0.6s cubic-bezier(0.165, 0.84, 0.44, 1);
+    }
+
+    .experiment-card:hover .card-image img {
+        transform: scale(1.05);
+    }
+
+    .placeholder-image {
+        width: 100%;
+        height: 100%;
+        background: linear-gradient(135deg, rgba(228, 99, 84, 0.3) 0%, rgba(228, 99, 84, 0.2) 100%);
+    }
+
+    .card-overlay {
+        position: absolute;
+        inset: 0;
+        background: rgba(228, 99, 84, 0.75);
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        padding: 2rem;
+        opacity: 0;
+        transition: opacity 0.4s ease;
+        text-align: center;
+        z-index: 2;
+    }
+
+    .experiment-card:hover .card-overlay {
+        opacity: 1;
+    }
+
+    .experiment-title-card {
+        font-size: clamp(1.125rem, 2vw, 1.5rem);
+        font-weight: 800;
+        color: #093354;
+        margin: 0 0 0.75rem 0;
+        letter-spacing: -0.01em;
+    }
+
+    .experiment-preview {
+        font-size: clamp(0.875rem, 1.2vw, 1rem);
+        color: rgba(9, 51, 84, 0.85);
+        line-height: 1.5;
+        margin: 0;
+        display: -webkit-box;
+        -webkit-line-clamp: 2;
+        -webkit-box-orient: vertical;
+        overflow: hidden;
+    }
+
+    .back-button-container {
+        padding: 2rem 1rem 3rem;
+        text-align: center;
+        background: rgba(228, 99, 84, 0.05);
+    }
+
+    .back-button {
+        display: inline-flex;
+        align-items: center;
+        gap: 0.5rem;
+        color: #e46354;
+        text-decoration: none;
+        font-size: 0.875rem;
+        font-weight: 600;
+        padding: 0.75rem 1.5rem;
+        background: rgba(228, 99, 84, 0.1);
+        border: 2px solid rgba(228, 99, 84, 0.2);
+        border-radius: 50px;
+        transition: all 0.3s ease;
+    }
+
+    .back-button:hover {
+        background: rgba(228, 99, 84, 0.2);
+        border-color: #e46354;
+        transform: translateX(-3px);
+    }
+
+    /* Responsive */
+    @media (min-width: 40rem) {
+        .hero-section {
+            padding: 6rem 0 4rem;
+        }
+
+        .content-section {
+            padding: 5rem 0;
+        }
+
+        .related-experiments-section {
+            padding: 6rem 0 0 0;
+        }
+
+        .related-header {
+            padding: 0 1.5rem 3rem;
+        }
+
+        .experiments-grid {
+            padding: 0 1.5rem;
+            gap: 1.5rem;
+        }
+    }
+
+    @media (min-width: 1024px) {
+        .hero-section {
+            padding: 7rem 0 5rem;
+        }
+
+        .experiments-grid {
+            grid-template-columns: repeat(4, 1fr);
+            gap: 2rem;
+        }
+    }
+</style>
