@@ -6,6 +6,8 @@ tags: ["Creative Coding", "JavaScript", "Game Design", "UX", "Animation"]
 status: "completed"
 cover: "../../assets/projects/star_simpfony.jpeg"
 image: "../../assets/projects/star_simpfony.jpeg"
+layout: ../../layouts/MarkdownProjectLayout.astro
+
 ---
 
 # Click-Driven Game – Star Symphony

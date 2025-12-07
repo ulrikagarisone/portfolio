@@ -6,6 +6,7 @@ tags: ["UX Design", "Interaction Design", "Illustration", "Prototyping", "Figma"
 status: "completed"
 cover: "../../assets/projects/workshop.jpeg"
 image: "../../assets/projects/workshop.jpeg"
+layout: ../../layouts/MarkdownProjectLayout.astro
 ---
 
 # Workshop Booking Platform – Immersive Wilderness Form Experience

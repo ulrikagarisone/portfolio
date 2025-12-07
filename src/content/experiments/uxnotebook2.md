@@ -6,6 +6,7 @@ tags: ["Public Spaces", "Hygiene", "Error Prevention", "Accessibility"]
 status: "completed"
 category: "observation"
 cover: "../../assets/experiments/sink.jpg"
+layout: ../../layouts/MarkdownExperimentLayout.astro
 ---
 
 # Unpredictable Washroom Faucet Pressure

@@ -5,6 +5,7 @@ pubDate: 2024-11-01
 tags: ["Creative Coding", "p5.js", "Interactive Art", "Animation", "Generative Design"]
 status: "completed"
 cover: "../../assets/experiments/opposites.jpeg"
+layout: ../../layouts/MarkdownExperimentLayout.astro
 ---
 
 # Opposites — Chaos / Order / Dark / Light (p5.js)

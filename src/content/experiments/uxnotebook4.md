@@ -6,6 +6,7 @@ tags: ["Airport Design", "Seating", "Travel Experience", "Environmental Fit"]
 status: "completed"
 category: "observation"
 cover: "../../assets/experiments/bag.jpg"
+layout: ../../layouts/MarkdownExperimentLayout.astro
 ---
 
 # Nowhere to Place Bags at Airport Gate

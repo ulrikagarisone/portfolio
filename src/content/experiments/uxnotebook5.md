@@ -6,6 +6,7 @@ tags: ["Travel", "Public Transit", "Interface Design", "International UX"]
 status: "completed"
 category: "observation"
 cover: "../../assets/experiments/tickets.jpg"
+layout: ../../layouts/MarkdownExperimentLayout.astro
 ---
 
 # Inconsistent Train Ticket Interfaces Abroad

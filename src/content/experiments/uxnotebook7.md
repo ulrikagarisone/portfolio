@@ -6,6 +6,7 @@ tags: ["Urban Design", "Bicycles", "Public Infrastructure", "Accessibility"]
 status: "completed"
 category: "observation"
 cover: "../../assets/experiments/bike.jpg"
+layout: ../../layouts/MarkdownExperimentLayout.astro
 ---
 
 # Bike Parking: Racks Don't Fit Modern Wheel Sizes

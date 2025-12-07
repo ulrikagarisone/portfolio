@@ -6,6 +6,8 @@ tags: ["UX Design", "Campaign Design", "Sustainability", "Concepting", "Storyboa
 status: "completed"
 cover: "../../assets/projects/dont_mow_may.jpeg"
 image: "/images/try.jpeg"
+layout: ../../layouts/MarkdownProjectLayout.astro
+
 ---
 
 

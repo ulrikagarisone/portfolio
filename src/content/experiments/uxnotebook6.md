@@ -6,6 +6,7 @@ tags: ["Retail", "Connectivity", "Wayfinding", "Digital-Physical"]
 status: "completed"
 category: "observation"
 cover: "../../assets/experiments/phone.jpg"
+layout: ../../layouts/MarkdownExperimentLayout.astro
 ---
 
 # No Reception in Grocery Store, Stranded Without Maps

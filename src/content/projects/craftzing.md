@@ -6,6 +6,7 @@ tags: ["UX Research", "Service Design", "Craftzing", "User Studies"]
 status: "in-progress"
 cover: "../../assets/projects/craftzing.jpeg"
 image: "../../assets/projects/workshop.jpeg"
+layout: ../../layouts/MarkdownProjectLayout.astro
 ---
 
 # Craftzing UX Research Collaboration

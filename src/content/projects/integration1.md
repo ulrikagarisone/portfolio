@@ -6,6 +6,8 @@ tags: ["UX Design", "User Research", "Wireframing", "Prototyping", "Figma"]
 status: "completed"
 cover: "../../assets/projects/integration1.jpeg"
 image: "../../assets/projects/integration1.jpeg"
+layout: ../../layouts/MarkdownProjectLayout.astro
+
 ---
 
 # Integration 1 – Off The Grid Tips & Tricks

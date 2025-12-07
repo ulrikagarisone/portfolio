@@ -6,6 +6,7 @@ tags: ["Sustainability", "Airport Retail", "Consumer Experience", "Environmental
 status: "completed"
 category: "observation"
 cover: "../../assets/experiments/water.jpg"
+layout: ../../layouts/MarkdownExperimentLayout.astro
 ---
 
 # Airport Water Bottles: Size, Price, and Waste

@@ -5,6 +5,7 @@ pubDate: 2024-10-01
 tags: ["Creative Coding", "p5.js", "Generative Art", "Interactive Design", "JavaScript"]
 status: "completed"
 cover: "../../assets/experiments/p5js.jpeg"
+layout: ../../layouts/MarkdownExperimentLayout.astro
 ---
 
 # Generative Masks – Creative Coding (p5.js)

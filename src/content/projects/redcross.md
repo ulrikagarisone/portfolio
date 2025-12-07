@@ -6,6 +6,8 @@ tags: ["UX Research", "User Journey", "AIDA Funnel", "Field Observation", "Miro"
 status: "completed"
 cover: "../../assets/projects/red_cross.jpeg"
 image: "../../assets/projects/red_cross.jpeg"
+layout: ../../layouts/MarkdownProjectLayout.astro
+
 ---
 
 # Red Cross Flanders – User Experience Analysis

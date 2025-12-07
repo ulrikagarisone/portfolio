@@ -6,6 +6,8 @@ tags: ["Storytelling", "Web Design", "Scrollytelling", "Figma", "Illustration"]
 status: "completed"
 cover: "../../assets/projects/eddison_story_telling.jpeg"
 image: "/src/assets/projects/eddison_story_telling.jpeg"
+layout: ../../layouts/MarkdownProjectLayout.astro
+
 ---
 
 

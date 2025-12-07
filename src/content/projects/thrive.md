@@ -6,6 +6,8 @@ tags: ["UX Design", "Visual Design", "Interaction Design", "Prototyping", "Figma
 status: "in-progress"
 cover: "../../assets/projects/thrive.jpeg"
 image: "../../assets/projects/workshop.jpeg"
+layout: ../../layouts/MarkdownProjectLayout.astro
+
 ---
 
 

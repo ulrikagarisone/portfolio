@@ -6,6 +6,8 @@ tags: ["UX Design", "Wireframing", "User Research", "Accessibility", "Figma"]
 status: "completed"
 cover: "../../assets/projects/gym_wireframes.jpeg"
 image: "../../assets/projects/gym_wireframes.jpeg"
+layout: ../../layouts/MarkdownProjectLayout.astro
+
 ---
 
 # Gym Website Redesign for 50+ Audience

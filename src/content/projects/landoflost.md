@@ -5,6 +5,8 @@ pubDate: 2024-10-01
 tags: ["Web Design", "Illustration", "UX Design", "Storytelling", "Figma", "Digital Collage"]
 status: "completed"
 cover: "../../assets/projects/lost_found.jpeg"
+layout: ../../layouts/MarkdownProjectLayout.astro
+
 ---
 
 # Land of Lost & Found

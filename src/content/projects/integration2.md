@@ -6,6 +6,8 @@ tags: ["UX Design", "Interaction Design", "Wireframing", "Storytelling", "Figma"
 status: "completed"
 cover: "../../assets/projects/integration2.jpeg"
 image: "../../assets/projects/integration2.jpeg"
+layout: ../../layouts/MarkdownProjectLayout.astro
+
 ---
 
 # Integration 2 – Key Whisperers

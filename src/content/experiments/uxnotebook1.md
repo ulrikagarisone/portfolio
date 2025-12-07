@@ -6,6 +6,7 @@ tags: ["Usability", "Campus Life", "Error Prevention", "Feedback"]
 status: "completed"
 category: "observation"
 cover: "../../assets/experiments/coffe.jpg"
+layout: ../../layouts/MarkdownExperimentLayout.astro
 ---
 
 # Unclear Coffee Machine Interface at Campus

@@ -1,137 +1,145 @@
 ---
-import type { CollectionEntry } from "astro:content";
+import BaseLayout from "./BaseLayout.astro";
 import { getCollection } from "astro:content";
 import { Image } from "astro:assets";
 
-interface Props {
-    project: CollectionEntry<"projects">;
-    Content: any;
-}
-
-const { project, Content } = Astro.props;
-const { title, description, tags, status, pubDate } = project.data;
+const { frontmatter } = Astro.props;
 
 // Get other projects for related section
 const allProjects = await getCollection("projects");
+const currentPath = Astro.url.pathname;
+const pathParts = currentPath.split("/").filter(Boolean);
+const currentId = pathParts[pathParts.length - 1];
+
 const otherProjects = allProjects
-    .filter((p) => p.id !== project.id)
+    .filter((p) => p.id !== currentId)
     .sort(() => Math.random() - 0.5)
     .slice(0, 4);
 ---
 
-<div class="project-detail">
-    <!-- Hero Section -->
-    <section class="hero-section">
-        <div class="container">
-            <a href={`${import.meta.env.BASE_URL}projects`} class="back-link">
-                <svg width="20" height="20" viewBox="0 0 24 24" fill="none">
-                    <path
-                        d="M19 12H5M12 19l-7-7 7-7"
-                        stroke="currentColor"
-                        stroke-width="2.5"
-                        stroke-linecap="round"></path>
-                </svg>
-                <span>Back to Projects</span>
-            </a>
+<BaseLayout title={frontmatter.title}>
+    <div class="project-detail">
+        <!-- Hero section -->
+        <section class="hero-section">
+            <div class="container">
+                <a
+                    href={`${import.meta.env.BASE_URL}projects`}
+                    class="back-link"
+                >
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none">
+                        <path
+                            d="M19 12H5M12 19l-7-7 7-7"
+                            stroke="currentColor"
+                            stroke-width="2.5"
+                            stroke-linecap="round"></path>
+                    </svg>
+                    <span>Back to Projects</span>
+                </a>
 
-            <h1 class="project-title">{title}</h1>
-            <p class="project-description">{description}</p>
+                <h1 class="project-title">{frontmatter.title}</h1>
+                <p class="project-description">{frontmatter.description}</p>
 
-            {
-                tags && tags.length > 0 && (
-                    <div class="tags-list">
-                        {tags.map((tag) => (
-                            <span class="tag">{tag}</span>
-                        ))}
+                {
+                    frontmatter.tags && frontmatter.tags.length > 0 && (
+                        <div class="tags-list">
+                            {frontmatter.tags.map((tag) => (
+                                <span class="tag">{tag}</span>
+                            ))}
+                        </div>
+                    )
+                }
+
+                <div class="meta-info">
+                    <div class="meta-item">
+                        <span class="meta-label">YEAR</span>
+                        <span class="meta-value">
+                            {new Date(frontmatter.pubDate).getFullYear()}
+                        </span>
                     </div>
-                )
-            }
-
-            <div class="meta-info">
-                <div class="meta-item">
-                    <span class="meta-label">YEAR</span>
-                    <span class="meta-value"
-                        >{new Date(pubDate).getFullYear()}</span
-                    >
-                </div>
-                <div class="meta-item">
-                    <span class="meta-label">STATUS</span>
-                    <span class="meta-value status-badge">{status}</span>
-                </div>
-                <div class="meta-item">
-                    <span class="meta-label">ROLE</span>
-                    <span class="meta-value">UX Designer / Developer</span>
+                    <div class="meta-item">
+                        <span class="meta-label">STATUS</span>
+                        <span class="meta-value status-badge"
+                            >{frontmatter.status}</span
+                        >
+                    </div>
+                    <div class="meta-item">
+                        <span class="meta-label">ROLE</span>
+                        <span class="meta-value">UX Designer / Developer</span>
+                    </div>
                 </div>
             </div>
-        </div>
-    </section>
+        </section>
 
-    <section class="content-section">
-        <div class="container">
-            <article class="content">
-                <Content />
-            </article>
-        </div>
-    </section>
+        <section class="content-section">
+            <div class="container">
+                <article class="content">
+                    <slot />
+                </article>
+            </div>
+        </section>
 
-    <!-- Related Projects Grid -->
-    <div class="related-projects-section">
-        <div class="related-header">
-            <h2>You may also like</h2>
-        </div>
+        <!-- Related projects grid -->
+        <div class="related-projects-section">
+            <div class="related-header">
+                <h2>You may also like</h2>
+            </div>
 
-        <div class="projects-grid">
-            {
-                otherProjects.map((relatedProject) => {
-                    let imageContent;
-                    if (relatedProject.data.cover) {
-                        imageContent = (
-                            <Image
-                                src={relatedProject.data.cover}
-                                alt={relatedProject.data.title}
-                                width={800}
-                                height={800}
-                                loading="lazy"
-                            />
+            <div class="projects-grid">
+                {
+                    otherProjects.map((relatedProject) => {
+                        let imageContent;
+                        if (relatedProject.data.cover) {
+                            imageContent = (
+                                <Image
+                                    src={relatedProject.data.cover}
+                                    alt={relatedProject.data.title}
+                                    width={800}
+                                    height={800}
+                                    loading="lazy"
+                                />
+                            );
+                        } else {
+                            imageContent = <div class="placeholder-image" />;
+                        }
+
+                        return (
+                            <a
+                                href={`${import.meta.env.BASE_URL}projects/${relatedProject.id}`}
+                                class="project-card"
+                            >
+                                <div class="card-image">{imageContent}</div>
+                                <div class="card-overlay">
+                                    <h3 class="project-title-card">
+                                        {relatedProject.data.title}
+                                    </h3>
+                                    <p class="project-preview">
+                                        {relatedProject.data.description}
+                                    </p>
+                                </div>
+                            </a>
                         );
-                    } else {
-                        imageContent = <div class="placeholder-image" />;
-                    }
+                    })
+                }
+            </div>
 
-                    return (
-                        <a
-                            href={`${import.meta.env.BASE_URL}projects/${relatedProject.id}`}
-                            class="project-card"
-                        >
-                            <div class="card-image">{imageContent}</div>
-                            <div class="card-overlay">
-                                <h3 class="project-title-card">
-                                    {relatedProject.data.title}
-                                </h3>
-                                <p class="project-preview">
-                                    {relatedProject.data.description}
-                                </p>
-                            </div>
-                        </a>
-                    );
-                })
-            }
-        </div>
-
-        <div class="back-button-container">
-            <a href={`${import.meta.env.BASE_URL}projects`} class="back-button">
-                <svg width="20" height="20" viewBox="0 0 24 24" fill="none">
-                    <path
-                        d="M19 12H5M12 19l-7-7 7-7"
-                        stroke="currentColor"
-                        stroke-width="2"
-                        stroke-linecap="round"></path>
-                </svg>
-                Back to all projects
-            </a>
+            <div class="back-button-container">
+                <a
+                    href={`${import.meta.env.BASE_URL}projects`}
+                    class="back-button"
+                >
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none">
+                        <path
+                            d="M19 12H5M12 19l-7-7 7-7"
+                            stroke="currentColor"
+                            stroke-width="2"
+                            stroke-linecap="round"></path>
+                    </svg>
+                    Back to all projects
+                </a>
+            </div>
         </div>
     </div>
-</div>
+</BaseLayout>
 
 <style>
     .project-detail {
@@ -150,7 +158,7 @@ const otherProjects = allProjects
         box-sizing: border-box;
     }
 
-    /* Hero Section */
+    /* Hero section */
     .hero-section {
         background: linear-gradient(
             135deg,
@@ -316,7 +324,7 @@ const otherProjects = allProjects
         width: fit-content;
     }
 
-    /* Content Section */
+    /* Content section */
     .content-section {
         padding: 4rem 0;
         background: #fff6f5;
@@ -410,7 +418,7 @@ const otherProjects = allProjects
         color: #d94a3d;
     }
 
-    /* SMALL IMAGES - max 400px */
+    /* SMALL IMAGES */
     .content :global(img) {
         max-width: 400px;
         width: 100%;
@@ -451,7 +459,7 @@ const otherProjects = allProjects
         font-family: "Courier New", monospace;
     }
 
-    /* Related Projects - BIGGER CARDS */
+    /* Related projects */
     .related-projects-section {
         padding: 4rem 0 0 0;
         margin: 0;
@@ -467,14 +475,14 @@ const otherProjects = allProjects
     }
 
     .related-header h2 {
-        font-size: clamp(3rem, 8vw, 4rem);
+        font-size: clamp(1.5rem, 4.5vw, 2.5rem);
         color: #fff6f5;
         margin: 0;
         font-weight: 900;
         letter-spacing: -0.02em;
     }
 
-    /* MOBILE FIRST - 2x2 GRID */
+    /* 2x2 GRID */
     .projects-grid {
         display: grid;
         grid-template-columns: repeat(2, 1fr);
@@ -503,7 +511,7 @@ const otherProjects = allProjects
         position: relative;
     }
 
-    /* GREYSCALE EFFECT like main grid */
+    /* GREYSCALE EFFECT */
     .card-image::before {
         content: "";
         position: absolute;
@@ -612,7 +620,7 @@ const otherProjects = allProjects
         transform: translateX(-3px);
     }
 
-    /* Table Styling - Add to your <style> section */
+    /* Table styling */
     .content :global(table) {
         width: 100%;
         border-collapse: separate;
@@ -670,78 +678,7 @@ const otherProjects = allProjects
         font-weight: 400;
     }
 
-    /* Responsive table styles */
-    @media (max-width: 640px) {
-        .content :global(table) {
-            border-radius: 6px;
-        }
-
-        .content :global(th),
-        .content :global(td) {
-            padding: 0.75rem 1rem;
-            font-size: 0.85rem;
-        }
-
-        .content :global(td:first-child) {
-            width: 40%;
-        }
-
-        .content :global(td:last-child) {
-            width: 60%;
-        }
-    }
-
-    @media (max-width: 480px) {
-        /* Stack table on very small screens */
-        .content :global(table),
-        .content :global(thead),
-        .content :global(tbody),
-        .content :global(th),
-        .content :global(td),
-        .content :global(tr) {
-            display: block;
-        }
-
-        .content :global(thead tr) {
-            display: none;
-        }
-
-        .content :global(tr) {
-            margin-bottom: 1rem;
-            border-radius: 6px;
-            overflow: hidden;
-            box-shadow: 0 1px 4px rgba(9, 51, 84, 0.04);
-        }
-
-        .content :global(tbody tr) {
-            border-bottom: none !important;
-        }
-
-        .content :global(tbody tr:hover) {
-            background: #ffffff;
-        }
-
-        .content :global(td) {
-            border: none;
-            position: relative;
-            padding: 0.75rem 1rem;
-        }
-
-        .content :global(td:first-child) {
-            background: rgba(9, 51, 84, 0.03);
-            font-weight: 600;
-            color: rgba(9, 51, 84, 0.85);
-            border-bottom: 1px solid rgba(9, 51, 84, 0.08);
-            width: 100%;
-        }
-
-        .content :global(td:last-child) {
-            width: 100%;
-            padding: 1rem;
-        }
-    }
-
-    /* Responsive - DESKTOP 4 IN ONE ROW */
+    /* Responsive */
     @media (min-width: 40rem) {
         .hero-section {
             padding: 6rem 0 4rem;
@@ -774,7 +711,7 @@ const otherProjects = allProjects
         }
     }
 
-    @media (min-width: 1024px) {
+    @media (min-width: 64rem) {
         .hero-section {
             padding: 7rem 0 5rem;
         }
