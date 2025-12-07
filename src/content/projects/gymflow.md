@@ -5,7 +5,6 @@ pubDate: 2025-04-15
 tags: ["UX Design", "Wireframing", "User Research", "Accessibility", "Figma"]
 status: "completed"
 cover: "../../assets/projects/gym_wireframes.jpeg"
-image: "../../assets/projects/gym_wireframes.jpeg"
 layout: ../../layouts/MarkdownProjectLayout.astro
 
 ---
@@ -50,6 +49,7 @@ I created **quick & dirty prototypes** of the main pages and tested them with us
 Testing was documented with **mobile videos** to capture usability, clarity, and content relevance.
 
 ### 4. High-Fidelity Wireframes
+![Description](../../assets/projects/gym_flow.jpeg)
 Based on user feedback, I developed **high-fidelity wireframes** for **four main pages**:  
 - **Homepage:** Hub with featured classes, community highlights, and navigation  
 - **Community Page:** Member stories, challenges, and social engagement  

@@ -5,7 +5,7 @@ pubDate: 2025-01-15
 tags: ["Creative Coding", "JavaScript", "Game Design", "UX", "Animation"]
 status: "completed"
 cover: "../../assets/projects/star_simpfony.jpeg"
-image: "../../assets/projects/star_simpfony.jpeg"
+image: "../../assets/projects/star_banner.jpeg"
 layout: ../../layouts/MarkdownProjectLayout.astro
 
 ---
@@ -15,6 +15,7 @@ layout: ../../layouts/MarkdownProjectLayout.astro
 ## Overview
 Star Symphony is an interactive, rhythm-based clicker game. Players take on the role of a cosmic conductor, orchestrating stars in constellations. Clicking in rhythm earns "cosmic vibrancy" (points) to process wishes and expand the celestial orchestra.
 
+![Visal Style](../../assets/projects/game_play.jpeg)
 **Key Goals:**
 - Create a unique rhythm-based clicker game
 - Demonstrate coding, UX, and motion design skills

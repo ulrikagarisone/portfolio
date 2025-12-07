@@ -10,6 +10,7 @@ const projects = defineCollection({
         tags: z.array(z.string()),
         status: z.enum(['completed', 'in-progress', 'archived']).default('completed'),
         cover: image().optional(),
+        image: image().optional(),
     }),
 });
 
@@ -22,6 +23,7 @@ const experiments = defineCollection({
         tags: z.array(z.string()),
         status: z.enum(['completed', 'in-progress', 'archived']).default('completed'),
         cover: image().optional(),
+        image: image().optional(),
     }),
 });
 

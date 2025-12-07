@@ -5,7 +5,7 @@ pubDate: 2025-09-26
 tags: ["UX Design", "Visual Design", "Interaction Design", "Prototyping", "Figma", "Brand Experience"]
 status: "in-progress"
 cover: "../../assets/projects/thrive.jpeg"
-image: "../../assets/projects/workshop.jpeg"
+image: "../../assets/projects/thrive_banner.jpg"
 layout: ../../layouts/MarkdownProjectLayout.astro
 
 ---
@@ -22,6 +22,7 @@ Thrive — Unwind IPA is a university-developed beverage designed around radical
 ---
 
 ## My Approach
+![Visual Style](../../assets/projects/thrive_visual.jpeg)
 The guiding principle behind Thrive – Unwind IPA is radical transparency. From day one, the vision wasn’t to *claim* honesty — it was to *prove it*. The website and brand system were designed to dissolve skepticism, remove guesswork, and build confidence through openness.  
 
 Every interaction, headline, and visual aims to make users feel:  

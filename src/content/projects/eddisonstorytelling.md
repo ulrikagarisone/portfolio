@@ -5,7 +5,7 @@ pubDate: 2024-10-10
 tags: ["Storytelling", "Web Design", "Scrollytelling", "Figma", "Illustration"]
 status: "completed"
 cover: "../../assets/projects/eddison_story_telling.jpeg"
-image: "/src/assets/projects/eddison_story_telling.jpeg"
+image: "../../assets/projects/edison_banner.jpg"
 layout: ../../layouts/MarkdownProjectLayout.astro
 
 ---
@@ -36,6 +36,7 @@ For this storytelling project, I wanted to go far beyond a simple timeline or fa
 I chose the “Edison didn’t invent the light bulb” misconception because it’s familiar yet complex—it’s about **how stories shape our understanding of innovation**. Framing the site as a “declassified case file,” I invited users to take on the role of detective, following red threads, magnifying clues, and tracking the global relay of invention.  
 
 ### Visual & Graphic Language
+![Description](../../assets/projects/edison_visual.jpeg)
 The visual style draws inspiration from **vintage investigative journalism**:  
 - **Collage textures** and hand-illustrated lines guide the eye from clue to clue.  
 - **Stamped typewriter fonts** evoke old case files.  

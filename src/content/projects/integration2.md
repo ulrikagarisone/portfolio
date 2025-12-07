@@ -5,7 +5,7 @@ pubDate: 2025-05-25
 tags: ["UX Design", "Interaction Design", "Wireframing", "Storytelling", "Figma", "Front-End Development"]
 status: "completed"
 cover: "../../assets/projects/integration2.jpeg"
-image: "../../assets/projects/integration2.jpeg"
+image: "../../assets/projects/integration2_banner.jpg"
 layout: ../../layouts/MarkdownProjectLayout.astro
 
 ---
@@ -44,6 +44,7 @@ This project followed the Integration 2 briefing, which asked for:
 ---
 
 ## Approach / Concept
+![Visual Style](../../assets/projects/integartion2_visual.jpg)
 - **Theme:** Keys as silent witnesses of daily life, carrying memories and emotional weight.  
 - **Twist:** Transform ordinary keys into interactive objects that reveal stories and inspire playful actions.  
 - **User Flow:** Explore keys → interact with one of the three alternative uses → participate in a challenge → view testimonials and feedback.  
@@ -54,6 +55,7 @@ This project followed the Integration 2 briefing, which asked for:
 ---
 
 ## Features
+![Features](../../assets/projects/interaction_integration2.jpg)
 - **Windchimes Interaction:** Drag keys to build a musical memory chime.  
 - **Garden Gossip:** Hover or place keys in a virtual garden to trigger playful feedback.  
 - **Ritual Planting:** Plant keys to trigger symbolic animations and encourage reflection.  

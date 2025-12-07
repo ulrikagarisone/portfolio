@@ -5,7 +5,7 @@ pubDate: 2025-02-05
 tags: ["UX Research", "User Journey", "AIDA Funnel", "Field Observation", "Miro", "Figjam"]
 status: "completed"
 cover: "../../assets/projects/red_cross.jpeg"
-image: "../../assets/projects/red_cross.jpeg"
+image: "../../assets/projects/red_cross_banner.jpg"
 layout: ../../layouts/MarkdownProjectLayout.astro
 
 ---

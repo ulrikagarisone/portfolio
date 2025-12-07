@@ -5,7 +5,6 @@ pubDate: 2025-09-20
 tags: ["UX Research", "Service Design", "Craftzing", "User Studies"]
 status: "in-progress"
 cover: "../../assets/projects/craftzing.jpeg"
-image: "../../assets/projects/workshop.jpeg"
 layout: ../../layouts/MarkdownProjectLayout.astro
 ---
 

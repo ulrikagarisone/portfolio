@@ -5,7 +5,7 @@ pubDate: 2025-01-15
 tags: ["UX Design", "User Research", "Wireframing", "Prototyping", "Figma"]
 status: "completed"
 cover: "../../assets/projects/integration1.jpeg"
-image: "../../assets/projects/integration1.jpeg"
+image: "../../assets/projects/integration_banner.jpg"
 layout: ../../layouts/MarkdownProjectLayout.astro
 
 ---
@@ -25,8 +25,8 @@ layout: ../../layouts/MarkdownProjectLayout.astro
 **Live demo:** [View Off The Grid Tips & Tricks](https://ulrikagarisone.be/integration1/)
 
 ---
-
 ## Features
+![Visual Style](../../assets/projects/integration1_visual.jpeg)
 - **Targeted tips:** Content written for a defined audience (“Weekend Wave Surfers”) addressing real pain points and aspirations.  
 - **Practical & quirky ideas:** Each tip includes context, references, and playful microcopy.  
 - **User invitation:** Forms and CTAs encourage users to join a challenge, share stories, or request support.  

@@ -5,7 +5,7 @@ pubDate: 2024-05-25
 tags: ["UX Design", "Campaign Design", "Sustainability", "Concepting", "Storyboarding"]
 status: "completed"
 cover: "../../assets/projects/dont_mow_may.jpeg"
-image: "/images/try.jpeg"
+image: "../../assets/projects/bee_banner.jpg"
 layout: ../../layouts/MarkdownProjectLayout.astro
 
 ---
@@ -48,6 +48,7 @@ layout: ../../layouts/MarkdownProjectLayout.astro
   3. **Augmented Reality Lawn Scanner:** Visualizes the ecological potential of your uncut lawn.
 
 ### 3. Solution Selection & Sketches
+![Sketches](../../assets/projects/sketches.jpg)
 - Selected the **Virtual Garden Challenge** as the final concept.
 - Developed sketches and wireframes demonstrating user interaction, storytelling, and visual feedback loops.
 - Key features:
@@ -56,6 +57,7 @@ layout: ../../layouts/MarkdownProjectLayout.astro
   - Integration with social sharing to amplify participation.
 
 ### 4. Solution Storyboard
+![Solution Storyboard](../../assets/projects/salution_styleboard.jpeg)
 - Created a detailed storyboard illustrating the user's journey:  
   **Discover → Pledge → Track → Share → Reflect**
 - Highlighted visual storytelling elements, user motivations, and emotional engagement points.

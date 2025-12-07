@@ -5,7 +5,7 @@ pubDate: 2025-03-18
 tags: ["UX Design", "Interaction Design", "Illustration", "Prototyping", "Figma", "User Experience"]
 status: "completed"
 cover: "../../assets/projects/workshop.jpeg"
-image: "../../assets/projects/workshop.jpeg"
+image: "../../assets/projects/workshop_banner.jpg"
 layout: ../../layouts/MarkdownProjectLayout.astro
 ---
 
