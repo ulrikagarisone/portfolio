@@ -13,8 +13,8 @@ import portraitImg from "../assets/about/me.jpeg";
             <Image 
                 src={beginningImg}
                 alt="The Beginning"
-                width={600}
-                height={800}
+                width={880}
+                height={890}
                 loading="lazy"
             />
             <div class="image-overlay"></div>
@@ -79,7 +79,7 @@ import portraitImg from "../assets/about/me.jpeg";
         </div>
     </div>
 
-    <!-- Custom Portrait Cursor (Desktop Only) -->
+    <!-- Custom portrait (desktop only) -->
     <div class="portrait-cursor" data-cursor="portrait">
         <div class="cursor-frame">
             <Image 
@@ -385,7 +385,7 @@ import portraitImg from "../assets/about/me.jpeg";
                     },
                 });
 
-                // Create ONE smooth timeline for all movement
+                // Create smooth timeline for all movement
                 const tl = gsap.timeline({
                     scrollTrigger: {
                         trigger: section,

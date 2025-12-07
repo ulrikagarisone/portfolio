@@ -124,9 +124,9 @@ const { projects } = Astro.props;
         position: absolute;
         inset: 0;
         background: #182a47;
-        opacity: 1; /* Lower opacity - try 0.4 to 0.6 */
+        opacity: 1;
         z-index: 1;
-        mix-blend-mode: color; /* Keep this! */
+        mix-blend-mode: color;
         transition: opacity 0.4s ease;
     }
 
@@ -152,6 +152,7 @@ const { projects } = Astro.props;
         height: 100%;
         background: linear-gradient(135deg, #182a47 0%, #0d1f35 100%);
     }
+
     /*Hoover overlay */
     .card-overlay {
         position: absolute;
@@ -206,7 +207,7 @@ const { projects } = Astro.props;
         }
     }
 
-    @media (min-width: 1024px) {
+    @media (min-width: 64rem) {
         .projects-grid {
             grid-template-columns: repeat(4, 1fr);
         }

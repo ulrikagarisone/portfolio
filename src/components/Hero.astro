@@ -1,7 +1,6 @@
 ---
 // src/components/Hero.astro
 import LogoSVG from "../assets/logoug.svg?raw";
-import ArrowSVG from "../assets/arrow.svg?raw";
 ---
 
 <section class="hero">
@@ -10,31 +9,15 @@ import ArrowSVG from "../assets/arrow.svg?raw";
 
     <div class="hero__container">
         <div class="hero__logo-section">
-            <div class="hero__logo" id="animatedLogo" set:html={LogoSVG} />
+            <div class="hero__logo" data-hero="logo" set:html={LogoSVG} />
         </div>
 
         <div class="hero__text-section">
             <!-- Name -->
             <div class="hero__name">
                 <h1 class="hero__title">
-                    <div class="name-line name-line--first">
-                        <span class="name-letter">U</span>
-                        <span class="name-letter">L</span>
-                        <span class="name-letter">R</span>
-                        <span class="name-letter">I</span>
-                        <span class="name-letter">K</span>
-                        <span class="name-letter">A</span>
-                    </div>
-                    <div class="name-line name-line--last">
-                        <span class="name-letter">G</span>
-                        <span class="name-letter">A</span>
-                        <span class="name-letter">R</span>
-                        <span class="name-letter">I</span>
-                        <span class="name-letter">S</span>
-                        <span class="name-letter">O</span>
-                        <span class="name-letter">N</span>
-                        <span class="name-letter">E</span>
-                    </div>
+                    <span class="name-word name-word--first">ULRIKA</span>
+                    <span class="name-word name-word--last">GARISONE</span>
                 </h1>
             </div>
 
@@ -46,38 +29,48 @@ import ArrowSVG from "../assets/arrow.svg?raw";
                     design.
                 </p>
             </div>
+
+            <!-- Buttons -->
+            <div class="hero__buttons">
+                <a
+                    href="/portfolio/projects"
+                    class="hero-btn hero-btn--primary"
+                >
+                    All Projects <span class="btn-arrow">→</span>
+                </a>
+                <a href="/portfolio/about" class="hero-btn hero-btn--secondary">
+                    About Me <span class="btn-arrow">→</span>
+                </a>
+            </div>
         </div>
     </div>
-
-    <div class="hero__arrow" id="scrollArrow" set:html={ArrowSVG} />
-
-    <!-- Blue section peek -->
-    <div class="hero__next-section"></div>
 </section>
+
 <style>
     .hero {
-        min-height: 90vh;
+        min-height: 100vh;
         background: #e46354;
         color: #093354;
         display: flex;
         align-items: center;
         justify-content: center;
-        padding: 2rem 1.5rem;
+        padding: 4rem 1.5rem 2rem;
         position: relative;
         overflow: hidden;
     }
 
-    /* Grid bakground */
+    /* Grid background */
     .hero__grid {
         position: absolute;
         inset: 0;
         background-image: linear-gradient(
-                rgba(9, 51, 84, 0.03) 1px,
+                rgba(9, 51, 84, 0.02) 1px,
                 transparent 1px
             ),
-            linear-gradient(90deg, rgba(9, 51, 84, 0.03) 1px, transparent 1px);
+            linear-gradient(90deg, rgba(9, 51, 84, 0.02) 1px, transparent 1px);
         background-size: 50px 50px;
         opacity: 0;
+        z-index: 0;
     }
 
     .hero__container {
@@ -88,20 +81,27 @@ import ArrowSVG from "../assets/arrow.svg?raw";
         display: flex;
         flex-direction: column;
         align-items: center;
-        gap: 2rem;
+        gap: 1.25rem;
     }
 
     /* Logo */
     .hero__logo-section {
         width: 100%;
-        max-width: 450px;
+        max-width: 260px;
         opacity: 0;
+        display: flex;
+        justify-content: center;
     }
 
     .hero__logo {
         width: 100%;
         height: auto;
         cursor: pointer;
+        transition: transform 0.3s ease;
+    }
+
+    .hero__logo:hover {
+        transform: scale(1.02) rotate(1deg);
     }
 
     .hero__logo :global(svg) {
@@ -110,126 +110,178 @@ import ArrowSVG from "../assets/arrow.svg?raw";
         display: block;
     }
 
-    /* Keep paths as filled for full solid drawing */
-    .hero__logo :global(.cls-1) {
-        fill: #093354;
-        opacity: 0;
+    .hero__logo :global(path) {
+        stroke: #093354;
+        stroke-width: 8;
+        stroke-linecap: round;
+        stroke-linejoin: round;
     }
 
     /* Text section */
     .hero__text-section {
         width: 100%;
-        max-width: 650px;
+        max-width: 550px;
         display: flex;
         flex-direction: column;
-        gap: 1.5rem;
+        gap: 1rem;
     }
 
-    /* overlaping */
     .hero__name {
         width: 100%;
     }
 
     .hero__title {
-        font-size: clamp(2rem, 6vw, 3.5rem);
+        font-size: clamp(1.75rem, 9vw, 3.5rem);
         font-weight: 900;
         line-height: 0.9;
         text-transform: uppercase;
         letter-spacing: -0.03em;
         text-align: center;
         margin: 0;
-    }
-
-    .name-line {
         display: flex;
-        justify-content: center;
-        gap: clamp(0.2rem, 0.8vw, 0.4rem);
-        margin-bottom: 0.25rem;
+        flex-direction: column;
+        gap: 0.2rem;
     }
 
-    .name-line--last {
-        margin-left: clamp(1rem, 3vw, 2rem);
-    }
-
-    .name-letter {
-        display: inline-block;
-        cursor: pointer;
+    .name-word {
+        display: block;
         opacity: 0;
         transform: translateY(30px);
-        transition: transform 0.3s cubic-bezier(0.34, 1.56, 0.64, 1);
     }
 
-    /* First name */
-    .name-line--first .name-letter {
+    .name-word--first {
         color: #fff6f5;
         font-family: "Archivo Black", sans-serif;
     }
 
-    /* Last name */
-    .name-line--last .name-letter {
+    .name-word--last {
         color: #093354;
-        -webkit-text-stroke: 1px #e46354;
+        -webkit-text-stroke: 2px #e46354;
+        margin-left: 0.5rem;
     }
 
-    .name-letter:hover {
-        transform: translateY(-12px) rotate(-3deg);
-    }
-
-    /* Body text */
+    /* Description */
     .hero__description {
         width: 100%;
         opacity: 0;
-        transform: translateY(20px);
+        transform: translateY(30px);
     }
 
     .hero__description p {
-        font-size: clamp(0.95rem, 1.8vw, 1.5rem);
+        font-size: clamp(0.875rem, 2.3vw, 1.25rem);
         line-height: 1.5;
         color: #fff6f5;
         font-weight: 400;
         text-align: center;
-        max-width: 550px;
+        max-width: 480px;
         margin: 0 auto;
     }
 
-    /* Dancing arrow */
-    .hero__arrow {
-        position: absolute;
-        bottom: 12vh;
-        left: 50%;
-        transform: translateX(-50%);
-        width: 50px;
-        height: 50px;
+    /* Buttons */
+    .hero__buttons {
+        display: flex;
+        gap: 0.875rem;
+        justify-content: center;
+        flex-wrap: wrap;
+        margin-top: 0;
         opacity: 0;
-        cursor: pointer;
-        z-index: 10;
+        transform: translateY(30px);
+    }
+
+    .hero-btn {
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        gap: 0.75rem;
+        padding: 0.75rem 1.5rem;
+        font-size: 0.9rem;
+        font-weight: 700;
+        text-decoration: none;
+        border-radius: 50px;
+        text-transform: capitalize;
+        letter-spacing: 0.02em;
+        transition: all 0.3s ease;
+        white-space: nowrap;
+    }
+
+    .btn-arrow {
         transition: transform 0.3s ease;
-        display: none;
+        font-size: 0.95rem;
     }
 
-    .hero__arrow:hover {
-        transform: translateX(-50%) scale(1.1);
+    .hero-btn:hover .btn-arrow {
+        transform: translateX(5px);
     }
 
-    .hero__arrow :global(svg) {
-        width: 100%;
-        height: 100%;
-        filter: drop-shadow(0 4px 12px rgba(9, 51, 84, 0.3));
-    }
-
-    /* Nest section peak */
-    .hero__next-section {
-        position: absolute;
-        bottom: 0;
-        left: 0;
-        right: 0;
-        height: 8vh;
+    .hero-btn--primary {
         background: #093354;
-        opacity: 0;
-        z-index: 1;
+        color: #e46354;
+        border: none;
+        font-size: 0.9rem;
     }
+
+    .hero-btn--primary:hover {
+        transform: scale(1.03);
+    }
+
+    .hero-btn--secondary {
+        background: transparent;
+        color: #093354;
+        border: 2.5px solid #093354;
+    }
+
+    .hero-btn--secondary:hover {
+        background: #093354;
+        color: #fff6f5;
+        transform: scale(1.03);
+    }
+
+    /* Tablet */
+    @media (min-width: 48rem) {
+        .hero {
+            padding: 4rem 1.5rem 2rem;
+        }
+
+        .hero__container {
+            gap: 2rem;
+        }
+
+        .hero__logo-section {
+            max-width: 380px;
+        }
+
+        .hero__title {
+            font-size: clamp(3rem, 8vw, 4.5rem);
+        }
+
+        .name-word--last {
+            margin-left: 1.5rem;
+        }
+
+        .hero__text-section {
+            gap: 1.5rem;
+        }
+
+        .hero__description p {
+            font-size: 1.15rem;
+        }
+
+        .hero-btn {
+            font-size: 0.875rem;
+            padding: 0.75rem 1.5rem;
+        }
+
+        .hero__buttons {
+            gap: 1rem;
+        }
+    }
+
     /* Desktop */
     @media (min-width: 64rem) {
+        .hero {
+            padding: 2rem 1.5rem;
+        }
+
         .hero__container {
             flex-direction: row;
             align-items: center;
@@ -239,7 +291,7 @@ import ArrowSVG from "../assets/arrow.svg?raw";
 
         .hero__logo-section {
             flex: 0 0 auto;
-            max-width: 700px;
+            max-width: 650px;
         }
 
         .hero__text-section {
@@ -249,30 +301,27 @@ import ArrowSVG from "../assets/arrow.svg?raw";
 
         .hero__title {
             text-align: left;
-            font-size: clamp(2.5rem, 5vw, 7rem);
+            font-size: clamp(3.5rem, 6vw, 6rem);
+            align-items: flex-start;
         }
 
-        .name-line {
-            justify-content: flex-start;
-        }
-
-        .name-line--last {
+        .name-word--last {
             margin-left: 2.5rem;
-            margin-top: -1.5rem;
         }
 
         .hero__description p {
             text-align: left;
-            margin-left: 3rem;
+            margin-left: 2.5rem;
+            font-size: 1.25rem;
         }
 
-        .hero__arrow {
-            display: block;
+        .hero__buttons {
+            justify-content: flex-start;
+            margin-left: 2.5rem;
         }
     }
 
-    /* large desktop */
-    @media (min-width: 1400px) {
+    @media (min-width: 87.5rem) {
         .hero__container {
             gap: 4rem;
         }
@@ -280,180 +329,143 @@ import ArrowSVG from "../assets/arrow.svg?raw";
         .hero__logo-section {
             max-width: 750px;
         }
+
+        .hero__title {
+            font-size: clamp(4.5rem, 7vw, 7rem);
+        }
     }
 
-    /* Accesability */
     @media (prefers-reduced-motion: reduce) {
         *,
         *::before,
         *::after {
-            animation-duration: 0.01ms !important;
-            animation-iteration-count: 1 !important;
-            transition-duration: 0.01ms !important;
+            animation: none !important;
+            transition: none !important;
         }
     }
 </style>
 
 <script>
     import { gsap } from "gsap";
-    import { DrawSVGPlugin } from "gsap/DrawSVGPlugin";
-    import { ScrollToPlugin } from "gsap/ScrollToPlugin";
 
-    gsap.registerPlugin(DrawSVGPlugin, ScrollToPlugin);
-
-    const init = () => {
-        const logo = document.querySelector("#animatedLogo");
-
-        if (!logo) {
-            console.error("Logo element not found");
+    function init() {
+        const logoEl = document.querySelector('[data-hero="logo"]');
+        if (!logoEl) {
             return;
         }
 
-        const svg = logo.querySelector("svg");
-
+        const svg = logoEl.querySelector("svg");
         if (!svg) {
-            console.error("SVG not found");
             return;
         }
 
-        // Get all paths
-        const paths = svg.querySelectorAll(".cls-1");
+        const paths = svg.querySelectorAll("path");
 
-        console.log("Found", paths.length, "SVG paths to animate");
+        // Prepare paths for stroke drawing
+        paths.forEach((path) => {
+            const length = path.getTotalLength();
+            path.style.strokeDasharray = length;
+            path.style.strokeDashoffset = length;
+            path.style.fill = "none";
+        });
 
-        const tl = gsap.timeline();
+        const tl = gsap.timeline({ defaults: { ease: "power2.out" } });
 
-        // 1. Fade in grid
         tl.to(".hero__grid", {
             opacity: 1,
-            duration: 1,
-            ease: "power2.out",
+            duration: 0.6,
         })
-
-            // 2. Logo section appears
             .to(
                 ".hero__logo-section",
                 {
                     opacity: 1,
-                    duration: 0.8,
-                    ease: "power3.out",
+                    duration: 0.4,
                 },
-                "-=0.5",
+                "-=0.3",
             )
-
-            // 3. Fade in paths with clip-path effect (simulates drawing)
-            .fromTo(
+            // Draw stroke line by line
+            .to(
                 paths,
                 {
-                    opacity: 0,
-                    clipPath: "inset(0 100% 0 0)",
+                    strokeDashoffset: 0,
+                    duration: 2,
+                    stagger: 0.15,
+                    ease: "power1.inOut",
                 },
-                {
-                    opacity: 1,
-                    clipPath: "inset(0 0% 0 0)",
-                    duration: 3,
-                    ease: "none",
-                    stagger: 0.2,
-                },
+                "-=0.2",
             )
-
-            // 4. Name appears
+            // THEN fill them in
             .to(
-                ".name-letter",
+                paths,
+                {
+                    fill: "#093354",
+                    duration: 0.6,
+                    stagger: 0.08,
+                    ease: "power2.out",
+                },
+                "-=0.3",
+            )
+            .to(
+                ".name-word",
                 {
                     opacity: 1,
                     y: 0,
                     duration: 0.6,
-                    stagger: 0.03,
-                    ease: "back.out(1.7)",
+                    stagger: 0.12,
+                    ease: "power3.out",
                 },
-                "-=0.3",
+                "-=0.5",
             )
-
-            // 5. Description
             .to(
                 ".hero__description",
                 {
                     opacity: 1,
                     y: 0,
-                    duration: 0.8,
-                    ease: "power2.out",
-                },
-                "-=0.4",
-            )
-
-            // 6. Arrow
-            .to(
-                ".hero__arrow",
-                {
-                    opacity: 1,
-                    duration: 0.6,
-                    ease: "power2.out",
+                    duration: 0.5,
                 },
                 "-=0.3",
             )
-
-            // 7. Blue section
             .to(
-                ".hero__next-section",
+                ".hero__buttons",
                 {
                     opacity: 1,
-                    duration: 0.8,
-                    ease: "power3.out",
+                    y: 0,
+                    duration: 0.5,
                 },
-                "-=0.4",
+                "-=0.3",
             );
 
-        // Arrow bounce animation
-        gsap.to(".hero__arrow", {
-            y: -8,
-            duration: 1.5,
-            repeat: -1,
-            yoyo: true,
-            ease: "power1.inOut",
-            delay: 2,
-        });
-
-        // Logo click to replay animation
-        logo.addEventListener("click", () => {
+        // Logo click replay
+        logoEl.addEventListener("click", () => {
             gsap.timeline()
-                // Hide with clip-path
                 .to(paths, {
-                    clipPath: "inset(0 100% 0 0)",
-                    duration: 1,
-                    ease: "power2.in",
+                    fill: "none",
+                    duration: 0.3,
+                })
+                .to(paths, {
+                    strokeDashoffset: (i, el) => {
+                        return el.getTotalLength();
+                    },
+                    duration: 0.8,
                     stagger: {
-                        each: 0.1,
+                        each: 0.08,
                         from: "end",
                     },
+                    ease: "power2.in",
                 })
-                // Reveal with clip-path
                 .to(paths, {
-                    clipPath: "inset(0 0% 0 0)",
-                    duration: 2.5,
-                    ease: "none",
+                    strokeDashoffset: 0,
+                    duration: 2,
                     stagger: 0.15,
+                    ease: "power1.inOut",
+                })
+                .to(paths, {
+                    fill: "#093354",
+                    duration: 0.6,
+                    stagger: 0.08,
                 });
         });
-
-        // Arrow scroll functionality
-        const arrow = document.querySelector("#scrollArrow");
-        if (arrow) {
-            arrow.addEventListener("click", () => {
-                const target = document.querySelector(".personality-section");
-                if (target) {
-                    gsap.to(window, {
-                        scrollTo: { y: target, offsetY: 0 },
-                        duration: 1,
-                        ease: "power3.inOut",
-                    });
-                }
-            });
-        }
-    };
+    }
 
     init();
-
-    // Reinitialize after Astro page transitions
-    document.addEventListener("astro:after-swap", init);
 </script>

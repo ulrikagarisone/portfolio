@@ -52,44 +52,56 @@ import heroImage from "../assets/about/me.jpeg";
         overflow: hidden;
     }
 
-    /* Large text */
+    /* Large text visible by default */
     .hero-me__text-back {
         position: absolute;
-        top: 18%; /* Much higher on mobile so it's visible above modal */
+        top: 50%;
         left: 50%;
         transform: translate(-50%, -50%);
         z-index: 1;
-        opacity: 0;
+        opacity: 0.3;
         width: 100%;
     }
 
     .hero-me__title-large {
-        margin-top: 5rem;
         line-height: 0.85;
         text-align: center;
+        margin: 0;
     }
 
     .title-word {
         display: block;
-        font-size: clamp(4rem, 15vw, 12rem);
+        font-size: 3.5rem;
         font-weight: 900;
         text-transform: uppercase;
         letter-spacing: -0.03em;
         color: #093354;
     }
 
-    /* Image overlap */
+    /* Image with grayscale effect */
     .hero-me__image {
         position: absolute;
         top: 50%;
         left: 50%;
         transform: translate(-50%, -50%);
         z-index: 2;
-        width: 280px;
-        height: 350px;
+        width: 240px;
+        height: 300px;
         opacity: 0;
         border: 5px solid #093354;
         box-shadow: 0 25px 70px rgba(9, 51, 84, 0.4);
+    }
+
+    .hero-me__image::before {
+        content: "";
+        position: absolute;
+        inset: 0;
+        background: #182a47;
+        opacity: 1;
+        z-index: 1;
+        mix-blend-mode: color;
+        transition: opacity 0.4s ease;
+        pointer-events: none;
     }
 
     .hero-me__image img {
@@ -97,23 +109,25 @@ import heroImage from "../assets/about/me.jpeg";
         height: 100%;
         object-fit: cover;
         display: block;
+        filter: brightness(1.1) contrast(1.1) saturate(0.8);
+        transition: filter 0.4s ease;
     }
 
-    /* Small text in front */
+    /* Small text */
     .hero-me__text-front {
         position: absolute;
-        bottom: 15%; /* Higher up on mobile so it's more visible */
+        bottom: 10%;
         left: 50%;
         transform: translateX(-50%);
         z-index: 3;
         text-align: center;
         width: 90%;
-        max-width: 700px;
+        max-width: 500px;
         opacity: 0;
     }
 
     .hero-me__intro {
-        font-size: clamp(1.5rem, 4vw, 2rem);
+        font-size: 1.5rem;
         font-weight: 700;
         color: #fff6f5;
         margin: 0 0 0.5rem 0;
@@ -123,7 +137,7 @@ import heroImage from "../assets/about/me.jpeg";
     }
 
     .hero-me__subtitle {
-        font-size: clamp(1rem, 2.5vw, 1.25rem);
+        font-size: 0.95rem;
         line-height: 1.6;
         color: #fff6f5;
         font-weight: 500;
@@ -131,42 +145,31 @@ import heroImage from "../assets/about/me.jpeg";
         text-shadow: 2px 2px 8px rgba(9, 51, 84, 0.5);
     }
 
-    /* Smaller screen */
-    @media (min-width: 768px) {
-        .hero-me__text-back {
-            top: 40%; /* Better positioning*/
-        }
-
+    /* Tablet */
+    @media (min-width: 48rem) {
         .title-word {
-            font-size: clamp(6rem, 12vw, 14rem);
+            font-size: 6rem;
         }
 
         .hero-me__image {
-            width: 350px;
-            height: 450px;
-        }
-
-        .hero-me__text-front {
-            bottom: 6%; /* Less overlaping */
+            width: 320px;
+            height: 400px;
         }
 
         .hero-me__intro {
-            font-size: 2.5rem;
+            font-size: 2rem;
         }
 
         .hero-me__subtitle {
-            font-size: 1.5rem;
+            font-size: 1.15rem;
+            max-width: 600px;
         }
     }
 
     /* Desktop */
     @media (min-width: 64rem) {
-        .hero-me__text-back {
-            top: 42%; /* Back to center area */
-        }
-
         .title-word {
-            font-size: clamp(8rem, 14vw, 16rem);
+            font-size: 10rem;
         }
 
         .hero-me__image {
@@ -174,28 +177,20 @@ import heroImage from "../assets/about/me.jpeg";
             height: 500px;
         }
 
-        .hero-me__text-front {
-            bottom: 8%; /* More space = less overlap on desktop */
-        }
-
         .hero-me__intro {
-            font-size: 3rem;
+            font-size: 2.5rem;
         }
 
         .hero-me__subtitle {
-            font-size: 1.75rem;
-            max-width: 800px;
+            font-size: 1.35rem;
+            max-width: 700px;
         }
     }
 
-    /*Large desktop*/
+    /* Large desktop */
     @media (min-width: 87.5rem) {
-        .hero-me__text-back {
-            top: 45%;
-        }
-
         .title-word {
-            font-size: 18rem;
+            font-size: 14rem;
         }
 
         .hero-me__image {
@@ -203,12 +198,13 @@ import heroImage from "../assets/about/me.jpeg";
             height: 550px;
         }
 
-        .hero-me__text-front {
-            bottom: 10%; /* Even more space on large screens */
+        .hero-me__intro {
+            font-size: 3rem;
         }
 
         .hero-me__subtitle {
-            font-size: 2rem;
+            font-size: 1.5rem;
+            max-width: 800px;
         }
     }
 </style>
@@ -225,9 +221,9 @@ import heroImage from "../assets/about/me.jpeg";
         const textFront = document.querySelector(
             '[data-hero="text-front"]',
         ) as HTMLElement;
+        const imageOverlay = image?.querySelector("::before");
 
         if (!section || !textBack || !image || !textFront) {
-            console.error("Hero elements not found");
             return;
         }
 
@@ -236,80 +232,49 @@ import heroImage from "../assets/about/me.jpeg";
             const sectionHeight = section.offsetHeight;
             const viewportHeight = window.innerHeight;
 
-            // Calculate progress (0 to 1)
             const scrolled = -rect.top;
             const totalScrollDistance = sectionHeight - viewportHeight;
-            let progress = scrolled / totalScrollDistance;
-            if (progress < 0) {
-                progress = 0;
-            }
-            if (progress > 1) {
-                progress = 1;
-            }
+            let progress = Math.max(
+                0,
+                Math.min(1, scrolled / totalScrollDistance),
+            );
 
-            // Get current top position based on screen size
-            const isMobile = window.innerWidth < 768;
-            const isTablet =
-                window.innerWidth >= 768 && window.innerWidth < 1024;
-            let baseTop;
-            if (isMobile) {
-                baseTop = "18%";
-            } else if (isTablet) {
-                baseTop = "40%";
-            } else {
-                baseTop = "42%";
+            // Phase 1: Big text fades in fully (0% - 20%)
+            if (progress <= 0.2) {
+                const p = progress / 0.2;
+                textBack.style.opacity = (0.3 + p * 0.7).toString();
             }
-
-            // Phase 1: Big text fades in (0% - 15%)
-            if (progress <= 0.15) {
-                const p = progress / 0.15;
-                textBack.style.opacity = p.toString();
-                textBack.style.top = baseTop;
-                textBack.style.transform = `translate(-50%, -50%)`;
-            }
-            // Phase 2: Big text visible (15% - 30%)
-            else if (progress <= 0.3) {
+            // Phase 2: Image appears (20% - 40%)
+            else if (progress <= 0.4) {
                 textBack.style.opacity = "1";
-                textBack.style.top = baseTop;
-                textBack.style.transform = `translate(-50%, -50%)`;
-            }
-            // Phase 3: Image appears (30% - 45%)
-            else if (progress <= 0.45) {
-                textBack.style.opacity = "1";
-                textBack.style.top = baseTop;
-                const imageProgress = (progress - 0.3) / 0.15;
+                const imageProgress = (progress - 0.2) / 0.2;
                 image.style.opacity = imageProgress.toString();
                 const scale = 0.9 + imageProgress * 0.1;
                 image.style.transform = `translate(-50%, -50%) scale(${scale})`;
             }
-            // Phase 4: Image + text visible (45% - 60%)
-            else if (progress <= 0.6) {
+            // Phase 3: Image fully visible (40% - 55%)
+            else if (progress <= 0.55) {
                 textBack.style.opacity = "1";
-                textBack.style.top = baseTop;
                 image.style.opacity = "1";
                 image.style.transform = `translate(-50%, -50%) scale(1)`;
             }
-            // Phase 5: Bottom text appears (60% - 70%)
+            // Phase 4: Bottom text appears (55% - 70%)
             else if (progress <= 0.7) {
                 textBack.style.opacity = "1";
-                textBack.style.top = baseTop;
                 image.style.opacity = "1";
-                image.style.transform = `translate(-50%, -50%) scale(1)`;
-                const textProgress = (progress - 0.6) / 0.1;
+                const textProgress = (progress - 0.55) / 0.15;
                 textFront.style.opacity = textProgress.toString();
                 const textY = 20 - textProgress * 20;
                 textFront.style.transform = `translateX(-50%) translateY(${textY}px)`;
             }
-            // Phase 6: Everything visible (70% - 85%) - READING TIME
+            // Phase 5: Everything visible - READING TIME (70% - 85%)
             else if (progress <= 0.85) {
                 textBack.style.opacity = "1";
-                textBack.style.top = baseTop;
                 image.style.opacity = "1";
-                image.style.transform = `translate(-50%, -50%) scale(1)`;
                 textFront.style.opacity = "1";
                 textFront.style.transform = `translateX(-50%) translateY(0)`;
             }
-            // Phase 7: Fade out (85% - 100%)
+            // Phase 6: Fade out (85% - 100%)
             else {
                 const fadeProgress = (progress - 0.85) / 0.15;
                 const opacity = 1 - fadeProgress;
@@ -317,23 +282,19 @@ import heroImage from "../assets/about/me.jpeg";
 
                 textBack.style.opacity = opacity.toString();
                 textBack.style.transform = `translate(-50%, calc(-50% + ${moveY}px))`;
-
                 image.style.opacity = opacity.toString();
                 image.style.transform = `translate(-50%, calc(-50% + ${moveY}px)) scale(1)`;
-
                 textFront.style.opacity = opacity.toString();
                 textFront.style.transform = `translateX(-50%) translateY(${moveY}px)`;
             }
         };
 
-        // Initialize
         handleScroll();
 
-        // Throttle scroll for performance
         let ticking = false;
         window.addEventListener("scroll", () => {
             if (!ticking) {
-                window.requestAnimationFrame(() => {
+                requestAnimationFrame(() => {
                     handleScroll();
                     ticking = false;
                 });

@@ -6,7 +6,7 @@ interface Props {
 }
 
 const { experiments } = Astro.props;
-const featuredExperiments = experiments.slice(0, 4);
+const featuredExperiments = experiments.slice(1, 5);
 ---
 
 <section class="experiments-section">
@@ -28,7 +28,7 @@ const featuredExperiments = experiments.slice(0, 4);
             {
                 featuredExperiments.map((exp, index) => {
                     let imageContent;
-                    
+
                     if (exp.data.cover) {
                         imageContent = (
                             <Image
@@ -53,9 +53,7 @@ const featuredExperiments = experiments.slice(0, 4);
                             class="experiment-square"
                             data-index={index}
                         >
-                            <div class="square-image">
-                                {imageContent}
-                            </div>
+                            <div class="square-image">{imageContent}</div>
                             <div class="square-overlay">
                                 <span class="category">
                                     {exp.data.category || "Observation"}
@@ -146,6 +144,7 @@ const featuredExperiments = experiments.slice(0, 4);
         pointer-events: none;
         z-index: 1;
         opacity: 0;
+        display: none;
         transition:
             opacity 1s cubic-bezier(0.23, 1.07, 0.32, 1),
             transform 1s cubic-bezier(0.23, 1.07, 0.32, 1);
@@ -154,13 +153,6 @@ const featuredExperiments = experiments.slice(0, 4);
     .background-text.is-visible {
         opacity: 1;
         transform: translateX(-50%) translateX(0);
-    }
-
-    /* Hide on mobile */
-    @media (max-width: 767px) {
-        .background-text {
-            display: none;
-        }
     }
 
     /* Grid */
@@ -310,7 +302,8 @@ const featuredExperiments = experiments.slice(0, 4);
     }
 
     .view-all:hover {
-        color: #093354;
+        background: #093354;
+        color: #fff6f5;
     }
 
     .view-all svg {
@@ -335,7 +328,16 @@ const featuredExperiments = experiments.slice(0, 4);
             gap: 2rem;
         }
 
-        /* Stagger animation delay */
+        .background-text {
+            display: block;
+            transform: translateX(-50%) translateX(-60px);
+        }
+
+        .background-text.is-visible {
+            transform: translateX(-50%) translateX(0);
+        }
+
+        /* animation delay */
         .experiment-square {
             transition-delay: calc(var(--index) * 0.1s);
         }
@@ -386,7 +388,7 @@ const featuredExperiments = experiments.slice(0, 4);
         // Observe background text
         if (backgroundText) observer.observe(backgroundText);
 
-        // Set stagger delay and observe squares
+        // Set delay and observe squares
         squares.forEach((square, index) => {
             const el = square as HTMLElement;
             el.style.setProperty("--index", String(index));
